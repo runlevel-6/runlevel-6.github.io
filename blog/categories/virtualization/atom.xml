@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: virtualization | RunLevel-6]]></title>
+  <link href="http://runlevel-6.github.io/runlevel-6/blog/categories/virtualization/atom.xml" rel="self"/>
+  <link href="http://runlevel-6.github.io/runlevel-6/"/>
+  <updated>2015-01-04T02:12:19-05:00</updated>
+  <id>http://runlevel-6.github.io/runlevel-6/</id>
+  <author>
+    <name><![CDATA[Ken Zahorec]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[CentOS 6/7 Virtualization Server: The industrial strength hypervisor with performance, security, and manageability.]]></title>
+    <link href="http://runlevel-6.github.io/runlevel-6/blog/2014/12/11/centos-virtualization-server/"/>
+    <updated>2014-12-11T00:48:36-05:00</updated>
+    <id>http://runlevel-6.github.io/runlevel-6/blog/2014/12/11/centos-virtualization-server</id>
+    <content type="html"><![CDATA[<p><img src="/post-images/cisco-ucs-front-view_400x39.png" title="Optional title" alt="cisco m220 ucs server" /></p>
+
+<p>The CentOS KVM/Qemu hypervisor can be setup in short order and provides all of the tools necessary to support enterprise class virtualization. Create and manage VMs and virtual networks. We begin with a quick 5 minute install of CentOS minimal. Then add virtualization packages and desired utilities with some follow-on configuration activities. It installs and sets up quickly into just about any modern virt-capable host hardware you can imagine. <strong>From enterprise grade servers, to desktop, or even laptop systems.</strong> I have implemented it many times in both CentOS 6 and CentOS 7. I like the new systemd and graphical firewall-config in CentOS 7.</p>
+
+<p>The hypervisor host can be used for research, development, and/or production systems. It provides <strong>graphical management</strong> of virtual machines, virtual networking, and other related resources. It can be easily managed remotely from Windows, Linux, or Mac OS X desktops using a graphical program called
+<a href="http://virt-manager.org/" target="_blank">Virtual Machine Manager</a>, invoked simply as &ldquo;virt-manager&rdquo;. Alternatively, command line or scripted management is also possible using a powerful <a href="http://libvirt.org/" target="_blank">libvirt</a>-based program called <a href="http://libvirt.org/virshcmdref.html" target="_blank">Virsh</a>, invoked simply as &ldquo;virsh&rdquo;.</p>
+
+<p>The hypervisor can also be used as a OS provisioning platform for <strong>virtual desktop interface (VDI)</strong> using accelerated
+<a href="http://www.spice-space.org/" target="_blank">Spice</a>
+or standard common VNC. The Spice protocol and tools provide a very responsive desktop experience delivered to client from VM.</p>
+
+<p>Select the setup guide here for detailed instructions covering both CentOS 6 and CentOS 7 systems.
+<a href="http://runlevel-6.github.io/runlevel-6/centos-virt" target="_blank">CentOS Hypervisor Setup and Management - detailed instructions</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Linux Virtualization: Some links and topics of interest]]></title>
+    <link href="http://runlevel-6.github.io/runlevel-6/blog/2013/04/05/linux-virtualization-some-links-and-topics-of-interest/"/>
+    <updated>2013-04-05T03:10:05-04:00</updated>
+    <id>http://runlevel-6.github.io/runlevel-6/blog/2013/04/05/linux-virtualization-some-links-and-topics-of-interest</id>
+    <content type="html"><![CDATA[<p>The <a href="http://www.virt-manager.org/">Virtual Machine Manager</a> application (virt-manager) is a desktop user interface for managing virtual machines.</p>
+
+<p>The <a href="http://virt.kernelnewbies.org/MacVTap">MacVTap Wiki</a> over at <a href="http://virt.kernelnewbies.org/">kernelnewbies website</a> has some very useful information on the benefits of the KVM MacVTap device driver.</p>
+
+<p>The <a href="http://virt.kernelnewbies.org/">kernelnewbies website</a> has a considerable amount of information on Linux virtualization.</p>
+
+<p>Another good option for a virtualization server is CentOS. Nixcraft has a very good article about setting up a <a href="http://www.cyberciti.biz/faq/centos-rhel-linux-kvm-virtulization-tutorial/">CentOS KVM virtualization server</a>. They are using CentOS v5.3.</p>
+
+<p>There is a great <a href="http://itscblog.tamu.edu/startup-guide-for-kvm-on-centos-6/">Startup guide for KVM</a> with CentOS on ITSC blog. But this time it is the later CentOS 6.0 version and they are setting up a headless server. They add virt-manager to the headless server and run it remotely from a seperate management host&ndash;very useful.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Fedora Virtualization Server: A cutting-edge approach to lab virtualization]]></title>
+    <link href="http://runlevel-6.github.io/runlevel-6/blog/2013/04/05/fedora-virtualization-server/"/>
+    <updated>2013-04-05T02:33:28-04:00</updated>
+    <id>http://runlevel-6.github.io/runlevel-6/blog/2013/04/05/fedora-virtualization-server</id>
+    <content type="html"><![CDATA[<p>Here we will describe how to set up Fedora 18 with KVM as a virtualization server and then use <strong>virt-manager</strong> to locally manage the VMs and other virtual resources.</p>
+
+<p>Also we will describe how to set up a management host which would be used to remotely manage the Fedora virtualization server and hypervisor through ssh and virt-manager. The management host could be desktop system with Fedora installed on it.</p>
+
+<h2>What you will need</h2>
+
+<p>For the Fedora virtualization server, something like a  Cicso UCS would be great if you can spare $15K or so.</p>
+
+<p><img src="/images-fedora-kvm/cisco-ucs-front-view_400x39.png" alt="cicso ucs server" /></p>
+
+<p>Moving more towards the mid-range budget minded, an older Dell 2950 server might be just the ticket&hellip;</p>
+
+<p><img src="/images-fedora-kvm/dell-2950-single_400x80.png" alt="dell server" /></p>
+
+<p>On the lower-end budget, a decent 64 bit multicore <strong>desktop system</strong> would work just fine as well.</p>
+
+<ol>
+<li><p>A reliable server or desktop system with enough resources to accomodate the VMs you plan to create and run in the system.</p></li>
+<li><p>An optional additional system to use as a client for management of the Fedora virtualization server, that is if you want to manage the Fedora virt server from a remote system.</p></li>
+<li><p>A Fedora 18 64-bit Gnome desktop installation CD (or USB). You can get the raw image for the installation from the Fedora website. It is totally free to use and scale as you wish.</p></li>
+<li><p>Some patience and willingness to learn some new skills.</p></li>
+</ol>
+
+
+<h2>Step 1 - Install Fedora into the server (10 minutes)</h2>
+
+<p>Perform a Fedora 18 64-bit Gnome Desktop intallation to the server hardware of choice. In my most recent case I installed Fedora 18 into a Dell 2950 with 8GB RAM and 170 GB of usable RAID storage&ndash;the perfect server for what I was needing to do at the time.</p>
+
+<p>Boot the installation media in the server and proceed to install it using the installation prompt provided. It will eventually stop at the partioning tool. Make sure to affirm that you want to review the partioning during the installation. This will give you the chance to make some adjustments in the sizes and number of the partitions allotted to the Fedora installation process.</p>
+
+<p>During installation, change the partitioning storage volumes. The installer default storage arrangement suggests most storage will be committed to &ldquo;/home&rdquo;. The problem with this is that KVM/QEMU images, by default, are created at &ldquo;/var/lib/libvirt/images/.&rdquo;. If you plan to have lots of virtual machine images and use the standard suggested partitioning, then it will be likely you will run out of space on the filesystem root partition &ldquo;/&rdquo; as you add more and more virtual machines.</p>
+
+<p>There are a number options we can do to resolve the storage issue, while in the partitioning tool:</p>
+
+<ol>
+<li>We can rearrange the partitioning to provide a dedicated additional partition and assign mount point for &ldquo;/var/lib/libvirt/&rdquo; to this partition. -or-</li>
+<li>We can simply rearrange the standard partitioning such that most of the storage in at filesystem root &ldquo;/&rdquo; instead of &ldquo;/home&rdquo;.</li>
+</ol>
+
+
+<p>I normally choose the latter of these two choices and commit most of the available storage to root filesystem (/). I reduce the /home partition to 30GB or so. There are other options as well, but we won&rsquo;t get into them here.</p>
+
+<p>After adjusting the partitioning as necessary, follow the Fedora CD live image installation process through to completion</p>
+
+<h2>Step 2 - Configure the Fedora Desktop (3 minutes)</h2>
+
+<p>In this section we log into the Fedora system for the first time and perform system configuration tasks.</p>
+
+<p>Log into the Desktop using a display, keyboard, and mouse, attached to the server.</p>
+
+<p>Configure the network to allow for remote management of the system. This requires that we setup a network interface that is not managed by Network Manager. Read on&hellip;</p>
+
+<p>If your host will be static ip, then set that up. Use the network setting on the gnome network settings desktop interface. You can find it in system settings or directly from the network icon on the desktop. Otherwise just use DHCP (automatic settings) as is provided by default.</p>
+
+<p>Now set the host interface to not be managed by network manager. We do this because we want any required interfaces to come up at boot time without having anyone logged into the host. Network manager activates network interfaces for users when they are logged in&ndash;not what we want for the server environment. We want network up and running right from the boot&ndash;even without a user logged in.  We will need to edit the required network start script(s). For example: /etc/sysconfig/network-scripts/ifup-em1. Make sure the following entries are present in the script:</p>
+
+<pre><code>NM_CONTROLLED=no
+ONBOOT=yes
+</code></pre>
+
+<p>Now enable the &ldquo;non-network-manager&rdquo; traditional networking scripting using the chkconfig utility. This allows network interfaces that are marked with &ldquo;NM_CONTROLLED=no&rdquo; to be able to be managed by the traditional Linux network scripting support.</p>
+
+<pre><code>chkconfig network on
+chkconfig network start
+</code></pre>
+
+<p>We take the network control away from the Gnome network manager because we don&rsquo;t want to require a desktop user to first login before the Fedora system tries to enable the network connection.</p>
+
+<p>To easily view the runtime daemon configuration, perform the following command:</p>
+
+<pre><code>chkconfig
+</code></pre>
+
+<p>Install the ssh server&hellip;this will provide for remote management through virt-manager, ssh, and remote file management through scp. As root, perform the following:</p>
+
+<pre><code>yum install openssh-server
+</code></pre>
+
+<p>That should do it. The Fedora system should have the required networking running from boot&ndash;and also when nobody is logged into desktop on the server system. It will also work when users are logged in.</p>
+
+<h2>Step 3 - Completing the Fedora server installation general update of software and installation of KVM virtualization components (~ 5 min).</h2>
+
+<p>These commands can be done locally at the Fedora virtualization server or through ssh access from a remote system.</p>
+
+<p>Perform a general update of the Fedora server. As root, or sudo&hellip;</p>
+
+<pre><code>yum update
+</code></pre>
+
+<p>Install the Virtualization group of rpm packages. As root&hellip;</p>
+
+<pre><code>yum groupinstall Virtualization
+</code></pre>
+
+<p>Install the libvirt daemon for qemu which provides for creation of KVM guest images on the host. Again, as root, or sudo&hellip;</p>
+
+<pre><code>yum install libvirt-daemon-qemu
+</code></pre>
+
+<p>Now we will restart the server to make sure all the required daemon services are running; libvirtd, etc. As root, or sudo&hellip;</p>
+
+<pre><code>init 6
+</code></pre>
+
+<h2>Fedora virtualization system management from another host. (optional)</h2>
+
+<p>The Fedora server can be managed either locally or from a remote host. If you are not managing the server from a remote host, then you can skip this entire step.</p>
+
+<p>For command line access you can use a secure shell</p>
+
+<pre><code>ssh user@host
+</code></pre>
+
+<p>For graphical use you can use X forwarding through ssh</p>
+
+<pre><code>ssh -X user@host
+</code></pre>
+
+<p>For file management and transfer between hosts you can use secure copy (scp) to transfer files. It is very easy to use and provides secure file transfer.</p>
+
+<p>For example to start the gnome control at the managing system first attach a terminal ssh session with X forwarding:</p>
+
+<pre><code>ssh -X user@host
+</code></pre>
+
+<p>Then invoke the control center as follows:</p>
+
+<pre><code>gnome-control-center &amp;
+</code></pre>
+
+<p>From there you can adjust various system settings at the remote host including the network, proxy, users, printers, etc.</p>
+
+<h2>Setting up the remote management host to manage the Fedora virtualization server with <strong>virt-manager</strong>. (~5 min)</h2>
+
+<p>If you are <strong>not</strong> using a remote management host, then you can skip this section.</p>
+
+<p>This section assumes that we already have another Fedora or otherwise Linux host setup for management of the system we have outlined above. This host system requires the Virtualization group be already installed at the management host. We specifically need a local instance of virt-manager on the management host that we will use to add a connection to the the Fedora server KVM hypervisor through the libvirt daemon. All commands here are done from the local managing host.</p>
+
+<p>Before we can add a remote hypervisor to virt-manager at the management host we need to make sure that the Fedora virt server has the public key of the management host added to the known hosts for root on Fedora virt server. We must first make sure there is a public/private key pair on the management host where we will run virt-manager. By default the two files are located at ~/.ssh/. and are &ldquo;id_rsa&rdquo;, &ldquo;id_rsa.pub&rdquo;. If they are not present we can generate them very easily using the ssh-keygen utility as follows (accepting defaults):</p>
+
+<pre><code>ssh-keygen -t rsa
+</code></pre>
+
+<p>If you decide to password (passphrase) protect the private key, you may need to run ssh-agent in order for the authentication to work. I normally do not password protect the private key, so have not yet used ssh-agent. If you are interested see the manpage for ssh-agent for more information on how to use it.</p>
+
+<p>To allow virt-manager to connect to a remote host it is first necessary to add the public key from the management system to the allowed keys on each remote machine running libvirt. To add the public key to the list of allowed keys for the user root@host:</p>
+
+<pre><code>ssh-copy-id -i ~/.ssh/id_rsa.pub root@host
+</code></pre>
+
+<p>To start virt-manager and perform virtualization management. On the management host we can use the following command</p>
+
+<pre><code>sudo virt-manager
+</code></pre>
+
+<p>Virt-manager can also be started graphically from the search facility in the Fedora Gnome 3 desktop, or added to the favorites menu bar. It will challenge you for your sudo user password before starting.</p>
+
+<p>In the virt-manager interface you will need to add a new connection to the Fedora virt server hypervisor.</p>
+
+<p>&ldquo;virt-manager -> File -> Add Connection&rdquo;.</p>
+
+<p>With the connection to the Fedora 18 virtualization server, we can now create new VMs, clone VMs, add Spice/VNC access to VMs, Delete VMs, manage storage, perform virtual network management, etc.. We can also completely manage, and use, the Fedora virtualization server from the management system&ndash;as briefly outlined in step 3 above.</p>
+
+<p>When creating a network bridge in virt-manager, you may need to disable the spanning tree protocol (STP). Some managed switches will disable the physical port if your host uses STP on them. This is apparently a switch configuration&ndash;I ran into it in a network lab recently.</p>
+
+<h2>Running virt-manager directly on the Fedora virtualization server</h2>
+
+<p>If you are not managing the Fedora virt server from another system, then you will have to log into the server desktop and run virt-manager to perform virtualization management of the local hypervisor (KVM). Of course you will need a keyboard, mouse, and display attached because you will be using the server as a desktop system&ndash;in some cases this may not be feasible. Log into the desktop, open up a gnome-teminal session and enter the following command:</p>
+
+<pre><code>sudo virt-manager
+</code></pre>
+
+<p>When you first start virt-manager it looks rather simple, but don&rsquo;t let that fool you. Virt-manager can perform some heavy lifting; VM management, virtual networking, storage, remote hypervisor management. Upon first start, virt-manager may need to be connected to the local hypervisor. To connect to the local hypervisor, use &ldquo;File -> Add Connection&rdquo;.</p>
+
+<p>Of course you could occasionally manage the Fedora system from afar and occasionally manage it directly at the server. Either way, it&rsquo;s your choice&ndash;very flexible.</p>
+
+<h2>Remote diagnosis - Monitoring IP traffic with wireshark-gnome.</h2>
+
+<p>This section explains how to add wireshark, which allows you to perform detailed network and device analysis, to the Fedora virtualization server. This is critical to have if you need to be able to monitor and analyze network data at the server. The commands shown can be run from the remote management host or directly at the Fedora virtualization server.</p>
+
+<p>Log into the Fedora virt server system with ssh</p>
+
+<pre><code>ssh user@host
+
+su
+
+yum install wireshark-gnome
+</code></pre>
+
+<p>Now make sure that the &ldquo;user&rdquo; we want to allow to run wireshark is in the &ldquo;wireshark&rdquo; group.</p>
+
+<pre><code>usermod -a -G wireshark user
+</code></pre>
+
+<p>Use X forwarding to start wireshark at the remote host and view/control it at the managing system. &ldquo;user&rdquo; in this case the the same user we provided with the line above.</p>
+
+<pre><code>ssh -X user@host
+
+wireshark &amp;
+</code></pre>
+
+<h2>Remote management of the Fedora 18 virtualization server - running desktop applications</h2>
+
+<p>There are lots of great tools to use to manage the Fedora virt server. Anything we run directly at the desktop on the Fedora server can also be run in view from the management host:</p>
+
+<p>Log into remote host using ssh with X forwarding</p>
+
+<pre><code>ssh -X user@host
+</code></pre>
+
+<p>The following commands are examples of some of the programs that can be run from afar at the management host.</p>
+
+<pre><code>system-config-network
+
+system-config-printer
+
+gnome-control-center
+
+wireshark-gnome
+</code></pre>
+
+<p>If you are using the gnome desktop proxy settings at Fedora server host and need to have the proxy environment variables set properly in a terminal session from the remote management system&ndash;say to run yum commands, or perform a wget; Just invoke a gnome terminal session from the active (ssh -X) session like so:</p>
+
+<pre><code>gnome-terminal
+</code></pre>
+
+<h2>Which terminal session you run can make a big difference</h2>
+
+<p>Don&rsquo;t forget; When you run a non-X11 ssh session to a remote Linux system you do not get the gnome environment enabled terminal session. You get a somewhat basic terminal session that is void of Gnome specific environment settings. If you want your terminal session to behave as if you were logged into Gnome&ndash;for proxy settings etc., then you need to use gnome-terminal.</p>
+
+<p><strong>My experience with the Fedora 18 virtualization server has been great.</strong>. The Dell 2950 server is performing very well and the stability of the overall system is incredible! Fedora rocks!</p>
+
+<p>Here is a screenshot of virt-manager, running at the management host, connected to the Fedora virt server remote hypervisor</p>
+
+<p><img src="/images-fedora-kvm/virt-manager_400x269.png" alt="virt-manager remote" /></p>
+
+<p>Here is the entire desktop at the management host. I have wireshark up and running as I monitor traffic from an Elastix PBX running in a VM within the Fedora virt server hypervisor. Click the image for a larger view.</p>
+
+<p><a href="http://runlevel-6.github.io/runlevel-6/images-fedora-kvm/virt-manager-wireshark_1024x640.png" target="_blank"> <img src="http://runlevel-6.github.io/runlevel-6/images-fedora-kvm/virt-manager-wireshark_400x250.png" border="0" alt="Fedora virt server management" /></a></p>
+
+<p>A few points about creating VMs under virt-manager</p>
+
+<ul>
+<li><p>If you use SPICE for the video connection channel to the VM you will get a very smooth and fast display experience when connecting to the VM (guest OS display). This is far better than the older bandwidth hog VNC. The SPICE protocol provides for highly compressed and accelerated video performance. It greatly reduces the required network bandwidth for remoting the VM to a SPICE client on remote host. In most cases a 1M bit connection is all you need for a perfectly responsive virtual desktop. It works so well that you don&rsquo;t even realize you are running on a remote machine.</p></li>
+<li><p>Spice USB forwarding provides the ability to add USB channels to the VM for USB plug-in forwarding on spice client connections. You can connected from a remote host to the VM guest, and then forward a USB device connection at the remote host to the guest VM. To do this you need to add a &ldquo;USB Redirection&rdquo; virtual device to the VM. You need to add as many USB Rediretion devices as you plan to have number of USB devices forwarded to the VM at one time. Each USB device forwarded takes up an available forwarding slot. I have had 10 USB devices forwarded to the VM guest at one time with no problems.</p></li>
+<li><p>To take full advantage of KVM virtual devices and Spice, be sure to to add the virtio drivers to the guest VM. linux-kvm.org has <a href="http://www.linux-kvm.org/page/WindowsGuestDrivers/Download_Drivers">virtio drivers</a> for Windows available for free. Many of the modern Linux distibutions come with virtio drivers included, or available in the repositories for the Linux distribution.</p></li>
+<li><p>When connecting the VMs to a network, you can use a virtual network device called the <strong>MacVTap</strong>. This is available using point and click with virt-manager. This is similar to a bridge, but easer to setup and use than a bridge. MacVTap is not only easier to use and setup than a bridge, but provides other benefits and more flexibility.</p></li>
+<li><p>I typically use a separate network interface for use by the VM guests. The original network interface is used for server management, local users, etc. When creating the VM I typically use a MacVTAP to the dedicated NIC.</p></li>
+</ul>
+
+
+<p>That&rsquo;s all for now. Have fun with your new virtualization server!</p>
+
+<p><a href='#TOP'><img alt="back to top of page" style="border-width:0" src="http://runlevel-6.github.io/runlevel-6/images/nav-to-top_80x23.png" /></a></p>
+]]></content>
+  </entry>
+  
+</feed>
