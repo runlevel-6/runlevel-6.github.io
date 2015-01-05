@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: fredora | RunLevel-6]]></title>
-  <link href="http://runlevel-6.github.io/runlevel-6/blog/categories/fredora/atom.xml" rel="self"/>
-  <link href="http://runlevel-6.github.io/runlevel-6/"/>
-  <updated>2015-01-04T23:52:39-05:00</updated>
-  <id>http://runlevel-6.github.io/runlevel-6/</id>
+  <link href="http://runlevel-6.github.io/blog/categories/fredora/atom.xml" rel="self"/>
+  <link href="http://runlevel-6.github.io/"/>
+  <updated>2015-01-05T01:03:36-05:00</updated>
+  <id>http://runlevel-6.github.io/</id>
   <author>
     <name><![CDATA[Ken Zahorec]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Linux Virtualization: Some links and topics of interest]]></title>
-    <link href="http://runlevel-6.github.io/runlevel-6/blog/2013/04/05/linux-virtualization-some-links-and-topics-of-interest/"/>
+    <link href="http://runlevel-6.github.io/blog/2013/04/05/linux-virtualization-some-links-and-topics-of-interest/"/>
     <updated>2013-04-05T03:10:05-04:00</updated>
-    <id>http://runlevel-6.github.io/runlevel-6/blog/2013/04/05/linux-virtualization-some-links-and-topics-of-interest</id>
+    <id>http://runlevel-6.github.io/blog/2013/04/05/linux-virtualization-some-links-and-topics-of-interest</id>
     <content type="html"><![CDATA[<p>The <a href="http://www.virt-manager.org/">Virtual Machine Manager</a> application (virt-manager) is a desktop user interface for managing virtual machines.</p>
 
 <p>The <a href="http://virt.kernelnewbies.org/MacVTap">MacVTap Wiki</a> over at <a href="http://virt.kernelnewbies.org/">kernelnewbies website</a> has some very useful information on the benefits of the KVM MacVTap device driver.</p>

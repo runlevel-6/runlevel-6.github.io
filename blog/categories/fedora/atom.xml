@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: fedora | RunLevel-6]]></title>
-  <link href="http://runlevel-6.github.io/runlevel-6/blog/categories/fedora/atom.xml" rel="self"/>
-  <link href="http://runlevel-6.github.io/runlevel-6/"/>
-  <updated>2015-01-04T23:52:39-05:00</updated>
-  <id>http://runlevel-6.github.io/runlevel-6/</id>
+  <link href="http://runlevel-6.github.io/blog/categories/fedora/atom.xml" rel="self"/>
+  <link href="http://runlevel-6.github.io/"/>
+  <updated>2015-01-05T01:03:36-05:00</updated>
+  <id>http://runlevel-6.github.io/</id>
   <author>
     <name><![CDATA[Ken Zahorec]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Fedora Virtualization Server: A cutting-edge approach to lab virtualization]]></title>
-    <link href="http://runlevel-6.github.io/runlevel-6/blog/2013/04/05/fedora-virtualization-server/"/>
+    <link href="http://runlevel-6.github.io/blog/2013/04/05/fedora-virtualization-server/"/>
     <updated>2013-04-05T02:33:28-04:00</updated>
-    <id>http://runlevel-6.github.io/runlevel-6/blog/2013/04/05/fedora-virtualization-server</id>
+    <id>http://runlevel-6.github.io/blog/2013/04/05/fedora-virtualization-server</id>
     <content type="html"><![CDATA[<p>Here we will describe how to set up Fedora 18 with KVM as a virtualization server and then use <strong>virt-manager</strong> to locally manage the VMs and other virtual resources.</p>
 
 <p>Also we will describe how to set up a management host which would be used to remotely manage the Fedora virtualization server and hypervisor through ssh and virt-manager. The management host could be desktop system with Fedora installed on it.</p>
@@ -256,7 +256,7 @@ wireshark-gnome
 
 <p>Here is the entire desktop at the management host. I have wireshark up and running as I monitor traffic from an Elastix PBX running in a VM within the Fedora virt server hypervisor. Click the image for a larger view.</p>
 
-<p><a href="http://runlevel-6.github.io/runlevel-6/images-fedora-kvm/virt-manager-wireshark_1024x640.png" target="_blank"> <img src="http://runlevel-6.github.io/runlevel-6/images-fedora-kvm/virt-manager-wireshark_400x250.png" border="0" alt="Fedora virt server management" /></a></p>
+<p><a href="http://runlevel-6.github.io/images-fedora-kvm/virt-manager-wireshark_1024x640.png" target="_blank"> <img src="http://runlevel-6.github.io/images-fedora-kvm/virt-manager-wireshark_400x250.png" border="0" alt="Fedora virt server management" /></a></p>
 
 <p>A few points about creating VMs under virt-manager</p>
 
@@ -271,7 +271,7 @@ wireshark-gnome
 
 <p>That&rsquo;s all for now. Have fun with your new virtualization server!</p>
 
-<p><a href='#TOP'><img alt="back to top of page" style="border-width:0" src="http://runlevel-6.github.io/runlevel-6/images/nav-to-top_80x23.png" /></a></p>
+<p><a href='#TOP'><img alt="back to top of page" style="border-width:0" src="http://runlevel-6.github.io/images/nav-to-top_80x23.png" /></a></p>
 ]]></content>
   </entry>
   

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: electrical | RunLevel-6]]></title>
-  <link href="http://runlevel-6.github.io/runlevel-6/blog/categories/electrical/atom.xml" rel="self"/>
-  <link href="http://runlevel-6.github.io/runlevel-6/"/>
-  <updated>2015-01-04T23:52:39-05:00</updated>
-  <id>http://runlevel-6.github.io/runlevel-6/</id>
+  <link href="http://runlevel-6.github.io/blog/categories/electrical/atom.xml" rel="self"/>
+  <link href="http://runlevel-6.github.io/"/>
+  <updated>2015-01-05T01:03:36-05:00</updated>
+  <id>http://runlevel-6.github.io/</id>
   <author>
     <name><![CDATA[Ken Zahorec]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Basement Upgrade: Creating the new hangout...]]></title>
-    <link href="http://runlevel-6.github.io/runlevel-6/blog/2013/04/30/basement-upgrade-creating-the-new-hangout/"/>
+    <link href="http://runlevel-6.github.io/blog/2013/04/30/basement-upgrade-creating-the-new-hangout/"/>
     <updated>2013-04-30T10:45:07-04:00</updated>
-    <id>http://runlevel-6.github.io/runlevel-6/blog/2013/04/30/basement-upgrade-creating-the-new-hangout</id>
+    <id>http://runlevel-6.github.io/blog/2013/04/30/basement-upgrade-creating-the-new-hangout</id>
     <content type="html"><![CDATA[<p>My wife and I had been living in our home, with children, for a number of years and decided it was time for general improvement of the basement. The basement was basically roughed-in but nothing was done beyond what was required for the basic requirements to satisfy the building code. It was not a living area for our home and we wanted to create a living area for our family to enjoy.</p>
 
 <h3>Experience</h3>
@@ -182,15 +182,15 @@
 
 <p>document date: 2013-04-30</p>
 
-<p><a href='#TOP'><img alt="back to top of page" style="border-width:0" src="http://runlevel-6.github.io/runlevel-6/images/nav-to-top_80x23.png" /></a></p>
+<p><a href='#TOP'><img alt="back to top of page" style="border-width:0" src="http://runlevel-6.github.io/images/nav-to-top_80x23.png" /></a></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Electric Range Repair: Can I do it myself?]]></title>
-    <link href="http://runlevel-6.github.io/runlevel-6/blog/2013/04/21/electric-range-repair-can-i-do-it-myself/"/>
+    <link href="http://runlevel-6.github.io/blog/2013/04/21/electric-range-repair-can-i-do-it-myself/"/>
     <updated>2013-04-21T04:05:53-04:00</updated>
-    <id>http://runlevel-6.github.io/runlevel-6/blog/2013/04/21/electric-range-repair-can-i-do-it-myself</id>
+    <id>http://runlevel-6.github.io/blog/2013/04/21/electric-range-repair-can-i-do-it-myself</id>
     <content type="html"><![CDATA[<p>I am posting this information with hope that it might help others who are experiencing the same problem. If you find it of good use, please drop me an email to let me know. Please read the disclaimer at the bottom of this document.</p>
 
 <p>Below is a range which has two top burners no longer working. It is currently a two-burner range. We need to fix it.</p>
@@ -329,9 +329,9 @@
   
   <entry>
     <title type="html"><![CDATA[Auto Repair: Fixing the BMW 325 faulty rear tail light]]></title>
-    <link href="http://runlevel-6.github.io/runlevel-6/blog/2013/04/04/auto-repair-fixing-the-bmw-325-faulty-rear-tail-light/"/>
+    <link href="http://runlevel-6.github.io/blog/2013/04/04/auto-repair-fixing-the-bmw-325-faulty-rear-tail-light/"/>
     <updated>2013-04-04T23:49:08-04:00</updated>
-    <id>http://runlevel-6.github.io/runlevel-6/blog/2013/04/04/auto-repair-fixing-the-bmw-325-faulty-rear-tail-light</id>
+    <id>http://runlevel-6.github.io/blog/2013/04/04/auto-repair-fixing-the-bmw-325-faulty-rear-tail-light</id>
     <content type="html"><![CDATA[<p>I am posting this information with hope that it might help others who are experiencing the same problem I am having with the E46 tail light assembly. If you find it of good use, please drop me an email to let me know. Please read the disclaimer at the bottom of this document.</p>
 
 <p>Can you spot the problem in this rear tail light connector?</p>
@@ -420,9 +420,9 @@
   
   <entry>
     <title type="html"><![CDATA[Librecad: Creating a detailed design drawing for a basement remodel job.]]></title>
-    <link href="http://runlevel-6.github.io/runlevel-6/blog/2013/03/05/librecad-basement-remodel/"/>
+    <link href="http://runlevel-6.github.io/blog/2013/03/05/librecad-basement-remodel/"/>
     <updated>2013-03-05T02:10:05-05:00</updated>
-    <id>http://runlevel-6.github.io/runlevel-6/blog/2013/03/05/librecad-basement-remodel</id>
+    <id>http://runlevel-6.github.io/blog/2013/03/05/librecad-basement-remodel</id>
     <content type="html"><![CDATA[<p>I am posting this information with hope that it might help others who are interested in improving their home and looking for a great way to document and move forward with a plan for home improvement. If you find this document useful, then please drop me an email to let me know. Please read the disclaimer at the bottom of this document. Update: Please note that <strong>LibreCAD was originally called QCAD</strong>.</p>
 
 <p>Below is a basement home improvement design in LibreCAD</p>
@@ -449,11 +449,11 @@
 
 <p>Below is LibreCAD up and running with the basement plan opened. You can see that I have created layers in the drawing which are identified in the rightmost pane. Each layer can be made visible or invisible in the drawing. Different line attributes can be assigned for each layer. Although the drawing looks complicated, it was actually quite easy to create after spending some time learning LibreCAD.</p>
 
-<p><a href="images-librecad/qcad_basement_plan_1024x762.png" target="_blank"> <img src="http://runlevel-6.github.io/runlevel-6/images-librecad/qcad_basement_plan_400x298.png" border="0" alt="librecad detailed diagram" /></a></p>
+<p><a href="images-librecad/qcad_basement_plan_1024x762.png" target="_blank"> <img src="http://runlevel-6.github.io/images-librecad/qcad_basement_plan_400x298.png" border="0" alt="librecad detailed diagram" /></a></p>
 
 <p>LibreCAD does a great job at exporting graphics to postscript format. You can easily view the output file in Adobe acrobat or an open source document viewer. It supports output to standard paper sizes including very large paper formats used for plotters. Below is an example of the same drawing in print preview ready to be exported to post script or printed directly.</p>
 
-<p><a href="images-librecad/qcad_basement_plan_print_preview_1024x762.png" target="_blank"> <img src="http://runlevel-6.github.io/runlevel-6/images-librecad/qcad_basement_plan_print_preview_400x298.png" border="0" alt="librecad print diagram" /></a></p>
+<p><a href="images-librecad/qcad_basement_plan_print_preview_1024x762.png" target="_blank"> <img src="http://runlevel-6.github.io/images-librecad/qcad_basement_plan_print_preview_400x298.png" border="0" alt="librecad print diagram" /></a></p>
 
 <h3>An example librecad design file</h3>
 
@@ -461,7 +461,7 @@
 
 <p>Once you spend some time with LibreCAD I think you will agree; This is a great tool to have for home improvement planning. It also works great for other 2D CAD applications, such as in designing mechanical parts for fabrication. I have also used it for design work on some woodworking projects.</p>
 
-<p><a href='#TOP'><img alt="back to top of page" style="border-width:0" src="http://runlevel-6.github.io/runlevel-6/images/nav-to-top_80x23.png" /></a></p>
+<p><a href='#TOP'><img alt="back to top of page" style="border-width:0" src="http://runlevel-6.github.io/images/nav-to-top_80x23.png" /></a></p>
 ]]></content>
   </entry>
   

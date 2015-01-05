@@ -1,65 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://runlevel-6.github.io/runlevel-6/blog/2014/12/11/centos-virtualization-server/</loc>
+    <loc>http://runlevel-6.github.io/blog/2014/12/11/centos-virtualization-server/</loc>
     <lastmod>2014-12-11T00:48:36-05:00</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>http://runlevel-6.github.io/runlevel-6/blog/2013/05/04/auto-repair-fixing-a-leaky-door-on-the-2007-saab-93/</loc>
+    <loc>http://runlevel-6.github.io/blog/2013/05/04/auto-repair-fixing-a-leaky-door-on-the-2007-saab-93/</loc>
     <lastmod>2013-05-04T01:21:55-04:00</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>http://runlevel-6.github.io/runlevel-6/blog/2013/04/30/basement-upgrade-creating-the-new-hangout/</loc>
+    <loc>http://runlevel-6.github.io/blog/2013/04/30/basement-upgrade-creating-the-new-hangout/</loc>
     <lastmod>2013-04-30T10:45:07-04:00</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>http://runlevel-6.github.io/runlevel-6/blog/2013/04/21/electric-range-repair-can-i-do-it-myself/</loc>
+    <loc>http://runlevel-6.github.io/blog/2013/04/21/electric-range-repair-can-i-do-it-myself/</loc>
     <lastmod>2013-04-21T04:05:53-04:00</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>http://runlevel-6.github.io/runlevel-6/blog/2013/04/21/auto-headlight-repair-cleaning-cloudy-headlamp-lenses-to-look-like-new-again/</loc>
+    <loc>http://runlevel-6.github.io/blog/2013/04/21/auto-headlight-repair-cleaning-cloudy-headlamp-lenses-to-look-like-new-again/</loc>
     <lastmod>2013-04-21T00:45:35-04:00</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>http://runlevel-6.github.io/runlevel-6/blog/2013/04/05/linux-virtualization-some-links-and-topics-of-interest/</loc>
+    <loc>http://runlevel-6.github.io/blog/2013/04/05/linux-virtualization-some-links-and-topics-of-interest/</loc>
     <lastmod>2013-04-05T03:10:05-04:00</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>http://runlevel-6.github.io/runlevel-6/blog/2013/04/05/fedora-virtualization-server/</loc>
+    <loc>http://runlevel-6.github.io/blog/2013/04/05/fedora-virtualization-server/</loc>
     <lastmod>2013-04-05T02:33:28-04:00</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>http://runlevel-6.github.io/runlevel-6/blog/2013/04/04/auto-repair-fixing-the-bmw-325-faulty-rear-tail-light/</loc>
+    <loc>http://runlevel-6.github.io/blog/2013/04/04/auto-repair-fixing-the-bmw-325-faulty-rear-tail-light/</loc>
     <lastmod>2013-04-04T23:49:08-04:00</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>http://runlevel-6.github.io/runlevel-6/blog/2013/03/05/librecad-basement-remodel/</loc>
+    <loc>http://runlevel-6.github.io/blog/2013/03/05/librecad-basement-remodel/</loc>
     <lastmod>2013-03-05T02:10:05-05:00</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>http://runlevel-6.github.io/runlevel-6/</loc>
-    <lastmod>2015-01-04T23:52:39-05:00</lastmod>
+    <loc>http://runlevel-6.github.io/</loc>
+    <lastmod>2015-01-05T01:03:36-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>http://runlevel-6.github.io/runlevel-6/blog/archives/</loc>
-    <lastmod>2015-01-04T23:52:39-05:00</lastmod>
+    <loc>http://runlevel-6.github.io/blog/archives/</loc>
+    <lastmod>2015-01-05T01:03:36-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://runlevel-6.github.io/runlevel-6/centos-virt/index.html</loc>
-    <lastmod>2014-12-28T11:55:07-05:00</lastmod>
+    <loc>http://runlevel-6.github.io/centos-virt/index.html</loc>
+    <lastmod>2015-01-02T23:01:28-05:00</lastmod>
     <priority>0.6</priority>
   </url>
 </urlset>
