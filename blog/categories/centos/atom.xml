@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: centos | RunLevel-6]]></title>
+  <link href="http://runlevel-6.github.io/runlevel-6/blog/categories/centos/atom.xml" rel="self"/>
+  <link href="http://runlevel-6.github.io/runlevel-6/"/>
+  <updated>2015-01-04T23:52:39-05:00</updated>
+  <id>http://runlevel-6.github.io/runlevel-6/</id>
+  <author>
+    <name><![CDATA[Ken Zahorec]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[CentOS 6/7 Virtualization Server: The industrial strength hypervisor with performance, security, and manageability.]]></title>
+    <link href="http://runlevel-6.github.io/runlevel-6/blog/2014/12/11/centos-virtualization-server/"/>
+    <updated>2014-12-11T00:48:36-05:00</updated>
+    <id>http://runlevel-6.github.io/runlevel-6/blog/2014/12/11/centos-virtualization-server</id>
+    <content type="html"><![CDATA[<p><img src="/post-images/cisco-ucs-front-view_400x39.png" title="Optional title" alt="cisco m220 ucs server" /></p>
+
+<p>The CentOS KVM/Qemu hypervisor can be setup in short order and provides all of the tools necessary to support enterprise class virtualization. Create and manage VMs and virtual networks. We begin with a quick 5 minute install of CentOS minimal. Then add virtualization packages and desired utilities with some follow-on configuration activities. It installs and sets up quickly into just about any modern virt-capable host hardware you can imagine. <strong>From enterprise grade servers, to desktop, or even laptop systems.</strong> I have implemented it many times in both CentOS 6 and CentOS 7. I like the new systemd and graphical firewall-config in CentOS 7.</p>
+
+<p>The hypervisor host can be used for research, development, and/or production systems. It provides <strong>graphical management</strong> of virtual machines, virtual networking, and other related resources. It can be easily managed remotely from Windows, Linux, or Mac OS X desktops using a graphical program called
+<a href="http://virt-manager.org/" target="_blank">Virtual Machine Manager</a>, invoked simply as &ldquo;virt-manager&rdquo;. Alternatively, command line or scripted management is also possible using a powerful <a href="http://libvirt.org/" target="_blank">libvirt</a>-based program called <a href="http://libvirt.org/virshcmdref.html" target="_blank">Virsh</a>, invoked simply as &ldquo;virsh&rdquo;.</p>
+
+<p>The hypervisor can also be used as a OS provisioning platform for <strong>virtual desktop interface (VDI)</strong> using accelerated
+<a href="http://www.spice-space.org/" target="_blank">Spice</a>
+or standard common VNC. The Spice protocol and tools provide a very responsive desktop experience delivered to client from VM.</p>
+
+<p>Select the setup guide here for detailed instructions covering both CentOS 6 and CentOS 7 systems.
+<a href="http://runlevel-6.github.io/runlevel-6/centos-virt" target="_blank">CentOS Hypervisor Setup and Management - detailed instructions</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Linux Virtualization: Some links and topics of interest]]></title>
+    <link href="http://runlevel-6.github.io/runlevel-6/blog/2013/04/05/linux-virtualization-some-links-and-topics-of-interest/"/>
+    <updated>2013-04-05T03:10:05-04:00</updated>
+    <id>http://runlevel-6.github.io/runlevel-6/blog/2013/04/05/linux-virtualization-some-links-and-topics-of-interest</id>
+    <content type="html"><![CDATA[<p>The <a href="http://www.virt-manager.org/">Virtual Machine Manager</a> application (virt-manager) is a desktop user interface for managing virtual machines.</p>
+
+<p>The <a href="http://virt.kernelnewbies.org/MacVTap">MacVTap Wiki</a> over at <a href="http://virt.kernelnewbies.org/">kernelnewbies website</a> has some very useful information on the benefits of the KVM MacVTap device driver.</p>
+
+<p>The <a href="http://virt.kernelnewbies.org/">kernelnewbies website</a> has a considerable amount of information on Linux virtualization.</p>
+
+<p>Another good option for a virtualization server is CentOS. Nixcraft has a very good article about setting up a <a href="http://www.cyberciti.biz/faq/centos-rhel-linux-kvm-virtulization-tutorial/">CentOS KVM virtualization server</a>. They are using CentOS v5.3.</p>
+
+<p>There is a great <a href="http://itscblog.tamu.edu/startup-guide-for-kvm-on-centos-6/">Startup guide for KVM</a> with CentOS on ITSC blog. But this time it is the later CentOS 6.0 version and they are setting up a headless server. They add virt-manager to the headless server and run it remotely from a seperate management host&ndash;very useful.</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,221 @@
+CentOS v6.4 bit minimal
+**********************************************************************
+******** Installing additional packages for gatekeeper server ********
+**********************************************************************
+
+Author: Ken Zahorec
+Date:   2013-04-13
+
+Server Hardware:
+A dedicated rack server or a typical PC with at least 2 network adapters.
+AMD or Intel 64-bit single or multi-core processor.
+Hard drive with ample capacity (200GB or greater recommended)
+
+Optional secondary hard drive to be used for nightly backups. This could
+a USB drive, or an additional hard drive installed into the system.
+
+Install Cent 6.4 minimal from Live CD.
+Use an official mirror server to get the install media .iso file. Here
+we can pick from one of many mirror servers:
+http://www.centos.org/modules/tinycontent/index.php?id=30
+
+For example we can find it here:
+http://yum.phx.singlehop.com/centos/6.4/isos/x86_64/
+
+Use the file:"CentOS-6.4-x86_64-minimal.iso".  It is a 342 MB CD image and
+provides the very basic CentOS headless install. 
+
+Do not use the DVD version. It is too bloated with KDE components.
+
+The "minimal" version has no graphical desktop by default. These components
+can be easily added later and take only seconds to install.
+
+Perform the operations in this document logged into system as "root"
+
+To add some very useful command line tools and diagnostics you need to
+install the "base" group of packages:
+***********************************************************************
+Optional packages for base server tools support ***********************
+
+  yum -y groupinstall "base"
+
+***********************************************************************
+Packages needed specifically for gatekeeper services ******************
+
+  yum -y install dhcp
+  yum -y install samba
+  yum -y install bind bind-libs bind-utils
+
+
+************************************************************************
+Packages needed for productive graphical desktop with multimedia support
+
+  yum -y groupinstall "Desktop" "Desktop Platform" "X Window System" "Fonts"
+
+************************************************************************
+Optional packages for desktop productivity tools ***********************
+
+  yum -y groupinstall "Graphical Administration Tools"
+
+  yum -y groupinstall "Internet Browser"
+
+  yum -y groupinstall "General Purpose Desktop"
+
+  yum -y groupinstall "Office Suite and Productivity"
+
+  yum -y groupinstall "Graphics Creation Tools"
+
+*************************************************************************
+Optional packages to help make the gatkeeper desktop experience *********
+
+  yum install icedtea-web
+
+  yum install rhythmbox
+
+  yum install vim-X11
+
+  yum install system-config-printer
+
+  yum install gnome-system-log
+
+  yum install wireshark-gnome
+
+************************************************************************
+The rpmforge repository is used to add codecs for various media formats.
+All of these are optional provisions for multimedia support ************
+
+Acquire the rpmforge repository install for x86_64
+  http://packages.sw.be/rpmforge-release/
+  rpmforge-release-0.5.2-2.el6.rf.x86_64.rpm
+
+Open terminal and su to root (su). Run the following...
+
+Add rpmforge public key and the corresponding repository:
+	rpm --import http://apt.sw.be/RPM-GPG-KEY.dag.txt
+	rpm -ivh rpmforge-release-0.5.2-2.el6.rf.x86_64.rpm
+
+Add some additional optional packages to improve the desktop experience:
+	yum install yum-plugin-priorities
+	yum install compat-libstdc++-33 libdvdcss libdvdread libdvdplay \
+	libdvdnav lsdvd libquicktime
+	yum install flash-plugin mplayerplug-in mplayer mplayer-gui \
+	gstreamer-ffmpeg gstreamer-plugins-bad gstreamer-plugins-ugly
+
+Get these mplayer codecs from
+http://www.mplayerhq.hu/MPlayer/releases/codecs/
+...Install them using the rpm as follows.
+
+	rpm -ivh mplayer-codecs-20061022-1.x86_64.rpm 
+	rpm -ivh mplayer-codecs-extra-20061022-1.x86_64.rpm 
+
+Adjust repo priorities by editing the yum repo configuration files
+in /etc/yum.repos.d/.
+
+Follow example at
+http://wiki.centos.org/PackageManagement/Yum/Priorities
+
+In general set base CentOS repository priorities at 1 using an entry in
+each repository "priority=1". Others can be left as is and will default
+to lowest priority "99" without a specific "priority= " entry. This will
+prevent unwanted updates from repositories overwriting package levels
+of higher priority repositories when running the software updates or
+the update manager (yum update). The general idea here is to allow
+other repositories for additional component installs but hold back
+unwanted updates from those repositories on common components
+with the CENTos primary repositories.
+
+	vim CentOS-Base.repo 
+	vim CentOS-Debuginfo.repo 
+	vim CentOS-Media.repo 
+	vim CentOS-Vault.repo
+
+****************************************************************************
+If desktop was added, and you want the system to boot into desktop always **
+then change the default runlevel from runlevel 3 to runlevel 5 *************
+
+Open /etc/inittab using a text editor and change following line:
+
+	id:3:initdefault:
+
+To:
+	id:5:initdefault:
+
+After making the change, reboot the machine.
+
+  init 6
+
+Note that you can switch from GUI to CLI mode manually by using following method:
+
+  GUI to CLI: Ctrl + Alt + F6
+  CLI to GUI: Ctrl + Alt + F1
+
+****************************************************************************
+Update *********************************************************************
+All components have been installed. Now we will perform a general update
+to make sure the system has all of the latest available software components
+installed.
+
+	yum update
+	
+************************************************************
+*********** packages for HP print and scan systems *********
+
+For HP branded printers, scanners, PSCs, MFPs etc. you will need to install
+hplib as follows. I have a HP M1536dnf laser MFP so will need hplip:
+
+	yum install hplip
+
+	After installing hplip, run system-config-printer to add the hp
+	printer. Add new printer...
+		gatekeeper
+		/printers/HP_LaserJet_M1536dnf_MFP
+
+	..follow wizard and select HP LaserJet "M1522nf MFP Foomatic" driver
+	since Cent 6.3 does not yet carry the specific ppd for the M1536dnf
+	hardware.  This driver is a compromise but seems to work properly.
+	The proper driver is in the latest hplip from hp.com, but requires
+	dependencies provided in a later version of Linux, such as Fedora 17.
+	Therefore, it should eventually be available in a later version of
+	CentOS.
+
+Note: Downloaded newer hplip from hp website for Redhat Enterprise 6.0 which is
+binary compatible with CentOS 6 (RHEL 6). AND contains updates to support the
+HP LaserJet M1536dnf.
+
+	http://hplipopensource.com/hplip-web/install_wizard/index.html
+
+Followed the wizard to download the latest rpm file which is referenced below.
+	hplip-3.12.11_rhel-6.0.x86_64.rpm
+
+note: The HP website now has a **newer hplip version** available.
+
+Ran a rpm "test" install to determine if there are any problems up front:
+
+	rpm -i --test hplip-3.12.11_rhel-6.0.x86_64.rpm
+
+...Test output produced many file conflicts with existing installed hp* parts.
+Removed older hplip that were installed previously: hplip, hpijs, hplip-common,
+(version 3.10.9-3). As follows below:
+
+	yum remove hplip
+
+	yum remove hpijs
+
+	yum remove hplip-common
+		(This also removed dependency hplip-libs)
+
+Yum install the newer downloaded hplip .rpm which is a full hplip install and
+apparently includes the hplip, hpijs, hplip-common, and hplip-libs.
+
+	yum install ./hplip-3.12.11_rhel-6.0.x86_64.rpm
+
+
+
+**********************************************************************
+******** Save history and continue with setup instructions ***********
+
+Save history file for safe keeping and, if necessary, to review later:
+	history >history_yyyy-mm-dd.txt
+
+This completes installation of packages. Continue with setup instructions
+found in the file "gatekeeper.setup.readme.txt"

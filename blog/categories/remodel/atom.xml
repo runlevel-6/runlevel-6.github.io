@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: remodel | RunLevel-6]]></title>
+  <link href="http://runlevel-6.github.io/runlevel-6/blog/categories/remodel/atom.xml" rel="self"/>
+  <link href="http://runlevel-6.github.io/runlevel-6/"/>
+  <updated>2015-01-04T23:52:39-05:00</updated>
+  <id>http://runlevel-6.github.io/runlevel-6/</id>
+  <author>
+    <name><![CDATA[Ken Zahorec]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Basement Upgrade: Creating the new hangout...]]></title>
+    <link href="http://runlevel-6.github.io/runlevel-6/blog/2013/04/30/basement-upgrade-creating-the-new-hangout/"/>
+    <updated>2013-04-30T10:45:07-04:00</updated>
+    <id>http://runlevel-6.github.io/runlevel-6/blog/2013/04/30/basement-upgrade-creating-the-new-hangout</id>
+    <content type="html"><![CDATA[<p>My wife and I had been living in our home, with children, for a number of years and decided it was time for general improvement of the basement. The basement was basically roughed-in but nothing was done beyond what was required for the basic requirements to satisfy the building code. It was not a living area for our home and we wanted to create a living area for our family to enjoy.</p>
+
+<h3>Experience</h3>
+
+<p>After much careful thought, I decided to proceed with the project on my own. I had some home construction experience, from many years back, working with my dad as part of his construction company, Equity Builders, in Lorain, Ohio. My father was an exceptional carpenter and I gained a great appreciation of carpentry and general contracting working with him. I also have an undergraduate degree in electrical engineering&ndash;so the electrical elements of the project came along reasonably easily for me as did the general construction. I did have to do some research on building and electrical codes to make sure everything I was doing would be within the limits of building codes in my area.</p>
+
+<p>The advantages of DIY include:</p>
+
+<ul>
+<li>Saving a considerable amount of money</li>
+<li>Ability to provide a great job for my two sons to learn and earn money.</li>
+<li>Everyone learning lots of new concepts and skills</li>
+<li>Remaining in complete control of the job along the way</li>
+</ul>
+
+
+<p>The disadvantages of DIY:</p>
+
+<ul>
+<li>Taking more time to complete the project</li>
+<li>Spending a few hundred, or so, hours of my time in the basement instead of doing other things</li>
+</ul>
+
+
+<h3>Warning&hellip;</h3>
+
+<p>If you decide to try a basement improvement project on your own make sure you do enough research to understand what you are getting into. Find some experienced people to talk with about the project if you do not have enough experience yourself. Plan the project in phases and celebrate the completion of each phase. If you are unsure about anything you are doing, then get some help. It can be very costly to have to tear something apart because it was not built properly. There are also many dangers that you will encounter in the building process&ndash;power tools, adhesives, paints, electrical distribution components, etc.. The risk of getting seriously hurt goes up dramatically if you don&rsquo;t know what you are doing. Most importantly you want to end up with a safe living environment when you are done&ndash;so pay close attention to building, electrical, and plumbing codes&ndash;think seriously about these and don&rsquo;t be afraid to spend some extra money to make sure the new living environment is safe.</p>
+
+<p>If you do not have experience consider doing some smaller jobs first, then gradually working your way up. Perhaps even helping a professional complete a job, as a part time learning experice. You can offer your help for less, as a means to gain valuable part time on-the-job experience.</p>
+
+<h3>Site Considerations</h3>
+
+<p>When we had our home built, we specified deeper 13 course block basement with the thought that we might eventually improve the basement into a living area. The distance from basement floor to upper level exposed floor joists is about 8 &frac12; feet. Having the deeper basement allowed enough room to build soffits and ceiling into the basement yet provide for a generous amount of head room. The cost of the additional row of block for the basement, at the time the home was built, was around $400&ndash;a worthwhile investment. The basement has a generous amount of open floor space free from utilites above it. It is very dry and we have never had any water issues. The home is built on one of the higher level lots in the development.</p>
+
+<h3>Getting Started</h3>
+
+<p>To get the plan started I created a drawing using a CAD tool. I picked an open source tool called LibreCAD to do the drawing. I spent several weeks just drawing, correcting, sketching, and planning what improvements would be made and how to accomplish the task. My original drawings had a small kitchen included, but that was scaled back because of space and cost concerns. Once we had an aggreable plan, I procrastinated for a few months, then began doing the work. I have done most everything so far, with some occasional help from a few of my friends on some of the larger and/or heavier tasks&ndash;such as the drywall finishing. I also had my 15 year old son help me, who learned many skills while doing so. I learned quite a bit also, and continue to learn as I work to complete the project. My older son is also helping me now, when he can, and is also learning much about building.</p>
+
+<h3>Proceeding to build</h3>
+
+<p>With the improvement plan drawing complete, we now have the confidence needed to move forward. We are now in the build phase of the project. We are working the project in phases and decided to leave the last phase, the bathroom, for a later time&ndash;much later. Work has not been moving as quickly as I originally expected but we are making steady progress&ndash;it is a rather large project for one person. It has become a regular part-time weekend job. I am doing most of the work on my own with some help occasionally from my two sons.</p>
+
+<p>Below is the framing work for the first build which divided the basement into entertainment and utility space.</p>
+
+<p><img src="/images-basement/IMG_2243_400x267.png" alt="furnace room" /></p>
+
+<p>The plan calls for more electrical capacity in the basement&ndash;a lot more. The main panel is nearly out of slots. Here I have added a side-car distribution panel for the finished side of the basement. It will carry the 240V baseboard heater load, wall outlets, and light utilities for the finished side of the basement.</p>
+
+<p><img src="/images-basement/distribution-side-car_400x267.png" alt="furnace room" /></p>
+
+<p>The side-car distribution is operational. I have a bit more work to do on it. I still need to tie the romex down with some staples and complete the layout document sheet on the inside of the door.</p>
+
+<p><img src="/images-basement/distribution-side-car-2_400x267.png" alt="furnace room" /></p>
+
+<p><img src="/images-basement/distribution-side-car-3_400x267.png" alt="furnace room" /></p>
+
+<p>Here we have our friendly home electrician&ndash;me. The switches in the 4 gang electrical workbox all operate perfectly. A happy camper indeed&hellip;</p>
+
+<p><img src="/images-basement/IMG_2259_400x600.png" alt="electrical" /></p>
+
+<p>With the electrical rough in complete, we can begin to mud, sand smooth, and then prime-coat the walls. Dry wall and finishing is labor intensive and very messy. This was about as big of a drywall job as I could put up with and I got some help on the finishing work from my brother in law. The job seemed to take forever and was very messy.</p>
+
+<p><img src="/images-basement/IMG_2380_400x267.png" alt="finishing walls" /></p>
+
+<p><img src="/images-basement/IMG_2379_400x267.png" alt="finishing walls" /></p>
+
+<p>Here you can see the positioning of the recessed lights on the finished side of the basement. Note the mason string line used as a guide to position the lights in two parallel lines across the basement. If you want a straight line, use a very taught string.</p>
+
+<p><img src="/images-basement/recessed-lights-layout_400x267.png" alt="positioning recessed lights" /></p>
+
+<p>On to the prime coat and finish woodwork. We still have a few places on the walls that need a bit more more attention. I am waiting to do the final touchups until all the woodwork is complete. I found that the installation process for the finish woodworking occasionally tends to ding up the walls here and there. One final fresh coat of paint near the end of the project should take care of everything.</p>
+
+<p><img src="/images-basement/IMG_4437_400x267.png" alt="finishing walls" /></p>
+
+<p><img src="/images-basement/IMG_4438_400x267.png" alt="finishing walls" /></p>
+
+<p>Here we are now below, into the second build which adds a central soffit to cover the overhead beam and air ducts and finished walls to cover most of the foundation. The second build will complete the division of the basement with an addition of another internal partition with a doorway. The goal for the second build is to complete the living area ceiling, walls, and woodwork&ndash;bringing it into full completion except for the floor. Part of this second build is now complete with woodwork and finish work complete. Note the recessed ceiling lights.</p>
+
+<p><img src="/images-basement/IMG_2970_400x267.png" alt="furnace room" /></p>
+
+<p>Now we move on to finishing the ugly support posts. We use a combination of a level and a keen line-of-sight to make sure the support posts are aligned with each other and plumb before we start&ndash;they are. I cut some 2x4s to length and run a shallow angled groove down the center. I use two heavy U-bolts on each post to clamp a 2x4 onto the post&ndash;then apply adhesive. We take special care to use only straight 2x4s, and align their surface at the proper position on the post to be parallel with the room wall. This provides a rock-solid and truly aligned nailing surface for the first piece of poplar 1x8 woodwork which is glued and nailed onto the 2x4. We make sure to use a level to plumb the first poplar 1x8 for a good start on each post.</p>
+
+<p><img src="/images-basement/post-finishing-1_400x267.png" alt="post finishing 1" /></p>
+
+<p>With the first piece nailed and glued directly to the 2x4, we now work our way around the post, nailing each edge of the 1x8 poplar to the edge of the previous piece with a 15 gauge nail gun&hellip;</p>
+
+<p><img src="/images-basement/post-finishing-2_400x267.png" alt="post finishing 2" /></p>
+
+<p><img src="/images-basement/post-finishing-3_400x267.png" alt="post finishing 3" /></p>
+
+<p>Afterwards, we fill nail holes using Minwax Woodfiller, then using a sandpaper stapled to a large wood-block - a sanding block. We sand all of the surfaces first with course, then with fine sandpaper. It takes lots of sanding to get it just right. We dont want to see any machine marks or feel any mis-aligned joints. The finished product is worth the effort. We still have trim to complete at the top and bottom of the posts and will get to that after the ceiling is complete.</p>
+
+<p>The posts are looking great so far and you can also see how the central soffit finished out. The paired electrical workboxes in the soffit are one for electrical supply and another for DMX computer light interface&ndash;added to the project for fun and entertainment&ndash;this place is eventually going to rock!</p>
+
+<p><img src="/images-basement/post-finishing-4_400x267.png" alt="post finishing 4" /></p>
+
+<p>We are now getting ready to apply the ceiling material on the uppermost ceiling surface at the floor joists, which will be a tongue-and-groove solid wood SPF siding product. The ceiling material will be nailed to a sub-ceiling that we build out using 1.5&#8221; x 0.75&#8221; firring strips. Below we are using a laser level&ndash;my friend Rich loaned it to me. The masking tape markers are carefully stuck in place, using the laser level, to the desired position for the sub-ceiling&ndash;very close to the the floor joists. The folded tape ends provide a perfectly flat guide for the sub-ceiling nailers which will be glued and nailed to the level of tape markers.</p>
+
+<p>Trying to forgo the firring strips and nail the ceiling directly to the floor joists would create far too much height variation in the finished ceiling because the bottoms of the floor joists are not leveled perfectly with each other. Floor joists tend to be crowned and flat to various degrees. Their with can vary in some cases. Loading on the upper deck can cause some variations as well. The firring strips make it all come out perfectly flat.</p>
+
+<p><img src="/images-basement/laser-level_400x267.png" alt="laser level" /></p>
+
+<p>Here the sub-ceiling nailers are going into place at the exact position the masking tape markers were hung. This effectively flattens the ceiling in preparation for the finished product. The clamp was used as a helping hand to hold up the nailer while it is being positioned and nailed.</p>
+
+<p><img src="/images-basement/ceiling-leveling_400x267.png" alt="sub-ceiling with recessed light" /></p>
+
+<p>I like to keep the tools together and organized. This helps prevent me from spending too much time in search of tools that were left laying around.</p>
+
+<p><img src="/images-basement/tools-1_400x323.png" alt="sub-ceiling with recessed light" /></p>
+
+<p>Using a 15 gauge nail gun really saves time. You can see how the clamp is used to make handling and aligning the material much easer while nailing it.</p>
+
+<p><img src="/images-basement/nailing-subceiling_400x325.png" alt="sub-ceiling nailing gun" /></p>
+
+<p>More sub-ceiling nailers going into place. The entire sub-ceiling is coming out perfectly flat&ndash;just what we need.</p>
+
+<p><img src="/images-basement/ceiling-leveling-2_400x267.png" alt="sub-ceiling progress" /></p>
+
+<p>We use a string to mark and position the first piece of ceiling material. A tight string does not lie&ndash;it gives you a perfectly straigt line to work from.</p>
+
+<p><img src="/images-basement/string-layout-1_400x267.png" alt="sub-ceiling progress" /></p>
+
+<p>We transfer the line produced by the string onto the subceiling nailers. This line markes the position for the first piece of &frac34; inch ceiling material. We want to get a perfectly aligned and straight start&ndash;to which the remaining material will be aligned to. We could have used a chalk line but I didn&rsquo;t want to bother with blue chalk dust cleanup afterwards.</p>
+
+<p><img src="/images-basement/string-layout-2_400x267.png" alt="sub-ceiling progress" /></p>
+
+<p>Here is the start on the ceiling for one section of the basement. The material is nailed using 2 inch 15 gauge nails driven from a Senco nail gun. First piece is spot glued and nailed on both edges of the material&ndash;we want a good foundation piece that will not move. The second and remaining &frac34; inch SPF material is spot glued and nailed at the leading edge, just behind the tongue, to the sub-ceiling nailers. The job is rather cumbersome and requires two people to position, hold, and nail each piece into place. The ceiling is extremely solid&ndash;you can bounce a basketball against it. It adds to the stiffness and structure of the flooring system directly above it.</p>
+
+<p><img src="/images-basement/ceiling-finish-start_400x300.png" alt="sub-ceiling progress" /></p>
+
+<p>The natural wood is really looking great so far. The edges will be eventually be finished out with crown molding, nail holes filled, and a final coat of finish will be applied to the entire ceiling. This is the small section of basement ceiling. On the other side of the soffit the ceiling area is at least 3 times the size of this one. &hellip;we still have lots of ceiling work to do.</p>
+
+<p><img src="/images-basement/ceiling_400x267.png" alt="upper ceiling and soffit" /></p>
+
+<p>Getting back to working on the ceiling I find that I am working mainly on my own. I decided to make a set of support brackets to help install the ceiling material on the larger side of the basement. I need something to hold the material in place with enough force so that it will stay in place and allow me to adjust it before nailing it. What I learned from working on the smaller side is that it is very difficult to hold the first piece and others in place before nailing them. These brackets below will allow me to position and secure the piece before nailing it. I took some quick measurements and spent 30 minutes or so making these from scrap material. The bracket is designed to slide along the sub-ceiling nailers.</p>
+
+<p><img src="/images-basement/support-bracket-1_400x383.png" alt="upper ceiling and soffit" /></p>
+
+<p><img src="/images-basement/support-bracket-2_400x460.png" alt="upper ceiling and soffit" /></p>
+
+<p>You can see how the foam wedge provides enough force to hold the material firmly against the ceiling. This is great. It allows me to carfully align the material before nailing it. I am just getting started on the first row of material on the larger section of ceiling.</p>
+
+<p><img src="/images-basement/support-bracket-use-1_400x267.png" alt="upper ceiling and soffit" /></p>
+
+<p><img src="/images-basement/support-bracket-use-2_400x254.png" alt="upper ceiling and soffit" /></p>
+
+<p>All of the end cuts are made on a compound miter saw. I really like the DeWalt&ndash;it is easy to use and cuts perfectly.</p>
+
+<p><img src="/images-basement/saw-crosscut-1_400x267.png" alt="upper ceiling and soffit" /></p>
+
+<p>I have the saw set to undercut each piece by a few degrees. This helps prevent visual gaps when butted to another piece of material.</p>
+
+<p><img src="/images-basement/saw-overcut_4639_400x267.png" alt="upper ceiling and soffit" /></p>
+
+<p>The first row of material has been spot-glued and nailed in place. It is looking as straight as the string we used earlier to mark the position. Using the support-brackets made a big difference in the amount of effort. It takes me far less effort now, working alone, than it did earlier with two people trying to align and muscle the material around without the bracket.</p>
+
+<p><img src="/images-basement/first-run-west-side-1_400x267.png" alt="upper ceiling and soffit" /></p>
+
+<p>After completing the open ceilings, we will be adding crown molding and finishing out the woodwork down the walls and at the floor base. Although we still have lots of work to do to complete the second build, the basement living area is starting to look like a great place to hang out.</p>
+
+<p>Stay tuned for more as we complete the project&hellip;</p>
+
+<p>document date: 2013-04-30</p>
+
+<p><a href='#TOP'><img alt="back to top of page" style="border-width:0" src="http://runlevel-6.github.io/runlevel-6/images/nav-to-top_80x23.png" /></a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Librecad: Creating a detailed design drawing for a basement remodel job.]]></title>
+    <link href="http://runlevel-6.github.io/runlevel-6/blog/2013/03/05/librecad-basement-remodel/"/>
+    <updated>2013-03-05T02:10:05-05:00</updated>
+    <id>http://runlevel-6.github.io/runlevel-6/blog/2013/03/05/librecad-basement-remodel</id>
+    <content type="html"><![CDATA[<p>I am posting this information with hope that it might help others who are interested in improving their home and looking for a great way to document and move forward with a plan for home improvement. If you find this document useful, then please drop me an email to let me know. Please read the disclaimer at the bottom of this document. Update: Please note that <strong>LibreCAD was originally called QCAD</strong>.</p>
+
+<p>Below is a basement home improvement design in LibreCAD</p>
+
+<p><img src="/images-librecad/qcad_basement_plan_400x298.png" alt="qcad design graphic" /></p>
+
+<h3>Forward</h3>
+
+<p>We have been living in our home for several years now. Recently my wife and I have been talking about doing some improvements in the basement. We decided that finishing part of the basement would provide an increase in living space and also provide a great way to relax and spend time with our family and friends.</p>
+
+<h3>Creating a Detailed Drawing</h3>
+
+<p>By creating a detailed drawing we are able to discuss and consider more details and and to easily modify the plan while we make changes. The drawing is a very detailed model that allows you to visualize how the finished project will eventually look. It forces you to think about and deal with many of the details of the project before getting started with any materials. Once you create a scaled drawing can more easily plan for the obstacles and limitations that you have in the existing area. Things like floor drains, plumbing pipes, heating ducts, furnace, windows, hot water tank, electrical breaker box, and other details must be carefully worked into the plan.  A detailed drawing gives you confidence in what you are planning to do.</p>
+
+<h3>Searching for a CAD software package:</h3>
+
+<p>Some CAD software tools are very time consuming to learn. They can also be very expensive, running into the $thousands for a single user license. The first place I searched for a CAD package was in the package manager on my Ubuntu Linux system. I was looking for something that was easy to learn and provided enough power to get the job done. I found LibreCAD, an open source CAD package which is licensed under the GPL. What a gem this software package turned out to be. It is rock solid and provides all of the functionality I need to produce a quality scale drawing.</p>
+
+<h3>Creating the design drawing:</h3>
+
+<p>The first thing I did in LibreCAD was to set the default units of measurement and length for the drawing. I set units to inches and length to inches with a precision of 1/2”. You can work in just about any units and precision you&rsquo;d like of course. I then carefully documented where everything was in the basement. This involved measuring the foundation walls, identifying and drawing all of the ductwork, beams, support posts, plumbing fixtures, service interfaces for plumbing, water, and electrical fixtures. These items were grouped and placed in various layers of the drawing. I then added the improvements into the design, carefully working around everything that was already there. It took some time, but allowed me to think through many of the details that may have been missed without going through the drawing, or visual modeling, process.</p>
+
+<h3>Screen shots of LibreCAD in action</h3>
+
+<p>Below is LibreCAD up and running with the basement plan opened. You can see that I have created layers in the drawing which are identified in the rightmost pane. Each layer can be made visible or invisible in the drawing. Different line attributes can be assigned for each layer. Although the drawing looks complicated, it was actually quite easy to create after spending some time learning LibreCAD.</p>
+
+<p><a href="images-librecad/qcad_basement_plan_1024x762.png" target="_blank"> <img src="http://runlevel-6.github.io/runlevel-6/images-librecad/qcad_basement_plan_400x298.png" border="0" alt="librecad detailed diagram" /></a></p>
+
+<p>LibreCAD does a great job at exporting graphics to postscript format. You can easily view the output file in Adobe acrobat or an open source document viewer. It supports output to standard paper sizes including very large paper formats used for plotters. Below is an example of the same drawing in print preview ready to be exported to post script or printed directly.</p>
+
+<p><a href="images-librecad/qcad_basement_plan_print_preview_1024x762.png" target="_blank"> <img src="http://runlevel-6.github.io/runlevel-6/images-librecad/qcad_basement_plan_print_preview_400x298.png" border="0" alt="librecad print diagram" /></a></p>
+
+<h3>An example librecad design file</h3>
+
+<p>If you would like an example copy of a LibreCAD .dxf basement plan, you can download it from my website here: <A HREF="/download/basement_plan.dxf">basement_plan.dxf</A></p>
+
+<p>Once you spend some time with LibreCAD I think you will agree; This is a great tool to have for home improvement planning. It also works great for other 2D CAD applications, such as in designing mechanical parts for fabrication. I have also used it for design work on some woodworking projects.</p>
+
+<p><a href='#TOP'><img alt="back to top of page" style="border-width:0" src="http://runlevel-6.github.io/runlevel-6/images/nav-to-top_80x23.png" /></a></p>
+]]></content>
+  </entry>
+  
+</feed>

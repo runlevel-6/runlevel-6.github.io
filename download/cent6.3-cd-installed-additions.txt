@@ -1,0 +1,171 @@
+CentOS v6.3 Desktop 64 bit CD
+**********************************************************************
+******** Installing additional packages for gatekeeper server ********
+**********************************************************************
+
+Author: Ken Zahorec
+Date:   2012-12-28
+
+Server Hardware:
+A dedicated rack server or a typical PC with 2 (or more) network adapters.
+AMD or Intel 64-bit single or multi-core processor.
+Hard drive with ample capacity (20GB or greater recommended)
+
+Install Cent 6.3 from Live CD.
+Use an official mirror to get the install media .iso file which can be
+found here: http://isoredirect.centos.org/centos/6/isos/x86_64/
+
+Use the file:"CentOS-6.3-x86_64-liveCD.iso".  It is a 692 MB CD image and
+comes with a very stable and easy to use Gnome 2.2 level desktop. It
+provides what I believe is a great set of needed software components as
+a good start for the gatekeeper system, without lots of unnecessary
+packages.
+
+Do not use the DVD version. It is way too bloated with KDE components.
+
+Do not use the "minimal" version unless you are planning to run a headless
+server. In that case some minor changes to the instructions may need
+to be made.
+The "minimal" version has no X11 or desktop by default. These components
+can be added later, but this document does not cover how to add a desktop
+interface to a "minimal" install.
+
+Setup initial "zadmin" administrative account with password. Use another
+account name for administration if you wish and modify instructions
+accordingly wherever "zadmin" is mentioned.
+
+The rpmforge repository is used to add codecs for various media formats.
+It is also used to acquire additional components and applications, such
+as LibreOffice components.
+
+Acquire the rpmforge repository install for x86_64
+  http://packages.sw.be/rpmforge-release/
+  rpmforge-release-0.5.2-2.el6.rf.x86_64.rpm
+
+Open terminal and su to root (su). Run the following...
+
+Add rpmforge public key and the corresponding repository:
+	rpm --import http://apt.sw.be/RPM-GPG-KEY.dag.txt
+	rpm -ivh rpmforge-release-0.5.2-2.el6.rf.x86_64.rpm
+
+Add some additional optional packages to improve the desktop experience:
+	yum install htop
+	yum install yum-plugin-priorities
+	yum install compat-libstdc++-33 libdvdcss libdvdread libdvdplay \
+	libdvdnav lsdvd libquicktime
+	yum install flash-plugin mplayerplug-in mplayer mplayer-gui \
+	gstreamer-ffmpeg gstreamer-plugins-bad gstreamer-plugins-ugly
+
+Get these mplayer codecs from
+http://www.mplayerhq.hu/MPlayer/releases/codecs/
+...Install them using the rpm as follows.
+
+	rpm -ivh mplayer-codecs-20061022-1.x86_64.rpm 
+	rpm -ivh mplayer-codecs-extra-20061022-1.x86_64.rpm 
+
+Adjust repo priorities by editing the yum repo configuration files
+in /etc/yum.repos.d/.
+
+Follow example at
+http://wiki.centos.org/PackageManagement/Yum/Priorities
+In general set base CentOS repository priorities at 1 using an entry in
+each repository "priority=1". Others can be left as is and will default
+to lowest priority "99" without a specific "priority= " entry. This will
+prevent unwanted updates from repositories overwriting package levels
+of higher priority repositories when running the software updates or
+the update manager (yum update). The general idea here is to allow
+other repositories for additional component installs but hold back
+unwanted updates from those repositories on common components
+with the CENTos primary repositories.
+
+	vim CentOS-Base.repo 
+	vim CentOS-Debuginfo.repo 
+	vim CentOS-Media.repo 
+	vim CentOS-Vault.repo
+
+Perform a general update with the repo priorities set properly as described
+above.
+	yum update
+
+Install some more packages to help make the gatkeeper desktop experience
+a fully usable system...
+
+	yum install icedtea-web
+	yum install rhythmbox
+	yum install libreoffice-writer libreoffice-draw libreoffice-calc
+	yum install libreoffice-impress libreoffice-emailmerge
+	yum install libreoffice-graphicfilter
+
+	yum install vim-X11
+	yum install system-config-printer
+	yum install gnome-system-log
+	yum install xsane
+	yum install wireshark-gnome
+	
+************************************************************
+*********** packages for HP print and scan systems *********
+
+For HP branded printers, scanners, PSCs, MFPs etc. you will need to install
+hplib as follows. I have a HP M1536dnf laser MFP so will need hplip:
+
+	yum install hplip
+
+	After installing hplip, run system-config-printer to add the hp
+	printer. Add new printer...
+		gatekeeper
+		/printers/HP_LaserJet_M1536dnf_MFP
+
+	..follow wizard and select HP LaserJet "M1522nf MFP Foomatic" driver
+	since Cent 6.3 does not yet carry the specific ppd for the M1536dnf
+	hardware.  This driver is a compromise but seems to work properly.
+	The proper driver is in the latest hplip from hp.com, but requires
+	dependencies provided in a later version of Linux, such as Fedora 17.
+	Therefore, it should eventually be available in a later version of
+	CentOS.
+
+Note: Downloaded newer hplip from hp website for Redhat Enterprise 6.0 which is
+binary compatible with CentOS 6.3. AND contains updates to support the
+HP LaserJet M1536dnf.
+
+	http://hplipopensource.com/hplip-web/install_wizard/index.html
+
+Followed the wizard to download the latest rpm file which is referenced below.
+	hplip-3.12.11_rhel-6.0.x86_64.rpm
+
+Ran a rpm "test" install to determine if there are any problems up front:
+
+	rpm -i --test hplip-3.12.11_rhel-6.0.x86_64.rpm
+
+...Test output produced many file conflicts with existing installed hp* parts.
+Removed older hplip that were installed previously: hplip, hpijs, hplip-common,
+(version 3.10.9-3). As follows below:
+
+	yum remove hplip
+
+	yum remove hpijs
+
+	yum remove hplip-common
+		(This also removed dependency hplip-libs)
+
+Yum install the newer downloaded hplip .rpm which is a full hplip install and
+apparently includes the hplip, hpijs, hplip-common, and hplip-libs.
+
+	yum install ./hplip-3.12.11_rhel-6.0.x86_64.rpm
+
+
+**********************************************************************
+******* Packages needed specifically for gatekeeper services *********
+
+	yum install dhcp
+	yum install samba
+	yum install bind bind-libs bind-utils
+
+
+**********************************************************************
+******** Save history and continue with setup instructions ***********
+
+Save history file for safe keeping and, if necessary, to review later:
+	history >history_yyyy-mm-dd.txt
+
+This completes installation of packages. Continue with setup instructions
+found in the file "gatekeeper.setup.readme.txt"
