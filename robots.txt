@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://runlevel-6.github.io/sitemap.xml 
+Sitemap: http:/runlevel-6.github.io/sitemap.xml 

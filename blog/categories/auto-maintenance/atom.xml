@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: auto-maintenance | RunLevel-6]]></title>
-  <link href="http://runlevel-6.github.io/blog/categories/auto-maintenance/atom.xml" rel="self"/>
-  <link href="http://runlevel-6.github.io/"/>
-  <updated>2015-01-05T01:03:36-05:00</updated>
-  <id>http://runlevel-6.github.io/</id>
+  <title><![CDATA[Category: auto-maintenance | runLevel-6]]></title>
+  <link href="http:/runlevel-6.github.io/blog/categories/auto-maintenance/atom.xml" rel="self"/>
+  <link href="http:/runlevel-6.github.io/"/>
+  <updated>2015-01-06T23:19:10-05:00</updated>
+  <id>http:/runlevel-6.github.io/</id>
   <author>
     <name><![CDATA[Ken Zahorec]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Auto Headlight Repair: Cleaning cloudy headlamp lenses to look like new again]]></title>
-    <link href="http://runlevel-6.github.io/blog/2013/04/21/auto-headlight-repair-cleaning-cloudy-headlamp-lenses-to-look-like-new-again/"/>
+    <link href="http:/runlevel-6.github.io/blog/2013/04/21/auto-headlight-repair-cleaning-cloudy-headlamp-lenses-to-look-like-new-again/"/>
     <updated>2013-04-21T00:45:35-04:00</updated>
-    <id>http://runlevel-6.github.io/blog/2013/04/21/auto-headlight-repair-cleaning-cloudy-headlamp-lenses-to-look-like-new-again</id>
+    <id>http:/runlevel-6.github.io/blog/2013/04/21/auto-headlight-repair-cleaning-cloudy-headlamp-lenses-to-look-like-new-again</id>
     <content type="html"><![CDATA[<p><strong>Driving down the street at night and wondering why I can&rsquo;t see the road the way I used to be able to. Are my headlamps on?</strong></p>
 
 <p>I am posting this information with hope that it might help others who are experiencing the same problem I had. If you find it of good use, please drop me an email to let me know. Please read the disclaimer at the bottom of this document.</p>
@@ -83,7 +83,7 @@
 
 <p>In other words; You better know what you are doing before trying your own repair work. If you are unsure as to what you are doing, then seek out a qualified mechanic to perform the work.</p>
 
-<p><a href='#TOP'><img alt="back to top of page" style="border-width:0" src="http://runlevel-6.github.io/images/nav-to-top_80x23.png" /></a></p>
+<p><a href='#TOP'><img alt="back to top of page" style="border-width:0" src="http:/runlevel-6.github.io/images/nav-to-top_80x23.png" /></a></p>
 ]]></content>
   </entry>
   

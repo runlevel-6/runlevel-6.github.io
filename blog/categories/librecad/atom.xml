@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: librecad | RunLevel-6]]></title>
-  <link href="http://runlevel-6.github.io/blog/categories/librecad/atom.xml" rel="self"/>
-  <link href="http://runlevel-6.github.io/"/>
-  <updated>2015-01-05T01:03:36-05:00</updated>
-  <id>http://runlevel-6.github.io/</id>
+  <title><![CDATA[Category: librecad | runLevel-6]]></title>
+  <link href="http:/runlevel-6.github.io/blog/categories/librecad/atom.xml" rel="self"/>
+  <link href="http:/runlevel-6.github.io/"/>
+  <updated>2015-01-06T23:19:10-05:00</updated>
+  <id>http:/runlevel-6.github.io/</id>
   <author>
     <name><![CDATA[Ken Zahorec]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Librecad: Creating a detailed design drawing for a basement remodel job.]]></title>
-    <link href="http://runlevel-6.github.io/blog/2013/03/05/librecad-basement-remodel/"/>
+    <link href="http:/runlevel-6.github.io/blog/2013/03/05/librecad-basement-remodel/"/>
     <updated>2013-03-05T02:10:05-05:00</updated>
-    <id>http://runlevel-6.github.io/blog/2013/03/05/librecad-basement-remodel</id>
+    <id>http:/runlevel-6.github.io/blog/2013/03/05/librecad-basement-remodel</id>
     <content type="html"><![CDATA[<p>I am posting this information with hope that it might help others who are interested in improving their home and looking for a great way to document and move forward with a plan for home improvement. If you find this document useful, then please drop me an email to let me know. Please read the disclaimer at the bottom of this document. Update: Please note that <strong>LibreCAD was originally called QCAD</strong>.</p>
 
 <p>Below is a basement home improvement design in LibreCAD</p>
@@ -44,11 +44,11 @@
 
 <p>Below is LibreCAD up and running with the basement plan opened. You can see that I have created layers in the drawing which are identified in the rightmost pane. Each layer can be made visible or invisible in the drawing. Different line attributes can be assigned for each layer. Although the drawing looks complicated, it was actually quite easy to create after spending some time learning LibreCAD.</p>
 
-<p><a href="images-librecad/qcad_basement_plan_1024x762.png" target="_blank"> <img src="http://runlevel-6.github.io/images-librecad/qcad_basement_plan_400x298.png" border="0" alt="librecad detailed diagram" /></a></p>
+<p><a href="images-librecad/qcad_basement_plan_1024x762.png" target="_blank"> <img src="http:/runlevel-6.github.io/images-librecad/qcad_basement_plan_400x298.png" border="0" alt="librecad detailed diagram" /></a></p>
 
 <p>LibreCAD does a great job at exporting graphics to postscript format. You can easily view the output file in Adobe acrobat or an open source document viewer. It supports output to standard paper sizes including very large paper formats used for plotters. Below is an example of the same drawing in print preview ready to be exported to post script or printed directly.</p>
 
-<p><a href="images-librecad/qcad_basement_plan_print_preview_1024x762.png" target="_blank"> <img src="http://runlevel-6.github.io/images-librecad/qcad_basement_plan_print_preview_400x298.png" border="0" alt="librecad print diagram" /></a></p>
+<p><a href="images-librecad/qcad_basement_plan_print_preview_1024x762.png" target="_blank"> <img src="http:/runlevel-6.github.io/images-librecad/qcad_basement_plan_print_preview_400x298.png" border="0" alt="librecad print diagram" /></a></p>
 
 <h3>An example librecad design file</h3>
 
@@ -56,7 +56,7 @@
 
 <p>Once you spend some time with LibreCAD I think you will agree; This is a great tool to have for home improvement planning. It also works great for other 2D CAD applications, such as in designing mechanical parts for fabrication. I have also used it for design work on some woodworking projects.</p>
 
-<p><a href='#TOP'><img alt="back to top of page" style="border-width:0" src="http://runlevel-6.github.io/images/nav-to-top_80x23.png" /></a></p>
+<p><a href='#TOP'><img alt="back to top of page" style="border-width:0" src="http:/runlevel-6.github.io/images/nav-to-top_80x23.png" /></a></p>
 ]]></content>
   </entry>
   

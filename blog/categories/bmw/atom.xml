@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: bmw | RunLevel-6]]></title>
-  <link href="http://runlevel-6.github.io/blog/categories/bmw/atom.xml" rel="self"/>
-  <link href="http://runlevel-6.github.io/"/>
-  <updated>2015-01-05T01:03:36-05:00</updated>
-  <id>http://runlevel-6.github.io/</id>
+  <title><![CDATA[Category: bmw | runLevel-6]]></title>
+  <link href="http:/runlevel-6.github.io/blog/categories/bmw/atom.xml" rel="self"/>
+  <link href="http:/runlevel-6.github.io/"/>
+  <updated>2015-01-06T23:19:10-05:00</updated>
+  <id>http:/runlevel-6.github.io/</id>
   <author>
     <name><![CDATA[Ken Zahorec]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Auto Repair: Fixing the BMW 325 faulty rear tail light]]></title>
-    <link href="http://runlevel-6.github.io/blog/2013/04/04/auto-repair-fixing-the-bmw-325-faulty-rear-tail-light/"/>
+    <link href="http:/runlevel-6.github.io/blog/2013/04/04/auto-repair-fixing-the-bmw-325-faulty-rear-tail-light/"/>
     <updated>2013-04-04T23:49:08-04:00</updated>
-    <id>http://runlevel-6.github.io/blog/2013/04/04/auto-repair-fixing-the-bmw-325-faulty-rear-tail-light</id>
+    <id>http:/runlevel-6.github.io/blog/2013/04/04/auto-repair-fixing-the-bmw-325-faulty-rear-tail-light</id>
     <content type="html"><![CDATA[<p>I am posting this information with hope that it might help others who are experiencing the same problem I am having with the E46 tail light assembly. If you find it of good use, please drop me an email to let me know. Please read the disclaimer at the bottom of this document.</p>
 
 <p>Can you spot the problem in this rear tail light connector?</p>

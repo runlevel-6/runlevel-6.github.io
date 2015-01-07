@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: repair | RunLevel-6]]></title>
-  <link href="http://runlevel-6.github.io/blog/categories/repair/atom.xml" rel="self"/>
-  <link href="http://runlevel-6.github.io/"/>
-  <updated>2015-01-05T01:03:36-05:00</updated>
-  <id>http://runlevel-6.github.io/</id>
+  <title><![CDATA[Category: repair | runLevel-6]]></title>
+  <link href="http:/runlevel-6.github.io/blog/categories/repair/atom.xml" rel="self"/>
+  <link href="http:/runlevel-6.github.io/"/>
+  <updated>2015-01-06T23:19:10-05:00</updated>
+  <id>http:/runlevel-6.github.io/</id>
   <author>
     <name><![CDATA[Ken Zahorec]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Electric Range Repair: Can I do it myself?]]></title>
-    <link href="http://runlevel-6.github.io/blog/2013/04/21/electric-range-repair-can-i-do-it-myself/"/>
+    <link href="http:/runlevel-6.github.io/blog/2013/04/21/electric-range-repair-can-i-do-it-myself/"/>
     <updated>2013-04-21T04:05:53-04:00</updated>
-    <id>http://runlevel-6.github.io/blog/2013/04/21/electric-range-repair-can-i-do-it-myself</id>
+    <id>http:/runlevel-6.github.io/blog/2013/04/21/electric-range-repair-can-i-do-it-myself</id>
     <content type="html"><![CDATA[<p>I am posting this information with hope that it might help others who are experiencing the same problem. If you find it of good use, please drop me an email to let me know. Please read the disclaimer at the bottom of this document.</p>
 
 <p>Below is a range which has two top burners no longer working. It is currently a two-burner range. We need to fix it.</p>
