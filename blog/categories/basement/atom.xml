@@ -4,7 +4,7 @@
   <title><![CDATA[Category: basement | runLevel-6]]></title>
   <link href="http:/runlevel-6.github.io/blog/categories/basement/atom.xml" rel="self"/>
   <link href="http:/runlevel-6.github.io/"/>
-  <updated>2015-01-13T01:01:49-05:00</updated>
+  <updated>2015-01-27T02:15:18-05:00</updated>
   <id>http:/runlevel-6.github.io/</id>
   <author>
     <name><![CDATA[Ken Zahorec]]></name>
@@ -217,11 +217,11 @@
 
 <p>Below is LibreCAD up and running with the basement plan opened. You can see that I have created layers in the drawing which are identified in the rightmost pane. Each layer can be made visible or invisible in the drawing. Different line attributes can be assigned for each layer. Although the drawing looks complicated, it was actually quite easy to create after spending some time learning LibreCAD.</p>
 
-<p><a href="images-librecad/qcad_basement_plan_1024x762.png" target="_blank"> <img src="http:/runlevel-6.github.io/images-librecad/qcad_basement_plan_400x298.png" border="0" alt="librecad detailed diagram" /></a></p>
+<p><a href="http:/runlevel-6.github.io/images-librecad/qcad_basement_plan_1024x762.png" target="_blank"> <img src="http:/runlevel-6.github.io/images-librecad/qcad_basement_plan_400x298.png" border="0" alt="librecad detailed diagram" /></a></p>
 
 <p>LibreCAD does a great job at exporting graphics to postscript format. You can easily view the output file in Adobe acrobat or an open source document viewer. It supports output to standard paper sizes including very large paper formats used for plotters. Below is an example of the same drawing in print preview ready to be exported to post script or printed directly.</p>
 
-<p><a href="images-librecad/qcad_basement_plan_print_preview_1024x762.png" target="_blank"> <img src="http:/runlevel-6.github.io/images-librecad/qcad_basement_plan_print_preview_400x298.png" border="0" alt="librecad print diagram" /></a></p>
+<p><a href="http:/runlevel-6.github.io/images-librecad/qcad_basement_plan_print_preview_1024x762.png" target="_blank"> <img src="http:/runlevel-6.github.io/images-librecad/qcad_basement_plan_print_preview_400x298.png" border="0" alt="librecad print diagram" /></a></p>
 
 <h3>An example librecad design file</h3>
 

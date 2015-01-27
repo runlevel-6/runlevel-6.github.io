@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: linuxmint, | runLevel-6]]></title>
+  <link href="http:/runlevel-6.github.io/blog/categories/linuxmint/atom.xml" rel="self"/>
+  <link href="http:/runlevel-6.github.io/"/>
+  <updated>2015-01-27T02:15:18-05:00</updated>
+  <id>http:/runlevel-6.github.io/</id>
+  <author>
+    <name><![CDATA[Ken Zahorec]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Linux Mint 17.1 with KVM/Qemu hypervisor and VM management]]></title>
+    <link href="http:/runlevel-6.github.io/blog/2015/01/13/linux-mint-with-hypervisor/"/>
+    <updated>2015-01-13T23:40:29-05:00</updated>
+    <id>http:/runlevel-6.github.io/blog/2015/01/13/linux-mint-with-hypervisor</id>
+    <content type="html"><![CDATA[<p>Linux Mint is one of my favorite Linux desktop distributions. It comes in a multitude of flavors designed to drop into just about any desktop or laptop system available. It installs and updates in minutes and delivers a fully functional system with a full set of common and very useful applications&ndash;everything that most any user would need. The latest version 17.1 is a long term support (LTS) release which means it is supported for 5 years. Linux Mint is my go-to distribution for desktop Linux. The folks on the Linux Mint team have been doing a phenominal job, release after release, since the project started several years back.</p>
+
+<p>Here we provide instructions for adding the KVM hypervisor and VM management tools to the Linux Mint 64-bit install. The Linux Mint system becomes a virtualization host. In a few minutes, with just a few commands, you can have a rock solid virtualization hypervisor added to your Linux Mint desktop system. You can use graphical &ldquo;virt-manager&rdquo; to create virtual machines and manage virtual networks. You can use the Spice protocol to offer high performance virtual desktop interfaces (VDI) both locally and to remote clients. Having the advantages of virtualization added to your Mint desktop provides some serious benefits for developing, testing, experimentation, or providing remote virtual desktop interface (VDI) services to others from your Linux Mint system. Virtualization also allows you to keep your main Mint desktop system clean and shiny while you use disposable VMs for software testing, experimentation, duplication, and validation.</p>
+
+<p>You will need a system with some horsepower if you plan to run mulitple virtual machines and/or provide access to them from remote clients. The system processor must be capable of hardware based virtualization. A high end AMD (Athlon 64, A8, A10, or higher) or Intel system (I5, I7, Xeon, etc.) should provide this capability. Here is a good
+<a href="http://superuser.com/questions/591813/how-to-tell-if-a-cpu-supports-virtualization" target="_blank">article from superuser.com</a>
+on identifying processor virtualization. Any memory or processor resources provided to a VM while it is running will reduce the capacity of the virtualization host system. If you plan to have one or more resource intensive VMs, then you will need to provide enough processor, memory, and storage resource in your main host.</p>
+
+<h3>Basic installation and update of Linux Mint</h3>
+
+<p>Install Linux Mint 17.1 64-bit Cinnamon desktop from CD or USB. I won&rsquo;t get into the basic install details because there is plenty of information available on this and it is quite simple to install on just about any system. Select the installation icon on the desktop and follow through&ndash;this takes only a few minutes. In a flash you are ready to proceed with your shiny new Linux Mint system.</p>
+
+<p>Open a terminal on the desktop. Perform an initial update to bring all of the components up to the latest available revisions.</p>
+
+<pre><code>$ sudo apt-get update
+$ sudo apt-get upgrade
+</code></pre>
+
+<h3>Secure shell remote client access to the Linux Mint system</h3>
+
+<p>If you want to provide for remote management of the Mint system then add openssh secure shell server. This will provide for secure remote client access and secure remote file transfer to or from the Linux Mint host.</p>
+
+<pre><code>$ sudo apt-get install openssh-server
+</code></pre>
+
+<h3>Adding the hypervisor and related components</h3>
+
+<p>Now we begin adding the KVM hypervisor, Qemu emulator, libvirt management components, and graphical &ldquo;virt-manager&rdquo;</p>
+
+<pre><code>$ sudo apt-get install qemu-system
+$ sudo apt-get install qemu-utils
+$ sudo apt-get install libvirt-bin
+$ sudo apt-get install virt-manager
+</code></pre>
+
+<p>We want the ability to provide accelerated video to any connecting clients, so we add the SPICE client kit and virt-viewer. Virt-viewer is a view client which connects to either VNC or SPICE desktop video connections. It is similar to a RDP or VNC client.</p>
+
+<pre><code>$ sudo apt-get install python-spice-client-gtk
+$ sudo apt-get install virt-viewer
+</code></pre>
+
+<h3>Providing access to the hypervisor - the libvirtd group</h3>
+
+<p>With all of the components installed, all that is left to do is add any user who will be connecting to the hypervisor into the libvirtd group. Upon the next login, the user will be able to run virt-manager, connect to the local hypervisor, and create and manage VMs.</p>
+
+<h3>Managing VMs using the virsh command line</h3>
+
+<p>VMs can be managed using graphical virt-manager, or through the command line using virsh. Here is an simple example session of listing available VMs and showing their current state.</p>
+
+<pre><code>zuser@zbox00 ~ $ virsh list --all
+ Id    Name                           State
+----------------------------------------------------
+ -     crunchbag-linux_00             shut off
+ -     win-server-2012-r2             shut off
+ -     win-server-2012-r2-template    shut off
+ -     win7pro-spice-01               shut off
+</code></pre>
+
+<p>As you can see, they are all shut off. We start two of them using virsh at the command line&hellip;</p>
+
+<pre><code>zuser@zbox00 ~ $ virsh start crunchbag-linux_00
+Domain crunchbag-linux_00 started
+
+zuser@zbox00 ~ $ virsh start win7pro-spice-01
+Domain win7pro-spice-01 started
+
+zuser@zbox00 ~ $ 
+</code></pre>
+
+<h3>Managing VMs using the graphical virt-manager</h3>
+
+<p>VMs can be graphically managed using virt-manager. Here is a screenshot of virt-manager in action. The virt-manager application provides a very easy to use graphical interface which allows you to manage VMs and other virtual resources. You can also create virtual networks and adjust network backings, monitor resources, etc.</p>
+
+<p><img src="/images-mint-hypervisor/virt-manager_400x417.png" title="Optional title" alt="graphic of virt-manger on Linux Mint desktop" /></p>
+
+<p><a href="http:/runlevel-6.github.io/images-mint-hypervisor/virt-manager-connections.png" target="_blank"> <img src="http:/runlevel-6.github.io/images-mint-hypervisor/virt-manager-connections_400x250.png" border="0" alt="graphic of win 7 pro running VDI in local hypervisor" /></a></p>
+
+<p>Using Linux remote-viewer, or Windows virt-viewer allows you to connect to the console via VNC or Spice display port on the VM.
+This provide a virtual desktop interface (VDI). Spice provides accelerated performance to the desktop over the network.</p>
+
+<h3>VDI - Accessing the VM guest&rsquo;s desktop through a remote, or local, client.</h3>
+
+<p>The VDI experience is very fluid and provides excellent throughput for doing CAD and other graphics intensive work.
+In this case the VM is located on the localhost Linux Mint KVM hypervisor, but this VM guest desktop can be provided anywhere we need it via Spice connection on the local network.
+In most cases network bandwidth of only a few megabit is all that is needed.</p>
+
+<p>The user of the desktop VDI needs only the viewing client, they do not need access to virt-manager.
+Access to the console, through the client, can be protected using a digest password and will require separate login with account credentials to the VM guest.
+It looks just like a physically connected console&ndash;if you restart the OS guest in the VDI you can watch it reboot with BIOS screen and boot to running system.
+With installation of libvirt guest OS tools we get auto-resizing, and copy-paste capabilities between the remote-viewer client and accessing system.
+Spice provides also for forwarding of USB connections to the guest as well as use of local sound devices. You can run multiple console displays as well.</p>
+
+<p>The example below is of a Windows 7 Pro 64-bit VM guest running Solid Works through a Spice VDI. The VM is running on a Linux Mint notebook with the KVM hypervisor added to it. The example is shown in windowed mode, but can run very well in auto-adjusted full screen native resolution as well.</p>
+
+<p><a href="http:/runlevel-6.github.io/images-mint-hypervisor/win7-spice-vdi-solid-works.png" target="_blank"> <img src="http:/runlevel-6.github.io/images-mint-hypervisor/win7-spice-vdi-solid-works_400x225.png" border="0" alt="win 7 pro running VDI in local hypervisor" /></a></p>
+
+<p><a href='#TOP'><img alt="back to top of page" style="border-width:0" src="http:/runlevel-6.github.io/images/nav-to-top_80x23.png" /></a></p>
+]]></content>
+  </entry>
+  
+</feed>

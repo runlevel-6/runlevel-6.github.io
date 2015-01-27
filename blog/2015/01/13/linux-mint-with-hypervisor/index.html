@@ -1,0 +1,360 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Linux Mint 17.1 with KVM/Qemu hypervisor and VM management - runLevel-6</title>
+  <meta name="author" content="Ken Zahorec">
+
+  
+  <meta name="description" content="Linux Mint is one of my favorite Linux desktop distributions. It comes in a multitude of flavors designed to drop into just about any desktop or &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http:/runlevel-6.github.io/blog/2015/01/13/linux-mint-with-hypervisor">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="runLevel-6" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">runLevel-6</a></h1>
+  
+    <h2>&#8230;contemplate, start, and move forward</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:http:/runlevel-6.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h2 class="entry-title">Linux Mint 17.1 with KVM/Qemu hypervisor and VM management</h2>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-01-13T23:40:29-05:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:40 pm</span></time>
+        
+           | <a href="#discussion_thread"
+             data-discussion-identifier="http:/runlevel-6.github.io">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Linux Mint is one of my favorite Linux desktop distributions. It comes in a multitude of flavors designed to drop into just about any desktop or laptop system available. It installs and updates in minutes and delivers a fully functional system with a full set of common and very useful applications&ndash;everything that most any user would need. The latest version 17.1 is a long term support (LTS) release which means it is supported for 5 years. Linux Mint is my go-to distribution for desktop Linux. The folks on the Linux Mint team have been doing a phenominal job, release after release, since the project started several years back.</p>
+
+<p>Here we provide instructions for adding the KVM hypervisor and VM management tools to the Linux Mint 64-bit install. The Linux Mint system becomes a virtualization host. In a few minutes, with just a few commands, you can have a rock solid virtualization hypervisor added to your Linux Mint desktop system. You can use graphical &ldquo;virt-manager&rdquo; to create virtual machines and manage virtual networks. You can use the Spice protocol to offer high performance virtual desktop interfaces (VDI) both locally and to remote clients. Having the advantages of virtualization added to your Mint desktop provides some serious benefits for developing, testing, experimentation, or providing remote virtual desktop interface (VDI) services to others from your Linux Mint system. Virtualization also allows you to keep your main Mint desktop system clean and shiny while you use disposable VMs for software testing, experimentation, duplication, and validation.</p>
+
+<p>You will need a system with some horsepower if you plan to run mulitple virtual machines and/or provide access to them from remote clients. The system processor must be capable of hardware based virtualization. A high end AMD (Athlon 64, A8, A10, or higher) or Intel system (I5, I7, Xeon, etc.) should provide this capability. Here is a good
+<a href="http://superuser.com/questions/591813/how-to-tell-if-a-cpu-supports-virtualization" target="_blank">article from superuser.com</a>
+on identifying processor virtualization. Any memory or processor resources provided to a VM while it is running will reduce the capacity of the virtualization host system. If you plan to have one or more resource intensive VMs, then you will need to provide enough processor, memory, and storage resource in your main host.</p>
+
+<h3>Basic installation and update of Linux Mint</h3>
+
+<p>Install Linux Mint 17.1 64-bit Cinnamon desktop from CD or USB. I won&rsquo;t get into the basic install details because there is plenty of information available on this and it is quite simple to install on just about any system. Select the installation icon on the desktop and follow through&ndash;this takes only a few minutes. In a flash you are ready to proceed with your shiny new Linux Mint system.</p>
+
+<p>Open a terminal on the desktop. Perform an initial update to bring all of the components up to the latest available revisions.</p>
+
+<pre><code>$ sudo apt-get update
+$ sudo apt-get upgrade
+</code></pre>
+
+<h3>Secure shell remote client access to the Linux Mint system</h3>
+
+<p>If you want to provide for remote management of the Mint system then add openssh secure shell server. This will provide for secure remote client access and secure remote file transfer to or from the Linux Mint host.</p>
+
+<pre><code>$ sudo apt-get install openssh-server
+</code></pre>
+
+<h3>Adding the hypervisor and related components</h3>
+
+<p>Now we begin adding the KVM hypervisor, Qemu emulator, libvirt management components, and graphical &ldquo;virt-manager&rdquo;</p>
+
+<pre><code>$ sudo apt-get install qemu-system
+$ sudo apt-get install qemu-utils
+$ sudo apt-get install libvirt-bin
+$ sudo apt-get install virt-manager
+</code></pre>
+
+<p>We want the ability to provide accelerated video to any connecting clients, so we add the SPICE client kit and virt-viewer. Virt-viewer is a view client which connects to either VNC or SPICE desktop video connections. It is similar to a RDP or VNC client.</p>
+
+<pre><code>$ sudo apt-get install python-spice-client-gtk
+$ sudo apt-get install virt-viewer
+</code></pre>
+
+<h3>Providing access to the hypervisor - the libvirtd group</h3>
+
+<p>With all of the components installed, all that is left to do is add any user who will be connecting to the hypervisor into the libvirtd group. Upon the next login, the user will be able to run virt-manager, connect to the local hypervisor, and create and manage VMs.</p>
+
+<h3>Managing VMs using the virsh command line</h3>
+
+<p>VMs can be managed using graphical virt-manager, or through the command line using virsh. Here is an simple example session of listing available VMs and showing their current state.</p>
+
+<pre><code>zuser@zbox00 ~ $ virsh list --all
+ Id    Name                           State
+----------------------------------------------------
+ -     crunchbag-linux_00             shut off
+ -     win-server-2012-r2             shut off
+ -     win-server-2012-r2-template    shut off
+ -     win7pro-spice-01               shut off
+</code></pre>
+
+<p>As you can see, they are all shut off. We start two of them using virsh at the command line&hellip;</p>
+
+<pre><code>zuser@zbox00 ~ $ virsh start crunchbag-linux_00
+Domain crunchbag-linux_00 started
+
+zuser@zbox00 ~ $ virsh start win7pro-spice-01
+Domain win7pro-spice-01 started
+
+zuser@zbox00 ~ $ 
+</code></pre>
+
+<h3>Managing VMs using the graphical virt-manager</h3>
+
+<p>VMs can be graphically managed using virt-manager. Here is a screenshot of virt-manager in action. The virt-manager application provides a very easy to use graphical interface which allows you to manage VMs and other virtual resources. You can also create virtual networks and adjust network backings, monitor resources, etc.</p>
+
+<p><img src="/images-mint-hypervisor/virt-manager_400x417.png" title="Optional title" alt="graphic of virt-manger on Linux Mint desktop" /></p>
+
+<p><a href="/images-mint-hypervisor/virt-manager-connections.png" target="_blank"> <img src="/images-mint-hypervisor/virt-manager-connections_400x250.png" border="0" alt="graphic of win 7 pro running VDI in local hypervisor" /></a></p>
+
+<p>Using Linux remote-viewer, or Windows virt-viewer allows you to connect to the console via VNC or Spice display port on the VM.
+This provide a virtual desktop interface (VDI). Spice provides accelerated performance to the desktop over the network.</p>
+
+<h3>VDI - Accessing the VM guest&rsquo;s desktop through a remote, or local, client.</h3>
+
+<p>The VDI experience is very fluid and provides excellent throughput for doing CAD and other graphics intensive work.
+In this case the VM is located on the localhost Linux Mint KVM hypervisor, but this VM guest desktop can be provided anywhere we need it via Spice connection on the local network.
+In most cases network bandwidth of only a few megabit is all that is needed.</p>
+
+<p>The user of the desktop VDI needs only the viewing client, they do not need access to virt-manager.
+Access to the console, through the client, can be protected using a digest password and will require separate login with account credentials to the VM guest.
+It looks just like a physically connected console&ndash;if you restart the OS guest in the VDI you can watch it reboot with BIOS screen and boot to running system.
+With installation of libvirt guest OS tools we get auto-resizing, and copy-paste capabilities between the remote-viewer client and accessing system.
+Spice provides also for forwarding of USB connections to the guest as well as use of local sound devices. You can run multiple console displays as well.</p>
+
+<p>The example below is of a Windows 7 Pro 64-bit VM guest running Solid Works through a Spice VDI. The VM is running on a Linux Mint notebook with the KVM hypervisor added to it. The example is shown in windowed mode, but can run very well in auto-adjusted full screen native resolution as well.</p>
+
+<p><a href="/images-mint-hypervisor/win7-spice-vdi-solid-works.png" target="_blank"> <img src="/images-mint-hypervisor/win7-spice-vdi-solid-works_400x225.png" border="0" alt="win 7 pro running VDI in local hypervisor" /></a></p>
+
+<p><a href='#TOP'><img alt="back to top of page" style="border-width:0" src="/images/nav-to-top_80x23.png" /></a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Ken Zahorec</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-01-13T23:40:29-05:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:40 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/desktop/'>desktop</a>, <a class='category' href='/blog/categories/hypervisor/'>hypervisor,</a>, <a class='category' href='/blog/categories/kvm/'>kvm,</a>, <a class='category' href='/blog/categories/linux/'>linux,</a>, <a class='category' href='/blog/categories/linuxmint/'>linuxmint,</a>, <a class='category' href='/blog/categories/qemu/'>qemu,</a>, <a class='category' href='/blog/categories/spice/'>spice,</a>, <a class='category' href='/blog/categories/vdi/'>vdi</a>, <a class='category' href='/blog/categories/virtualization/'>virtualization,</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http:/runlevel-6.github.io/blog/2015/01/13/linux-mint-with-hypervisor/" data-via="zman5819" data-counturl="http:/runlevel-6.github.io/blog/2015/01/13/linux-mint-with-hypervisor/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/12/11/centos-virtualization-server/" title="Previous Post: CentOS 6/7 Virtualization Server: The industrial strength hypervisor with performance, security, and manageability.">&laquo; CentOS 6/7 Virtualization Server: The industrial strength hypervisor with performance, security, and manageability.</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+
+    <div id="discussion_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://www.intensedebate.com">comments powered by IntenseDebate.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+<h1><a href="mailto:zman5819@gmail.com?subject=Runlevel-6 visitor mail">Ken Zahorec</a></h1>
+  <p>Digging into just about everything I can get my hands on along the path of life&#8211;and sharing some of my experiences.</p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/01/13/linux-mint-with-hypervisor/">Linux Mint 17.1 with KVM/Qemu hypervisor and VM management</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/12/11/centos-virtualization-server/">CentOS 6/7 Virtualization Server: The industrial strength hypervisor with performance, security, and manageability.</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/04/auto-repair-fixing-a-leaky-door-on-the-2007-saab-93/">Auto Repair: Fixing a leaky door on the 2007 Saab 93</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/30/basement-upgrade-creating-the-new-hangout/">Basement Upgrade: Creating the new hangout&#8230;</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/21/electric-range-repair-can-i-do-it-myself/">Electric Range Repair: Can I do it myself?</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/21/auto-headlight-repair-cleaning-cloudy-headlamp-lenses-to-look-like-new-again/">Auto Headlight Repair: Cleaning cloudy headlamp lenses to look like new again</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/05/linux-virtualization-some-links-and-topics-of-interest/">Linux Virtualization: Some links and topics of interest</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/runlevel-6">@runlevel-6</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'runlevel-6',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><center>
+Copyright &copy; 2015 - Ken Zahorec - <span class="credit">Website powered by <a href="http://octopress.org">Octopress</a></span>
+ - Material on this website is licensed under a
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>
+<center />
+
+</footer>
+$(function() {
+
+
+<script>
+var idcomments_acct = 'ed8f5e745ff0a05d3d6a5414ee9355f1';
+var idcomments_post_id = 'http:/runlevel-6.github.io/blog/2015/01/13/linux-mint-with-hypervisor/';
+var idcomments_post_url = 'http:/runlevel-6.github.io/blog/2015/01/13/linux-mint-with-hypervisor/';
+</script>
+<span id="IDCommentsPostTitle" style="display:none"></span>
+<script type='text/javascript' src='http://www.intensedebate.com/js/genericCommentWrapperV2.js'></script>
+
+});
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
