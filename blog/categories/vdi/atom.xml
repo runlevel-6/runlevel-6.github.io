@@ -4,7 +4,7 @@
   <title><![CDATA[Category: vdi | runLevel-6]]></title>
   <link href="http:/runlevel-6.github.io/blog/categories/vdi/atom.xml" rel="self"/>
   <link href="http:/runlevel-6.github.io/"/>
-  <updated>2015-01-27T02:15:18-05:00</updated>
+  <updated>2015-01-31T02:16:50-05:00</updated>
   <id>http:/runlevel-6.github.io/</id>
   <author>
     <name><![CDATA[Ken Zahorec]]></name>
@@ -123,16 +123,31 @@ Spice provides also for forwarding of USB connections to the guest as well as us
     <link href="http:/runlevel-6.github.io/blog/2014/12/11/centos-virtualization-server/"/>
     <updated>2014-12-11T00:48:36-05:00</updated>
     <id>http:/runlevel-6.github.io/blog/2014/12/11/centos-virtualization-server</id>
-    <content type="html"><![CDATA[<p><img src="/post-images/cisco-ucs-front-view_400x39.png" title="Optional title" alt="cisco m220 ucs server" /></p>
+    <content type="html"><![CDATA[<p><img src="/post-images/cisco-ucs-front-view_400x39.png" title="Cisco UCS server, quad Intel Xeons, 24 processor cores, 94 GB RAM" alt="cisco m220 ucs server" /></p>
 
 <p>The CentOS KVM/Qemu hypervisor can be setup in short order and provides all of the tools necessary to support enterprise class virtualization. Create and manage VMs and virtual networks. We begin with a quick 5 minute install of CentOS minimal. Then add virtualization packages and desired utilities with some follow-on configuration activities. It installs and sets up quickly into just about any modern virt-capable host hardware you can imagine. <strong>From enterprise grade servers, to desktop, or even laptop systems.</strong> I have implemented it many times in both CentOS 6 and CentOS 7. I like the new systemd and graphical firewall-config in CentOS 7.</p>
 
 <p>The hypervisor host can be used for research, development, and/or production systems. It provides <strong>graphical management</strong> of virtual machines, virtual networking, and other related resources. It can be easily managed remotely from Windows, Linux, or Mac OS X desktops using a graphical program called
 <a href="http://virt-manager.org/" target="_blank">Virtual Machine Manager</a>, invoked simply as &ldquo;virt-manager&rdquo;. Alternatively, command line or scripted management is also possible using a powerful <a href="http://libvirt.org/" target="_blank">libvirt</a>-based program called <a href="http://libvirt.org/virshcmdref.html" target="_blank">Virsh</a>, invoked simply as &ldquo;virsh&rdquo;.</p>
 
+<p>Below is an image of virt-manager being run via X11 forwarding from OS X Yosemite 10.10.1 desktop. Here we are installing a Linux Mint 17.1 64-bit desktop into virtual machine. Virt-manager was started from a secure shell (ssh -X) login session to the CentOS hypervisor. Note the other VMs in the virt-manager interface already installed in the hypervisor. As you can see virt-manager provide a console interface to the VM.</p>
+
+<p><a href="http:/runlevel-6.github.io/images-centos-virt/osx-ssh-virt-manager-create-vm-install-guest-mint.png" target="_blank"> <img src="http:/runlevel-6.github.io/images-centos-virt/osx-ssh-virt-manager-create-vm-install-guest-mint_400x418.png" border="0" alt="CentOS hypervisor management from OS X" /></a></p>
+
+<p>Below is another view of virt-manager being used to manage a hypervisor from the OS X desktop.</p>
+
+<p><a href="http:/runlevel-6.github.io/images-centos-virt/osx-ssh-virt-manager-conn-details-overview.png" target="_blank"> <img src="http:/runlevel-6.github.io/images-centos-virt/osx-ssh-virt-manager-conn-details-overview_400x561.png" border="0" alt="CentOS hypervisor management from OS X" /></a></p>
+
+<p>Below is a view of a Windows Server 2012 R2 guest accessed via the VNC &ldquo;Screen Sharing&rdquo; client on OS X. It is connected via VNC. Note the video resolution capabilities on the Windows desktop with the virtualized QXL video adapter provided to the guest in the VM.</p>
+
+<p><a href="http:/runlevel-6.github.io/images-centos-virt/osx-screen-sharing-winserver-display-resolutions.png" target="_blank"> <img src="http:/runlevel-6.github.io/images-centos-virt/osx-screen-sharing-winserver-display-resolutions_400x266.png" border="0" alt="CentOS hypervisor management from OS X" /></a></p>
+
 <p>The hypervisor can also be used as a OS provisioning platform for <strong>virtual desktop interface (VDI)</strong> using accelerated
 <a href="http://www.spice-space.org/" target="_blank">Spice</a>
-or standard common VNC. The Spice protocol and tools provide a very responsive desktop experience delivered to client from VM.</p>
+or standard common VNC. The Spice protocol and tools provide a very responsive desktop experience delivered to client from VM.
+Below is a Spice remote-viewer client connection from a Linux Mint desktop to a Windows 7 Professional desktop guest running in a VM. When changing window size or switching the view to full screen the Windows desktop automatically resizes to fit the resolution of the client display area. We can copy-paste to/from Windows and share a common storage area if we wish.</p>
+
+<p><a href="http:/runlevel-6.github.io/images-centos-virt/Linux-mint-virt-viewer-win-7-pro-larger.png" target="_blank"> <img src="http:/runlevel-6.github.io/images-centos-virt/Linux-mint-virt-viewer-win-7-pro_400x250.png" border="0" alt="remote-viewer client Spice connection to Windows 7 VDI" /></a></p>
 
 <p>Select the setup guide here for detailed instructions covering both CentOS 6 and CentOS 7 systems.
 <a href="http:/runlevel-6.github.io/centos-virt" target="_blank">CentOS Hypervisor Setup and Management - detailed instructions</a></p>
