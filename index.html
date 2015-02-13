@@ -9,7 +9,7 @@
   <meta name="author" content="Ken Zahorec">
 
   
-  <meta name="description" content="Linux Mint is one of my favorite Linux desktop distributions. It comes in a multitude of flavors designed to drop into just about any desktop or &hellip;">
+  <meta name="description" content="Linux Mint 17.1 Fully Automated Backup of KVM Hypervisor Client Virtual Machines and other Host Systems. I recently spent some time researching open &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,115 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h2 class="entry-title"><a href="/blog/2015/02/12/backuppc-hypervisor-backup/">Using BackupPC for Backing Up KVM Virtual Machines</a></h2>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-02-12T20:40:29-05:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>8:40 pm</span></time>
+        
+           | <a href="/blog/2015/02/12/backuppc-hypervisor-backup/#discussion_thread"
+             data-discussion-identifier="http:/runlevel-6.github.io/blog/2015/02/12/backuppc-hypervisor-backup/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>Linux Mint 17.1 Fully Automated Backup of KVM Hypervisor Client Virtual Machines and other Host Systems.</h2>
+
+<p>I recently spent some time researching open source backup solutions for KVM virtual machines (VMs) and discovered BackupPC.
+BackupPC is a server-based enterprise grade backup solution which can be used to backup data from various hosts including Windows Desktop/Server, Linux/UNIX, and OS X, or any other system that can have files collected across a network using common secure protocols for access, sharing, and/or transferring file system data.</p>
+
+<p>By adding a pre-backup VM dump process and a post-backup cleanup process, we can safely and reliably dump and then backup virtual machines from a hypervisor client host. After the backup data has been transfered to the backuppc host we can then clean up the VM dump data to ready the dump area for the next backup operation.
+All of these operations are, of course, automated using BackupPC.
+We are currently backing up about 6.5TB worth of VM backups consisting of multiple full and multiple incremental backups. This is requiring only about 800GB of pool storage at the BackupPC host&ndash;a very efficient solution.
+We can restore a VM to any point in past history as defined in the configured backuppc schedule.
+Backups age off of the system automatically.
+In addition to automated full and incremental backups, a full or incremental backup can be manually initiated any time we wish.</p>
+
+<p>Below is a server client host summary view of the BackupPC UI. It shows the hypervisor clients currently registered as clients for backup operations.</p>
+
+<p><a href="/images-backuppc/backuppc-server_sec.png" target="_blank" title="BackupPC server summary (click to open enlarged view)"> <img src="/images-backuppc/backuppc-server_400x247_sec.png" border="0" alt="BackupPC UI in Firefox web browser" /></a></p>
+
+<p>The BackupPC server provides scheduled backups, both full and/or incremental backups, and a multitude of enterprise features such as backup aging, blackout periods, de-duped storage, etc.
+We can safely backup 5 TB to 10 TB of VM data within about 1TB of backup pool storage. It is very efficient.
+The solution has been working very well for several weeks, so far, with no problems at all.</p>
+
+<p>Below is a specific host client view summary for hypervisor client et-virt104.</p>
+
+<p><a href="/images-backuppc/backuppc-host-full_sec.png" target="_blank" title="BackupPC server summary full view (click to open enlarged view)"> <img src="/images-backuppc/backuppc-host-full_400x339_sec.png" border="0" alt="BackupPC UI in Firefox web browser" /></a></p>
+
+<h2>Dumping VMs to Ready them for Backup</h2>
+
+<p>I spent some time with Daniel Berteaud&rsquo;s
+<a href="http://gitweb.firewall-services.com/?p=virt-backup;a=blob_plain;f=virt-backup;hb=HEAD" target="_blank">virt-backup.pl script</a>,
+but found that it was causing problems with libvirtd in CentOS 6 KVM hypervisors.
+It would hang libvirtd, requiring a restart.
+I spent a few days digging to find the root cause, but due to the time it was taking I decided to abandon the approach altogether.
+On a side note, I was able to get virt-backup.pl to function properly on a CentOS 7 KVM hypervisor to successfully dump the VMs, but did not test it enough to be able to recommend it.</p>
+
+<h2>Bash Script vm-clone-dump.sh for Hypervisor VM Dump and Cleanup</h2>
+
+<p>I decided to write a bash script that would be based on available command line utilities for managing VMs through libvirt. Focusing on simiplicity, I wrote
+<a href="/vm-clone-dump/vm-clone-dump.sh" target="_blank">vm-clone-dump.sh</a>
+to use common libvirt tooling, virsh and virt-clone, for the required controlling and dumping of VMs. It is called vm-clone-dump.sh because it actually dumps a temporary clone of each VM along with XML definition of the clone and the XML definition of the original VM. The clone storage image is an exact duplicate of the orignal, which can be easily used to restore the original.
+To restore a VM:</p>
+
+<ol>
+<li><p>Restore the virtual disk image and both XML files from the BackupPC server back to the virt-backup dump area of the hypervisow.
+This is easily done in the UI for BackupPC. Just select the host, select the backup, then checkbox the desired files from the backup and hit the restore button.
+Large files, such as VM images may take some time to restore.</p></li>
+<li><p>After the image(s) and XML files have been restored to the hypervisor, you would then make sure the VM is shutdown.</p></li>
+<li><p>Copy the cloned backup image data over to the same filespec as the original VM in /var/lib/libvirt/images.
+You can tell exactly what the filespec is supposed to be by inspecting the original VM XML data.</p></li>
+<li><p>In most cases there is no need to restore the XML data, unless perhaps it has changed since backup. A quick &ldquo;diff&rdquo; will tell you.
+The VM XML files for the hypervisor normally reside in /etc/libvirtd/qemu/. If you do change the VM XML, you will need to restart libvirtd to reload the VM XML files before you can use the new XML definition. A full hypervisor system restart is not necessary. Restarting libvirtd will not interrupt any currently running VMs at the hypervisor.</p></li>
+<li><p>Start the restored VM.</p></li>
+</ol>
+
+
+<p>Feel free to download the <a href="/vm-clone-dump/vm-clone-dump.sh" target="_blank">vm-clone-dump.sh</a> script and use it in your KVM hypervisor. Invoke it with the -h option and it will produce help text on general dump processing and script usage.</p>
+
+<p>The vm-clone-dump.sh script provides a &ldquo;standard dump&rdquo; and a &ldquo;concurrent dump&rdquo; processing option.
+Standard dump will pause all VMs while the dump operation takes place.
+Standard dump allows the hypervisor to spend the shortest amount of time dumping all of the VMs during the pre-backup processing, while all of the running VMs are paused.
+The tradeoff here is requiring all VMs to be paused, resulting in slightly more overall VM downtime.
+Concurrent dump will indvidually pause each VM, dump it, then resume it before going on to the next VM. Concurrent dump is meant to improve uptime for VMs during the hypervisor pre-backup dump operation at the expense of taking a bit more time to dump all of the VMs.</p>
+
+<p>The dump operation will dump all running and/or shutdown VMs. It will not dump paused or transitional VMs. It will dump writable filesystems, but not dump read-only filesystems&ndash;such as mounted CDROM .iso images.</p>
+
+<p>The hypervisor VM dump method chosen, standard or concurrent, is provided as a command option.
+The best use of it depends on the capabilities and loading of the hypervisor server storage system.
+I am finding that the standard dump method works best on older servers, such as the Dell 2950 (10K RPM SATA RAID storage), while the concurrent dump seems to work best on newer servers, such as the Cicso C220 M3 (solid state RAID storage).
+The Cisco C220 M3 server dumps VMs in a few short minutes (~10 minutes) while the older, aging, Dell 2950 takes far longer (~5 hours) to complete a similar VM dump&ndash;a dramatic difference indeed.</p>
+
+<h2>Linux Mint 17.1 Server Setup for Backup of KVM Hypervisor Client Virtual Machines and other Host Systems.</h2>
+
+<p>I decided to install backuppc into a Linux Mint desktop system, which doubles as a great backup server.
+I chose the Linux Mint desktop distribution because it provides a super friendly graphical desktop, Cinnamon. The backuppc solution could be setup, as well, on Ubuntu or Debian and other Linux distributions as well.
+A stable version of backuppc was available for installation directly from the Linux Mint repositories and took literally seconds to install.
+Here are the general
+<a href="/linux-mint-backuppc/" target="_blank">instructions for installing and setting up BackupPC on Linux Mint.</a>
+Hopefully you will find them useful in building your own BackupPC envionment.</p>
+
+<p>Once the BackupPC packages are installed and configured you can log into the backuppc website, either locally or remotely, to manage the BackupPC server. Add hosts, adjust the backup schedule, and let the backup automation begin! Run your hypervisor VMs with confidence in knowing that the VMs are being regularly backed up and can be easily restored as desired.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -218,154 +327,34 @@ Spice provides also for forwarding of USB connections to the guest as well as us
   </header>
 
 
-  <div class="entry-content"><p><img src="/post-images/cisco-ucs-front-view_400x39.png" title="Cisco UCS server, quad Intel Xeons, 24 processor cores, 94 GB RAM" alt="cisco m220 ucs server" /></p>
+  <div class="entry-content"><p><img src="/post-images/cisco-ucs-front-view_400x39.png" title="Cisco UCS C220 M3 server, dual Intel E2600 V2 Xeons, 32 processor cores total, 94 GB RAM, 1TB RAID solid state storage" alt="cisco m220 ucs server" /></p>
 
-<p>The CentOS KVM/Qemu hypervisor can be setup in short order and provides all of the tools necessary to support enterprise class virtualization. Create and manage VMs and virtual networks. We begin with a quick 5 minute install of CentOS minimal. Then add virtualization packages and desired utilities with some follow-on configuration activities. It installs and sets up quickly into just about any modern virt-capable host hardware you can imagine. <strong>From enterprise grade servers, to desktop, or even laptop systems.</strong> I have implemented it many times in both CentOS 6 and CentOS 7. I like the new systemd and graphical firewall-config in CentOS 7.</p>
+<p>The CentOS KVM/Qemu hypervisor can be setup in short order and provides all of the tools necessary to support enterprise class virtualization. Create and manage VMs and virtual networks. We begin with a quick 5 minute install of CentOS minimal. Then add virtualization packages and desired utilities with some follow-on configuration activities. It installs and sets up quickly into just about any modern virt-capable host hardware you can imagine. <strong>From enterprise grade servers, to desktop, or even laptop systems.</strong> We have implemented it many times using CentOS 6 and CentOS 7. I like the new systemd and graphical firewall-config in CentOS 7.</p>
 
 <p>The hypervisor host can be used for research, development, and/or production systems. It provides <strong>graphical management</strong> of virtual machines, virtual networking, and other related resources. It can be easily managed remotely from Windows, Linux, or Mac OS X desktops using a graphical program called
 <a href="http://virt-manager.org/" target="_blank">Virtual Machine Manager</a>, invoked simply as &ldquo;virt-manager&rdquo;. Alternatively, command line or scripted management is also possible using a powerful <a href="http://libvirt.org/" target="_blank">libvirt</a>-based program called <a href="http://libvirt.org/virshcmdref.html" target="_blank">Virsh</a>, invoked simply as &ldquo;virsh&rdquo;.</p>
 
 <p>Below is an image of virt-manager being run via X11 forwarding from OS X Yosemite 10.10.1 desktop. Here we are installing a Linux Mint 17.1 64-bit desktop into virtual machine. Virt-manager was started from a secure shell (ssh -X) login session to the CentOS hypervisor. Note the other VMs in the virt-manager interface already installed in the hypervisor. As you can see virt-manager provide a console interface to the VM.</p>
 
-<p><a href="/images-centos-virt/osx-ssh-virt-manager-create-vm-install-guest-mint.png" target="_blank"> <img src="/images-centos-virt/osx-ssh-virt-manager-create-vm-install-guest-mint_400x418.png" border="0" alt="CentOS hypervisor management from OS X" /></a></p>
+<p><a href="/images-centos-virt/osx-ssh-virt-manager-create-vm-install-guest-mint_sec.png" target="_blank" title="OS X Yosemite on Macbook Air being used to manage a CentOS Linux hypervisor through ssh connection (click to open enlarged view)"> <img src="/images-centos-virt/osx-ssh-virt-manager-create-vm-install-guest-mint_400x418_sec.png" border="0" alt="CentOS hypervisor management from OS X" /></a></p>
 
 <p>Below is another view of virt-manager being used to manage a hypervisor from the OS X desktop.</p>
 
-<p><a href="/images-centos-virt/osx-ssh-virt-manager-conn-details-overview.png" target="_blank"> <img src="/images-centos-virt/osx-ssh-virt-manager-conn-details-overview_400x561.png" border="0" alt="CentOS hypervisor management from OS X" /></a></p>
+<p><a href="/images-centos-virt/osx-ssh-virt-manager-conn-details-overview_sec.png" target="_blank" title="OS X Yosemite on Macbook Air being used to manage a CentOS Linux hypervisor through ssh connection (click to open enlarged view)"> <img src="/images-centos-virt/osx-ssh-virt-manager-conn-details-overview_400x561_sec.png" border="0" alt="CentOS hypervisor management from OS X" /></a></p>
 
 <p>Below is a view of a Windows Server 2012 R2 guest accessed via the VNC &ldquo;Screen Sharing&rdquo; client on OS X. It is connected via VNC. Note the video resolution capabilities on the Windows desktop with the virtualized QXL video adapter provided to the guest in the VM.</p>
 
-<p><a href="/images-centos-virt/osx-screen-sharing-winserver-display-resolutions.png" target="_blank"> <img src="/images-centos-virt/osx-screen-sharing-winserver-display-resolutions_400x266.png" border="0" alt="CentOS hypervisor management from OS X" /></a></p>
+<p><a href="/images-centos-virt/osx-screen-sharing-winserver-display-resolutions.png" target="_blank" title="OSX Screen Sharing VNC client connect to Windows 2012 R2 VM guest console (click to open enlarged view)"> <img src="/images-centos-virt/osx-screen-sharing-winserver-display-resolutions_400x266.png" border="0" alt="CentOS hypervisor management from OS X" /></a></p>
 
 <p>The hypervisor can also be used as a OS provisioning platform for <strong>virtual desktop interface (VDI)</strong> using accelerated
 <a href="http://www.spice-space.org/" target="_blank">Spice</a>
 or standard common VNC. The Spice protocol and tools provide a very responsive desktop experience delivered to client from VM.
 Below is a Spice remote-viewer client connection from a Linux Mint desktop to a Windows 7 Professional desktop guest running in a VM. When changing window size or switching the view to full screen the Windows desktop automatically resizes to fit the resolution of the client display area. We can copy-paste to/from Windows and share a common storage area if we wish.</p>
 
-<p><a href="/images-centos-virt/Linux-mint-virt-viewer-win-7-pro-larger.png" target="_blank"> <img src="/images-centos-virt/Linux-mint-virt-viewer-win-7-pro_400x250.png" border="0" alt="remote-viewer client Spice connection to Windows 7 VDI" /></a></p>
+<p><a href="/images-centos-virt/Linux-mint-virt-viewer-win-7-pro-larger.png" target="_blank"  title="Linux Mint desktop remote-viewer client SPICE connection to Windows 7 VM guest desktop (click to open enlarged view)"> <img src="/images-centos-virt/Linux-mint-virt-viewer-win-7-pro_400x250.png" border="0" alt="remote-viewer client Spice connection to Windows 7 VDI" /></a></p>
 
 <p>Select the setup guide here for detailed instructions covering both CentOS 6 and CentOS 7 systems.
 <a href="/centos-virt" target="_blank">CentOS Hypervisor Setup and Management - detailed instructions</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h2 class="entry-title"><a href="/blog/2013/05/04/auto-repair-fixing-a-leaky-door-on-the-2007-saab-93/">Auto Repair: Fixing a leaky door on the 2007 Saab 93</a></h2>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2013-05-04T01:21:55-04:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>1:21 am</span></time>
-        
-           | <a href="/blog/2013/05/04/auto-repair-fixing-a-leaky-door-on-the-2007-saab-93/#discussion_thread"
-             data-discussion-identifier="http:/runlevel-6.github.io/blog/2013/05/04/auto-repair-fixing-a-leaky-door-on-the-2007-saab-93/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><strong>After a night of heavy rain we have an inch of water in the drivers-side interior footwell!</strong></p>
-
-<p>I am posting this information with hope that it might help others who are experiencing the same problem I had. If you find it of good use, please drop me an email. Please read the disclaimer at the bottom of this document.</p>
-
-<p>The 2007 Saab 93 door leak root cause. A torn foam-panel interior door seal.</p>
-
-<p><img src="/images-saab/5-torn-foam-seal.png" alt="Saab 93" /></p>
-
-<h2>Forward</h2>
-
-<p>In this article we illustrate a solution for a leaking interior door panel on a 2007 Saab 93 2.0t that was discovered in November of 2012.</p>
-
-<h2>Problem described:</h2>
-
-<p>We have had water leaking in on the driver&rsquo;s side for several months, but only after a very heavy rain. On two occasions we had more than an inch of water accumulate!</p>
-
-<h2>Investigation</h2>
-
-<p>I ran a garden hose on the drivers side window for about 2 or 3 minutes and noticed that water was leaking into the interior at the very bottom of the plastic panel attached to the drivers door. The body door seal actually prevents the water from exiting at the bottom of the door opening so it leaks into the cabin and runs onto the carpet into the drivers foot area.</p>
-
-<p>To investigate the root cause, I carefully separated the door panel from the door frame along the lower part of the door. I noticed that the foam seal panel inside the door was damaged, torn up and not connected (adhered to the metal door frame) as it should have been.</p>
-
-<h2>When did the damage occur? At the service dealer 2 years before!</h2>
-
-<p>This got me wondering, since we purchased the car used but still under factory warranty at the time it was purchased. I called the dealer service who confirmed that the car had service performed on the drivers door two years back to replace the window actuator. Apparently the service technician or mechanic, during replacement of the window actuator, had torn up the interior door seal and not bothered to replace or repair it properly. This interior door seal is a thin closed cell foam panel that tears easily when servicing the door mechanics. The panel is adhered to the lower part of the inside of the door and works to keep water moving towards the outside of the door cavity and properly through the drain holes at the bottom of the door.</p>
-
-<p>The attending service manager claimed that the work on the door actuator was guaranteed for 1 year, so the fact that the interior door seal was damaged during that process is past due and there is nothing they can do about it&ndash;even though THEY damaged it in 2010. There was absolutely no way I could tell that the work was substandard without removing the door panel to see it inside the door assembly. So much for professional service and standing by your work. That will be the last time that service dealer gets my business.</p>
-
-<h2>Lesson for service done on a door</h2>
-
-<p>So to make a long story short: If you have ever had work done on the inside of a Saab door, it is imperative that the foam panel seal within the door assembly not be breached. If the seal is not attached properly or is damaged or torn in the repair process you may end up with a door that leaks into the cabin during heavy rains.</p>
-
-<p>Perhaps after service door repairs, a good test at home would be to spray water on the door window for about 15 or 20 minutes to test the seal and make sure the service technician got the seal set up properly. Of course this could be done at the service dealer as part of the repair process to make sure the door handles water properly after service.</p>
-
-<h2>Saab design issue?</h2>
-
-<p>Looking at the Saab door design closely, it is clearly evident that the windows seam at the top of the door is located directly above the lower part of the interior door panel instead of the lower part of the door assembly. This means that any water entering the door-window seam and falling straight down will strike the foam panel and interior parts of the door before finding its way back to the door well drain holes. This particular choice of design makes it imperative that the foam door panel not be breached. I am not sure if this situation occurs in other sporty cars, like the Saab, which tend to have a tapered wider stance at the base of the vehicle when viewed from the front or back of the car. This does help make the car look more appealing and perhaps improves handling by distributing more mass at the base of the car&ndash;a lower center of gravity.</p>
-
-<h2>Repair or replace the part?</h2>
-
-<p>A new foam seal is ~$140 (USD). That is an insane amount of money for a simple piece of foam&ndash;typical service part highway robbery. I will take a stab at fixing it myself. I will use rubberized sealant and transparent box tape. It won&rsquo;t look great, but who cares because the repair work will only be visible if you remove the interior door panel. If I <strong>ever</strong> have to tear out the panel for future repair work on a windows actuator I will consider buying a new foam panel&ndash;but not until then.</p>
-
-<h2>Repairing the foam seal.</h2>
-
-<p>Here are the steps I went through to repair the foam seal in the door. It was very easy and took only a few minutes&hellip;</p>
-
-<p>First we heat the door handle with a hair dryer. We want to get the plastic hot so it can flex more easily.</p>
-
-<p><img src="/images-saab/1-heating-door-handle.png" alt="heating up the door handle" /></p>
-
-<p>After the door handle has been warmed up, we can gently pull and easily snap off the plastic door handle cover.</p>
-
-<p><img src="/images-saab/2-door-handle-cover-removed.png" alt="door handle plastic cover removed" /></p>
-
-<p>Now we must remove two torx bolts which hold the door handle to the door frame.</p>
-
-<p><img src="/images-saab/3-star-driver-upper-handle.png" alt="door panel upper torx" /></p>
-
-<p><img src="/images-saab/4-star-driver-lower-handle.png" alt="door panel lower torx" /></p>
-
-<p>We then gently snap the door panel away and lift it gently to detach it from the door frame. We must be careful with the plastic snaps. The door panel remains loosely attached near the door lever. We can now inspect the the torn foam door seal.</p>
-
-<p><img src="/images-saab/5-torn-foam-seal.png" alt="torn interior door seal" /></p>
-
-<p>Lifting the lower section of the torn foam seal exposes the interior cavity of the door. This is where the water is coming from. The water runs along the torn foam panel and drops onto the interior door panel. From there it enters the cabin.</p>
-
-<p><img src="/images-saab/6-leak-point.png" alt="inner door cavity exposed" /></p>
-
-<p>We carefully use the rubberized sealant to repair the tear in the foam seal. We add quality transparent box tape to further mend any tears and spread the sealant across the tearing. It does not look like new, but it works just fine. The unsightly repair work will be covered completely when the interior door panel is snapped back into position.</p>
-
-<p><img src="/images-saab/7-repaired-foam-seal.png" alt="repaired door seal" /></p>
-
-<p>Afterwards, a lengthy garden hose test reveals that the repair work did the job! The door no longer leaks into the interior of the cabin.</p>
-
-<h2>Summary</h2>
-
-<p>We successfully repaired the leaking door on the 2007 Saab 93 2.0t. The work took about one hour and we spent about $5. We saved at least $140 in the process and learned a few things along the way. All in all it was a big win-win. <strong>That is $5 and one hour of fussing around!</strong></p>
-
-<p>The solution has worked flawlessly for 18 months, including winter and now several torrential spring rains. We still have the option to replace the foam seal whenever we want to endure the $140 cost. I might consider, instead of cheap flimsy foam, using a custom fit piece of durable 4 or 6 mil plastic visquene.</p>
-
-<p>If we had the service dealer fix it, we would have spent $140 for the part, and at least $90 for the labor. On top of that we would had to drive to the service dealer twice resulting in 2 hours of travel time&ndash;the dealer is 30 minutes away from my home. <strong>That is $230 and 2 hours of our time and travel costs.</strong></p>
-
-<h3>Disclaimer:</h3>
-
-<p>The information provided here is not a suggestion or endorsement that anyone should attempt to perform the activities shown or described. This information is provided as-is to show how I solved the problem described. Any repairs you make to your car, or someone else&rsquo;s car, are done at your own risk. The author assumes no responsibility or liability for the actions of others or the results obtained or problems encountered, including loss of any kind, from use of the information on this site.</p>
-
-<p>In other words; You better know what you are doing before trying your own repair work. If you are unsure as to what you are doing, then seek out a qualified mechanic to perform the work.</p>
-
-<p><a href='#TOP'><img alt="back to top of page" style="border-width:0" src="/images/nav-to-top_80x23.png" /></a></p>
 </div>
   
   
@@ -392,6 +381,10 @@ Below is a Spice remote-viewer client connection from a Linux Mint desktop to a 
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/02/12/backuppc-hypervisor-backup/">Using BackupPC for Backing Up KVM Virtual Machines</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/01/13/linux-mint-with-hypervisor/">Linux Mint 17.1 with KVM/Qemu hypervisor and VM management</a>
       </li>
     
@@ -413,10 +406,6 @@ Below is a Spice remote-viewer client connection from a Linux Mint desktop to a 
     
       <li class="post">
         <a href="/blog/2013/04/21/auto-headlight-repair-cleaning-cloudy-headlamp-lenses-to-look-like-new-again/">Auto Headlight Repair: Cleaning cloudy headlamp lenses to look like new again</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/04/05/linux-virtualization-some-links-and-topics-of-interest/">Linux Virtualization: Some links and topics of interest</a>
       </li>
     
   </ul>

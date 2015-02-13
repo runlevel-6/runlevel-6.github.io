@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http:/runlevel-6.github.io/blog/2015/02/12/backuppc-hypervisor-backup/</loc>
+    <lastmod>2015-02-12T20:40:29-05:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>http:/runlevel-6.github.io/blog/2015/01/13/linux-mint-with-hypervisor/</loc>
     <lastmod>2015-01-13T23:40:29-05:00</lastmod>
     <priority>0.8</priority>
@@ -52,15 +57,25 @@
   </url>
   <url>
     <loc>http:/runlevel-6.github.io/</loc>
-    <lastmod>2015-01-31T02:16:50-05:00</lastmod>
+    <lastmod>2015-02-13T03:06:21-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http:/runlevel-6.github.io/blog/archives/</loc>
-    <lastmod>2015-01-31T02:16:50-05:00</lastmod>
+    <lastmod>2015-02-13T03:06:21-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>http:/runlevel-6.github.io/linux-mint-backuppc/index.html</loc>
+    <lastmod>2015-02-12T14:30:08-05:00</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>http:/runlevel-6.github.io/vm-clone-dump/index.html</loc>
+    <lastmod>2015-02-12T14:10:52-05:00</lastmod>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>http:/runlevel-6.github.io/centos-virt/index.html</loc>
