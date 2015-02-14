@@ -123,7 +123,7 @@ On a side note, I was able to get virt-backup.pl to function properly on a CentO
 <h2>Bash Script vm-clone-dump.sh for Hypervisor VM Dump and Cleanup</h2>
 
 <p>I decided to write a bash script that would be based on available command line utilities for managing VMs through libvirt. Focusing on simiplicity, I wrote
-<a href="/vm-clone-dump/vm-clone-dump.sh" target="_blank">vm-clone-dump.sh</a>
+<a href="/vm-clone-dump/" target="_blank">vm-clone-dump.sh</a>
 to use common libvirt tooling, virsh and virt-clone, for the required controlling and dumping of VMs. It is called vm-clone-dump.sh because it actually dumps a temporary clone of each VM along with XML definition of the clone and the XML definition of the original VM. The clone storage image is an exact duplicate of the orignal, which can be easily used to restore the original.
 To restore a VM:</p>
 
