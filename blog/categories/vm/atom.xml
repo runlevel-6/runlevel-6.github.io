@@ -4,7 +4,7 @@
   <title><![CDATA[Category: vm | Runlevel-6]]></title>
   <link href="http:/runlevel-6.github.io/blog/categories/vm/atom.xml" rel="self"/>
   <link href="http:/runlevel-6.github.io/"/>
-  <updated>2015-02-16T02:02:50-05:00</updated>
+  <updated>2015-02-17T00:56:02-05:00</updated>
   <id>http:/runlevel-6.github.io/</id>
   <author>
     <name><![CDATA[Ken Zahorec]]></name>
@@ -61,13 +61,14 @@ To restore a VM:</p>
 <ol>
 <li><p>Restore the virtual disk image and both XML files from the BackupPC server back to the virt-backup dump area of the hypervisow.
 This is easily done in the UI for BackupPC. Just select the host, select the backup, then checkbox the desired files from the backup and hit the restore button.
+The files will be restored to the configured dump directory on the hypervisor storage system.
 Large files, such as VM images may take some time to restore.</p></li>
 <li><p>After the image(s) and XML files have been restored to the hypervisor, you would then make sure the VM is shutdown.</p></li>
 <li><p>Copy the cloned backup image data over to the same filespec as the original VM in /var/lib/libvirt/images.
 You can tell exactly what the filespec is supposed to be by inspecting the original VM XML data.</p></li>
 <li><p>In most cases there is no need to restore the XML data, unless perhaps it has changed since backup. A quick &ldquo;diff&rdquo; will tell you.
 The VM XML files for the hypervisor normally reside in /etc/libvirtd/qemu/. If you do change the VM XML, you will need to restart libvirtd to reload the VM XML files before you can use the new XML definition. A full hypervisor system restart is not necessary. Restarting libvirtd will not interrupt any currently running VMs at the hypervisor.</p></li>
-<li><p>Start the restored VM.</p></li>
+<li><p>Finally you can start the restored VM.</p></li>
 </ol>
 
 
@@ -88,7 +89,9 @@ The Cisco C220 M3 server dumps VMs in a few short minutes (~10 minutes) while th
 
 <h2>Linux Mint 17.1 Server Setup for Backup of KVM Hypervisor Client Virtual Machines and other Host Systems.</h2>
 
-<p>I decided to install backuppc into a Linux Mint desktop system, which doubles as a great backup server.
+<p>I decided to install backuppc into a
+<a href="http://www.linuxmint.com/" target="_blank">Linux Mint</a>
+desktop system which, in this particular case, functions as a great backup server.
 I chose the Linux Mint desktop distribution because it provides a super friendly graphical desktop, Cinnamon. The backuppc solution could be setup, as well, on Ubuntu or Debian and other Linux distributions as well.
 A stable version of backuppc was available for installation directly from the Linux Mint repositories and took literally seconds to install.
 Here are the general

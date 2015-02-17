@@ -9,7 +9,7 @@
   <meta name="author" content="Ken Zahorec">
 
   
-  <meta name="description" content="After a night of heavy rain we have an inch of water in the drivers-side interior footwell! I am posting this information with hope that it might &hellip;">
+  <meta name="description" content="Linux Mint is one of my favorite Linux desktop distributions. It comes in a multitude of flavors designed to drop into just about any desktop or &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -37,7 +37,9 @@
 <body   >
   <header role="banner"><hgroup>
   <h1><a href="/">Runlevel-6</a></h1>
-<img src="/images/trees.png" height="133" width="200" align="right" />
+  
+    <img src="/images/trees.png" height="133" width="200" align="right" />
+  
   
     <h2>&#8230;contemplate, start, and move forward</h2>
   
@@ -72,7 +74,7 @@
       
   <header>
     
-      <h2 class="entry-title"><a href="/blog/2013/05/04/auto-repair-fixing-a-leaky-door-on-the-2007-saab-93/">Auto Repair: Fixing a leaky door on the 2007 Saab 93</a></h2>
+      <h2 class="entry-title"><a href="/blog/2015/01/13/linux-mint-with-hypervisor/">Linux Mint 17.1 with KVM/Qemu hypervisor and VM management</a></h2>
     
     
       <p class="meta">
@@ -81,465 +83,113 @@
 
 
 
-<time class='entry-date' datetime='2013-05-04T01:21:55-04:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>1:21 am</span></time>
+<time class='entry-date' datetime='2015-01-13T23:40:29-05:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:40 pm</span></time>
         
-           | <a href="/blog/2013/05/04/auto-repair-fixing-a-leaky-door-on-the-2007-saab-93/#discussion_thread"
-             data-discussion-identifier="http:/runlevel-6.github.io/blog/2013/05/04/auto-repair-fixing-a-leaky-door-on-the-2007-saab-93/">Comments</a>
+           | <a href="/blog/2015/01/13/linux-mint-with-hypervisor/#discussion_thread"
+             data-discussion-identifier="http:/runlevel-6.github.io/blog/2015/01/13/linux-mint-with-hypervisor/">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p><strong>After a night of heavy rain we have an inch of water in the drivers-side interior footwell!</strong></p>
+  <div class="entry-content"><p>Linux Mint is one of my favorite Linux desktop distributions. It comes in a multitude of flavors designed to drop into just about any desktop or laptop system available. It installs and updates in minutes and delivers a fully functional system with a full set of common and very useful applications&ndash;everything that most any user would need. The latest version 17.1 is a long term support (LTS) release which means it is supported for 5 years. Linux Mint is my go-to distribution for desktop Linux. The folks on the Linux Mint team have been doing a phenominal job, release after release, since the project started several years back.</p>
 
-<p>I am posting this information with hope that it might help others who are experiencing the same problem I had. If you find it of good use, please drop me an email. Please read the disclaimer at the bottom of this document.</p>
+<p>Here we provide instructions for adding the KVM hypervisor and VM management tools to the Linux Mint 64-bit install. The Linux Mint system becomes a virtualization host. In a few minutes, with just a few commands, you can have a rock solid virtualization hypervisor added to your Linux Mint desktop system. You can use graphical &ldquo;virt-manager&rdquo; to create virtual machines and manage virtual networks. You can use the Spice protocol to offer high performance virtual desktop interfaces (VDI) both locally and to remote clients. Having the advantages of virtualization added to your Mint desktop provides some serious benefits for developing, testing, experimentation, or providing remote virtual desktop interface (VDI) services to others from your Linux Mint system. Virtualization also allows you to keep your main Mint desktop system clean and shiny while you use disposable VMs for software testing, experimentation, duplication, and validation.</p>
 
-<p>The 2007 Saab 93 door leak root cause. A torn foam-panel interior door seal.</p>
+<p>You will need a system with some horsepower if you plan to run mulitple virtual machines and/or provide access to them from remote clients. The system processor must be capable of hardware based virtualization. A high end AMD (Athlon 64, A8, A10, or higher) or Intel system (I5, I7, Xeon, etc.) should provide this capability. Here is a good
+<a href="http://superuser.com/questions/591813/how-to-tell-if-a-cpu-supports-virtualization" target="_blank">article from superuser.com</a>
+on identifying processor virtualization. Any memory or processor resources provided to a VM while it is running will reduce the capacity of the virtualization host system. If you plan to have one or more resource intensive VMs, then you will need to provide enough processor, memory, and storage resource in your main host.</p>
 
-<p><img src="/images-saab/5-torn-foam-seal.png" alt="Saab 93" /></p>
+<h3>Basic installation and update of Linux Mint</h3>
 
-<h2>Forward</h2>
+<p>Install Linux Mint 17.1 64-bit Cinnamon desktop from CD or USB. I won&rsquo;t get into the basic install details because there is plenty of information available on this and it is quite simple to install on just about any system. Select the installation icon on the desktop and follow through&ndash;this takes only a few minutes. In a flash you are ready to proceed with your shiny new Linux Mint system.</p>
 
-<p>In this article we illustrate a solution for a leaking interior door panel on a 2007 Saab 93 2.0t that was discovered in November of 2012.</p>
+<p>Open a terminal on the desktop. Perform an initial update to bring all of the components up to the latest available revisions.</p>
 
-<h2>Problem described:</h2>
+<pre><code>$ sudo apt-get update
+$ sudo apt-get upgrade
+</code></pre>
 
-<p>We have had water leaking in on the driver&rsquo;s side for several months, but only after a very heavy rain. On two occasions we had more than an inch of water accumulate!</p>
+<h3>Secure shell remote client access to the Linux Mint system</h3>
 
-<h2>Investigation</h2>
+<p>If you want to provide for remote management of the Mint system then add openssh secure shell server. This will provide for secure remote client access and secure remote file transfer to or from the Linux Mint host.</p>
 
-<p>I ran a garden hose on the drivers side window for about 2 or 3 minutes and noticed that water was leaking into the interior at the very bottom of the plastic panel attached to the drivers door. The body door seal actually prevents the water from exiting at the bottom of the door opening so it leaks into the cabin and runs onto the carpet into the drivers foot area.</p>
+<pre><code>$ sudo apt-get install openssh-server
+</code></pre>
 
-<p>To investigate the root cause, I carefully separated the door panel from the door frame along the lower part of the door. I noticed that the foam seal panel inside the door was damaged, torn up and not connected (adhered to the metal door frame) as it should have been.</p>
+<h3>Adding the hypervisor and related components</h3>
 
-<h2>When did the damage occur? At the service dealer 2 years before!</h2>
+<p>Now we begin adding the KVM hypervisor, Qemu emulator, libvirt management components, and graphical &ldquo;virt-manager&rdquo;</p>
 
-<p>This got me wondering, since we purchased the car used but still under factory warranty at the time it was purchased. I called the dealer service who confirmed that the car had service performed on the drivers door two years back to replace the window actuator. Apparently the service technician or mechanic, during replacement of the window actuator, had torn up the interior door seal and not bothered to replace or repair it properly. This interior door seal is a thin closed cell foam panel that tears easily when servicing the door mechanics. The panel is adhered to the lower part of the inside of the door and works to keep water moving towards the outside of the door cavity and properly through the drain holes at the bottom of the door.</p>
+<pre><code>$ sudo apt-get install qemu-system
+$ sudo apt-get install qemu-utils
+$ sudo apt-get install libvirt-bin
+$ sudo apt-get install virt-manager
+</code></pre>
 
-<p>The attending service manager claimed that the work on the door actuator was guaranteed for 1 year, so the fact that the interior door seal was damaged during that process is past due and there is nothing they can do about it&ndash;even though THEY damaged it in 2010. There was absolutely no way I could tell that the work was substandard without removing the door panel to see it inside the door assembly. So much for professional service and standing by your work. That will be the last time that service dealer gets my business.</p>
+<p>We want the ability to provide accelerated video to any connecting clients, so we add the SPICE client kit and virt-viewer. Virt-viewer is a view client which connects to either VNC or SPICE desktop video connections. It is similar to a RDP or VNC client.</p>
 
-<h2>Lesson for service done on a door</h2>
+<pre><code>$ sudo apt-get install python-spice-client-gtk
+$ sudo apt-get install virt-viewer
+</code></pre>
 
-<p>So to make a long story short: If you have ever had work done on the inside of a Saab door, it is imperative that the foam panel seal within the door assembly not be breached. If the seal is not attached properly or is damaged or torn in the repair process you may end up with a door that leaks into the cabin during heavy rains.</p>
+<h3>Providing access to the hypervisor - the libvirtd group</h3>
 
-<p>Perhaps after service door repairs, a good test at home would be to spray water on the door window for about 15 or 20 minutes to test the seal and make sure the service technician got the seal set up properly. Of course this could be done at the service dealer as part of the repair process to make sure the door handles water properly after service.</p>
+<p>With all of the components installed, all that is left to do is add any user who will be connecting to the hypervisor into the libvirtd group. Upon the next login, the user will be able to run virt-manager, connect to the local hypervisor, and create and manage VMs.</p>
 
-<h2>Saab design issue?</h2>
+<h3>Managing VMs using the virsh command line</h3>
 
-<p>Looking at the Saab door design closely, it is clearly evident that the windows seam at the top of the door is located directly above the lower part of the interior door panel instead of the lower part of the door assembly. This means that any water entering the door-window seam and falling straight down will strike the foam panel and interior parts of the door before finding its way back to the door well drain holes. This particular choice of design makes it imperative that the foam door panel not be breached. I am not sure if this situation occurs in other sporty cars, like the Saab, which tend to have a tapered wider stance at the base of the vehicle when viewed from the front or back of the car. This does help make the car look more appealing and perhaps improves handling by distributing more mass at the base of the car&ndash;a lower center of gravity.</p>
+<p>VMs can be managed using graphical virt-manager, or through the command line using virsh. Here is an simple example session of listing available VMs and showing their current state.</p>
 
-<h2>Repair or replace the part?</h2>
+<pre><code>zuser@zbox00 ~ $ virsh list --all
+ Id    Name                           State
+----------------------------------------------------
+ -     crunchbag-linux_00             shut off
+ -     win-server-2012-r2             shut off
+ -     win-server-2012-r2-template    shut off
+ -     win7pro-spice-01               shut off
+</code></pre>
 
-<p>A new foam seal is ~$140 (USD). That is an insane amount of money for a simple piece of foam&ndash;typical service part highway robbery. I will take a stab at fixing it myself. I will use rubberized sealant and transparent box tape. It won&rsquo;t look great, but who cares because the repair work will only be visible if you remove the interior door panel. If I <strong>ever</strong> have to tear out the panel for future repair work on a windows actuator I will consider buying a new foam panel&ndash;but not until then.</p>
+<p>As you can see, they are all shut off. We start two of them using virsh at the command line&hellip;</p>
 
-<h2>Repairing the foam seal.</h2>
+<pre><code>zuser@zbox00 ~ $ virsh start crunchbag-linux_00
+Domain crunchbag-linux_00 started
 
-<p>Here are the steps I went through to repair the foam seal in the door. It was very easy and took only a few minutes&hellip;</p>
+zuser@zbox00 ~ $ virsh start win7pro-spice-01
+Domain win7pro-spice-01 started
 
-<p>First we heat the door handle with a hair dryer. We want to get the plastic hot so it can flex more easily.</p>
+zuser@zbox00 ~ $ 
+</code></pre>
 
-<p><img src="/images-saab/1-heating-door-handle.png" alt="heating up the door handle" /></p>
+<h3>Managing VMs using the graphical virt-manager</h3>
 
-<p>After the door handle has been warmed up, we can gently pull and easily snap off the plastic door handle cover.</p>
+<p>VMs can be graphically managed using virt-manager. Here is a screenshot of virt-manager in action. The virt-manager application provides a very easy to use graphical interface which allows you to manage VMs and other virtual resources. You can also create virtual networks and adjust network backings, monitor resources, etc.</p>
 
-<p><img src="/images-saab/2-door-handle-cover-removed.png" alt="door handle plastic cover removed" /></p>
+<p><img src="/images-mint-hypervisor/virt-manager_400x417.png" title="Optional title" alt="graphic of virt-manger on Linux Mint desktop" /></p>
 
-<p>Now we must remove two torx bolts which hold the door handle to the door frame.</p>
+<p><a href="/images-mint-hypervisor/virt-manager-connections.png" target="_blank"> <img src="/images-mint-hypervisor/virt-manager-connections_400x250.png" border="0" alt="graphic of win 7 pro running VDI in local hypervisor" /></a></p>
 
-<p><img src="/images-saab/3-star-driver-upper-handle.png" alt="door panel upper torx" /></p>
+<p>Using Linux remote-viewer, or Windows virt-viewer allows you to connect to the console via VNC or Spice display port on the VM.
+This provide a virtual desktop interface (VDI). Spice provides accelerated performance to the desktop over the network.</p>
 
-<p><img src="/images-saab/4-star-driver-lower-handle.png" alt="door panel lower torx" /></p>
+<h3>VDI - Accessing the VM guest&rsquo;s desktop through a remote, or local, client.</h3>
 
-<p>We then gently snap the door panel away and lift it gently to detach it from the door frame. We must be careful with the plastic snaps. The door panel remains loosely attached near the door lever. We can now inspect the the torn foam door seal.</p>
+<p>The VDI experience is very fluid and provides excellent throughput for doing CAD and other graphics intensive work.
+In this case the VM is located on the localhost Linux Mint KVM hypervisor, but this VM guest desktop can be provided anywhere we need it via Spice connection on the local network.
+In most cases network bandwidth of only a few megabit is all that is needed.</p>
 
-<p><img src="/images-saab/5-torn-foam-seal.png" alt="torn interior door seal" /></p>
+<p>The user of the desktop VDI needs only the viewing client, they do not need access to virt-manager.
+Access to the console, through the client, can be protected using a digest password and will require separate login with account credentials to the VM guest.
+It looks just like a physically connected console&ndash;if you restart the OS guest in the VDI you can watch it reboot with BIOS screen and boot to running system.
+With installation of libvirt guest OS tools we get auto-resizing, and copy-paste capabilities between the remote-viewer client and accessing system.
+Spice provides also for forwarding of USB connections to the guest as well as use of local sound devices. You can run multiple console displays as well.</p>
 
-<p>Lifting the lower section of the torn foam seal exposes the interior cavity of the door. This is where the water is coming from. The water runs along the torn foam panel and drops onto the interior door panel. From there it enters the cabin.</p>
+<p>The example below is of a Windows 7 Pro 64-bit VM guest running Solid Works through a Spice VDI. The VM is running on a Linux Mint notebook with the KVM hypervisor added to it. The example is shown in windowed mode, but can run very well in auto-adjusted full screen native resolution as well.</p>
 
-<p><img src="/images-saab/6-leak-point.png" alt="inner door cavity exposed" /></p>
-
-<p>We carefully use the rubberized sealant to repair the tear in the foam seal. We add quality transparent box tape to further mend any tears and spread the sealant across the tearing. It does not look like new, but it works just fine. The unsightly repair work will be covered completely when the interior door panel is snapped back into position.</p>
-
-<p><img src="/images-saab/7-repaired-foam-seal.png" alt="repaired door seal" /></p>
-
-<p>Afterwards, a lengthy garden hose test reveals that the repair work did the job! The door no longer leaks into the interior of the cabin.</p>
-
-<h2>Summary</h2>
-
-<p>We successfully repaired the leaking door on the 2007 Saab 93 2.0t. The work took about one hour and we spent about $5. We saved at least $140 in the process and learned a few things along the way. All in all it was a big win-win. <strong>That is $5 and one hour of fussing around!</strong></p>
-
-<p>The solution has worked flawlessly for 18 months, including winter and now several torrential spring rains. We still have the option to replace the foam seal whenever we want to endure the $140 cost. I might consider, instead of cheap flimsy foam, using a custom fit piece of durable 4 or 6 mil plastic visquene.</p>
-
-<p>If we had the service dealer fix it, we would have spent $140 for the part, and at least $90 for the labor. On top of that we would had to drive to the service dealer twice resulting in 2 hours of travel time&ndash;the dealer is 30 minutes away from my home. <strong>That is $230 and 2 hours of our time and travel costs.</strong></p>
-
-<h3>Disclaimer:</h3>
-
-<p>The information provided here is not a suggestion or endorsement that anyone should attempt to perform the activities shown or described. This information is provided as-is to show how I solved the problem described. Any repairs you make to your car, or someone else&rsquo;s car, are done at your own risk. The author assumes no responsibility or liability for the actions of others or the results obtained or problems encountered, including loss of any kind, from use of the information on this site.</p>
-
-<p>In other words; You better know what you are doing before trying your own repair work. If you are unsure as to what you are doing, then seek out a qualified mechanic to perform the work.</p>
+<p><a href="/images-mint-hypervisor/win7-spice-vdi-solid-works.png" target="_blank"> <img src="/images-mint-hypervisor/win7-spice-vdi-solid-works_400x225.png" border="0" alt="win 7 pro running VDI in local hypervisor" /></a></p>
 
 <p><a href='#TOP'><img alt="back to top of page" style="border-width:0" src="/images/nav-to-top_80x23.png" /></a></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h2 class="entry-title"><a href="/blog/2013/04/30/basement-upgrade-creating-the-new-hangout/">Basement Upgrade: Creating the new hangout&#8230;</a></h2>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2013-04-30T10:45:07-04:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>10:45 am</span></time>
-        
-           | <a href="/blog/2013/04/30/basement-upgrade-creating-the-new-hangout/#discussion_thread"
-             data-discussion-identifier="http:/runlevel-6.github.io/blog/2013/04/30/basement-upgrade-creating-the-new-hangout/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>My wife and I had been living in our home, with children, for a number of years and decided it was time for general improvement of the basement. The basement was basically roughed-in but nothing was done beyond what was required for the basic requirements to satisfy the building code. It was not a living area for our home and we wanted to create a living area for our family to enjoy.</p>
-
-<h3>Experience</h3>
-
-<p>After much careful thought, I decided to proceed with the project on my own. I had some home construction experience, from many years back, working with my dad as part of his construction company, Equity Builders, in Lorain, Ohio. My father was an exceptional carpenter and I gained a great appreciation of carpentry and general contracting working with him. I also have an undergraduate degree in electrical engineering&ndash;so the electrical elements of the project came along reasonably easily for me as did the general construction. I did have to do some research on building and electrical codes to make sure everything I was doing would be within the limits of building codes in my area.</p>
-
-<p>The advantages of DIY include:</p>
-
-<ul>
-<li>Saving a considerable amount of money</li>
-<li>Ability to provide a great job for my two sons to learn and earn money.</li>
-<li>Everyone learning lots of new concepts and skills</li>
-<li>Remaining in complete control of the job along the way</li>
-</ul>
-
-
-<p>The disadvantages of DIY:</p>
-
-<ul>
-<li>Taking more time to complete the project</li>
-<li>Spending a few hundred, or so, hours of my time in the basement instead of doing other things</li>
-</ul>
-
-
-<h3>Warning&hellip;</h3>
-
-<p>If you decide to try a basement improvement project on your own make sure you do enough research to understand what you are getting into. Find some experienced people to talk with about the project if you do not have enough experience yourself. Plan the project in phases and celebrate the completion of each phase. If you are unsure about anything you are doing, then get some help. It can be very costly to have to tear something apart because it was not built properly. There are also many dangers that you will encounter in the building process&ndash;power tools, adhesives, paints, electrical distribution components, etc.. The risk of getting seriously hurt goes up dramatically if you don&rsquo;t know what you are doing. Most importantly you want to end up with a safe living environment when you are done&ndash;so pay close attention to building, electrical, and plumbing codes&ndash;think seriously about these and don&rsquo;t be afraid to spend some extra money to make sure the new living environment is safe.</p>
-
-<p>If you do not have experience consider doing some smaller jobs first, then gradually working your way up. Perhaps even helping a professional complete a job, as a part time learning experice. You can offer your help for less, as a means to gain valuable part time on-the-job experience.</p>
-
-<h3>Site Considerations</h3>
-
-<p>When we had our home built, we specified deeper 13 course block basement with the thought that we might eventually improve the basement into a living area. The distance from basement floor to upper level exposed floor joists is about 8 &frac12; feet. Having the deeper basement allowed enough room to build soffits and ceiling into the basement yet provide for a generous amount of head room. The cost of the additional row of block for the basement, at the time the home was built, was around $400&ndash;a worthwhile investment. The basement has a generous amount of open floor space free from utilites above it. It is very dry and we have never had any water issues. The home is built on one of the higher level lots in the development.</p>
-
-<h3>Getting Started</h3>
-
-<p>To get the plan started I created a drawing using a CAD tool. I picked an open source tool called LibreCAD to do the drawing. I spent several weeks just drawing, correcting, sketching, and planning what improvements would be made and how to accomplish the task. My original drawings had a small kitchen included, but that was scaled back because of space and cost concerns. Once we had an aggreable plan, I procrastinated for a few months, then began doing the work. I have done most everything so far, with some occasional help from a few of my friends on some of the larger and/or heavier tasks&ndash;such as the drywall finishing. I also had my 15 year old son help me, who learned many skills while doing so. I learned quite a bit also, and continue to learn as I work to complete the project. My older son is also helping me now, when he can, and is also learning much about building.</p>
-
-<h3>Proceeding to build</h3>
-
-<p>With the improvement plan drawing complete, we now have the confidence needed to move forward. We are now in the build phase of the project. We are working the project in phases and decided to leave the last phase, the bathroom, for a later time&ndash;much later. Work has not been moving as quickly as I originally expected but we are making steady progress&ndash;it is a rather large project for one person. It has become a regular part-time weekend job. I am doing most of the work on my own with some help occasionally from my two sons.</p>
-
-<p>Below is the framing work for the first build which divided the basement into entertainment and utility space.</p>
-
-<p><img src="/images-basement/IMG_2243_400x267.png" alt="furnace room" /></p>
-
-<p>The plan calls for more electrical capacity in the basement&ndash;a lot more. The main panel is nearly out of slots. Here I have added a side-car distribution panel for the finished side of the basement. It will carry the 240V baseboard heater load, wall outlets, and light utilities for the finished side of the basement.</p>
-
-<p><img src="/images-basement/distribution-side-car_400x267.png" alt="furnace room" /></p>
-
-<p>The side-car distribution is operational. I have a bit more work to do on it. I still need to tie the romex down with some staples and complete the layout document sheet on the inside of the door.</p>
-
-<p><img src="/images-basement/distribution-side-car-2_400x267.png" alt="furnace room" /></p>
-
-<p><img src="/images-basement/distribution-side-car-3_400x267.png" alt="furnace room" /></p>
-
-<p>Here we have our friendly home electrician&ndash;me. The switches in the 4 gang electrical workbox all operate perfectly. A happy camper indeed&hellip;</p>
-
-<p><img src="/images-basement/IMG_2259_400x600.png" alt="electrical" /></p>
-
-<p>With the electrical rough in complete, we can begin to mud, sand smooth, and then prime-coat the walls. Dry wall and finishing is labor intensive and very messy. This was about as big of a drywall job as I could put up with and I got some help on the finishing work from my brother in law. The job seemed to take forever and was very messy.</p>
-
-<p><img src="/images-basement/IMG_2380_400x267.png" alt="finishing walls" /></p>
-
-<p><img src="/images-basement/IMG_2379_400x267.png" alt="finishing walls" /></p>
-
-<p>Here you can see the positioning of the recessed lights on the finished side of the basement. Note the mason string line used as a guide to position the lights in two parallel lines across the basement. If you want a straight line, use a very taught string.</p>
-
-<p><img src="/images-basement/recessed-lights-layout_400x267.png" alt="positioning recessed lights" /></p>
-
-<p>On to the prime coat and finish woodwork. We still have a few places on the walls that need a bit more more attention. I am waiting to do the final touchups until all the woodwork is complete. I found that the installation process for the finish woodworking occasionally tends to ding up the walls here and there. One final fresh coat of paint near the end of the project should take care of everything.</p>
-
-<p><img src="/images-basement/IMG_4437_400x267.png" alt="finishing walls" /></p>
-
-<p><img src="/images-basement/IMG_4438_400x267.png" alt="finishing walls" /></p>
-
-<p>Here we are now below, into the second build which adds a central soffit to cover the overhead beam and air ducts and finished walls to cover most of the foundation. The second build will complete the division of the basement with an addition of another internal partition with a doorway. The goal for the second build is to complete the living area ceiling, walls, and woodwork&ndash;bringing it into full completion except for the floor. Part of this second build is now complete with woodwork and finish work complete. Note the recessed ceiling lights.</p>
-
-<p><img src="/images-basement/IMG_2970_400x267.png" alt="furnace room" /></p>
-
-<p>Now we move on to finishing the ugly support posts. We use a combination of a level and a keen line-of-sight to make sure the support posts are aligned with each other and plumb before we start&ndash;they are. I cut some 2x4s to length and run a shallow angled groove down the center. I use two heavy U-bolts on each post to clamp a 2x4 onto the post&ndash;then apply adhesive. We take special care to use only straight 2x4s, and align their surface at the proper position on the post to be parallel with the room wall. This provides a rock-solid and truly aligned nailing surface for the first piece of poplar 1x8 woodwork which is glued and nailed onto the 2x4. We make sure to use a level to plumb the first poplar 1x8 for a good start on each post.</p>
-
-<p><img src="/images-basement/post-finishing-1_400x267.png" alt="post finishing 1" /></p>
-
-<p>With the first piece nailed and glued directly to the 2x4, we now work our way around the post, nailing each edge of the 1x8 poplar to the edge of the previous piece with a 15 gauge nail gun&hellip;</p>
-
-<p><img src="/images-basement/post-finishing-2_400x267.png" alt="post finishing 2" /></p>
-
-<p><img src="/images-basement/post-finishing-3_400x267.png" alt="post finishing 3" /></p>
-
-<p>Afterwards, we fill nail holes using Minwax Woodfiller, then using a sandpaper stapled to a large wood-block - a sanding block. We sand all of the surfaces first with course, then with fine sandpaper. It takes lots of sanding to get it just right. We dont want to see any machine marks or feel any mis-aligned joints. The finished product is worth the effort. We still have trim to complete at the top and bottom of the posts and will get to that after the ceiling is complete.</p>
-
-<p>The posts are looking great so far and you can also see how the central soffit finished out. The paired electrical workboxes in the soffit are one for electrical supply and another for DMX computer light interface&ndash;added to the project for fun and entertainment&ndash;this place is eventually going to rock!</p>
-
-<p><img src="/images-basement/post-finishing-4_400x267.png" alt="post finishing 4" /></p>
-
-<p>We are now getting ready to apply the ceiling material on the uppermost ceiling surface at the floor joists, which will be a tongue-and-groove solid wood SPF siding product. The ceiling material will be nailed to a sub-ceiling that we build out using 1.5&#8221; x 0.75&#8221; firring strips. Below we are using a laser level&ndash;my friend Rich loaned it to me. The masking tape markers are carefully stuck in place, using the laser level, to the desired position for the sub-ceiling&ndash;very close to the the floor joists. The folded tape ends provide a perfectly flat guide for the sub-ceiling nailers which will be glued and nailed to the level of tape markers.</p>
-
-<p>Trying to forgo the firring strips and nail the ceiling directly to the floor joists would create far too much height variation in the finished ceiling because the bottoms of the floor joists are not leveled perfectly with each other. Floor joists tend to be crowned and flat to various degrees. Their with can vary in some cases. Loading on the upper deck can cause some variations as well. The firring strips make it all come out perfectly flat.</p>
-
-<p><img src="/images-basement/laser-level_400x267.png" alt="laser level" /></p>
-
-<p>Here the sub-ceiling nailers are going into place at the exact position the masking tape markers were hung. This effectively flattens the ceiling in preparation for the finished product. The clamp was used as a helping hand to hold up the nailer while it is being positioned and nailed.</p>
-
-<p><img src="/images-basement/ceiling-leveling_400x267.png" alt="sub-ceiling with recessed light" /></p>
-
-<p>I like to keep the tools together and organized. This helps prevent me from spending too much time in search of tools that were left laying around.</p>
-
-<p><img src="/images-basement/tools-1_400x323.png" alt="sub-ceiling with recessed light" /></p>
-
-<p>Using a 15 gauge nail gun really saves time. You can see how the clamp is used to make handling and aligning the material much easer while nailing it.</p>
-
-<p><img src="/images-basement/nailing-subceiling_400x325.png" alt="sub-ceiling nailing gun" /></p>
-
-<p>More sub-ceiling nailers going into place. The entire sub-ceiling is coming out perfectly flat&ndash;just what we need.</p>
-
-<p><img src="/images-basement/ceiling-leveling-2_400x267.png" alt="sub-ceiling progress" /></p>
-
-<p>We use a string to mark and position the first piece of ceiling material. A tight string does not lie&ndash;it gives you a perfectly straigt line to work from.</p>
-
-<p><img src="/images-basement/string-layout-1_400x267.png" alt="sub-ceiling progress" /></p>
-
-<p>We transfer the line produced by the string onto the subceiling nailers. This line markes the position for the first piece of &frac34; inch ceiling material. We want to get a perfectly aligned and straight start&ndash;to which the remaining material will be aligned to. We could have used a chalk line but I didn&rsquo;t want to bother with blue chalk dust cleanup afterwards.</p>
-
-<p><img src="/images-basement/string-layout-2_400x267.png" alt="sub-ceiling progress" /></p>
-
-<p>Here is the start on the ceiling for one section of the basement. The material is nailed using 2 inch 15 gauge nails driven from a Senco nail gun. First piece is spot glued and nailed on both edges of the material&ndash;we want a good foundation piece that will not move. The second and remaining &frac34; inch SPF material is spot glued and nailed at the leading edge, just behind the tongue, to the sub-ceiling nailers. The job is rather cumbersome and requires two people to position, hold, and nail each piece into place. The ceiling is extremely solid&ndash;you can bounce a basketball against it. It adds to the stiffness and structure of the flooring system directly above it.</p>
-
-<p><img src="/images-basement/ceiling-finish-start_400x300.png" alt="sub-ceiling progress" /></p>
-
-<p>The natural wood is really looking great so far. The edges will be eventually be finished out with crown molding, nail holes filled, and a final coat of finish will be applied to the entire ceiling. This is the small section of basement ceiling. On the other side of the soffit the ceiling area is at least 3 times the size of this one. &hellip;we still have lots of ceiling work to do.</p>
-
-<p><img src="/images-basement/ceiling_400x267.png" alt="upper ceiling and soffit" /></p>
-
-<p>Getting back to working on the ceiling I find that I am working mainly on my own. I decided to make a set of support brackets to help install the ceiling material on the larger side of the basement. I need something to hold the material in place with enough force so that it will stay in place and allow me to adjust it before nailing it. What I learned from working on the smaller side is that it is very difficult to hold the first piece and others in place before nailing them. These brackets below will allow me to position and secure the piece before nailing it. I took some quick measurements and spent 30 minutes or so making these from scrap material. The bracket is designed to slide along the sub-ceiling nailers.</p>
-
-<p><img src="/images-basement/support-bracket-1_400x383.png" alt="upper ceiling and soffit" /></p>
-
-<p><img src="/images-basement/support-bracket-2_400x460.png" alt="upper ceiling and soffit" /></p>
-
-<p>You can see how the foam wedge provides enough force to hold the material firmly against the ceiling. This is great. It allows me to carfully align the material before nailing it. I am just getting started on the first row of material on the larger section of ceiling.</p>
-
-<p><img src="/images-basement/support-bracket-use-1_400x267.png" alt="upper ceiling and soffit" /></p>
-
-<p><img src="/images-basement/support-bracket-use-2_400x254.png" alt="upper ceiling and soffit" /></p>
-
-<p>All of the end cuts are made on a compound miter saw. I really like the DeWalt&ndash;it is easy to use and cuts perfectly.</p>
-
-<p><img src="/images-basement/saw-crosscut-1_400x267.png" alt="upper ceiling and soffit" /></p>
-
-<p>I have the saw set to undercut each piece by a few degrees. This helps prevent visual gaps when butted to another piece of material.</p>
-
-<p><img src="/images-basement/saw-overcut_4639_400x267.png" alt="upper ceiling and soffit" /></p>
-
-<p>The first row of material has been spot-glued and nailed in place. It is looking as straight as the string we used earlier to mark the position. Using the support-brackets made a big difference in the amount of effort. It takes me far less effort now, working alone, than it did earlier with two people trying to align and muscle the material around without the bracket.</p>
-
-<p><img src="/images-basement/first-run-west-side-1_400x267.png" alt="upper ceiling and soffit" /></p>
-
-<p>After completing the open ceilings, we will be adding crown molding and finishing out the woodwork down the walls and at the floor base. Although we still have lots of work to do to complete the second build, the basement living area is starting to look like a great place to hang out.</p>
-
-<p>Stay tuned for more as we complete the project&hellip;</p>
-
-<p>document date: 2013-04-30</p>
-
-<p><a href='#TOP'><img alt="back to top of page" style="border-width:0" src="/images/nav-to-top_80x23.png" /></a></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h2 class="entry-title"><a href="/blog/2013/04/21/electric-range-repair-can-i-do-it-myself/">Electric Range Repair: Can I do it myself?</a></h2>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2013-04-21T04:05:53-04:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2013</span></span> <span class='time'>4:05 am</span></time>
-        
-           | <a href="/blog/2013/04/21/electric-range-repair-can-i-do-it-myself/#discussion_thread"
-             data-discussion-identifier="http:/runlevel-6.github.io/blog/2013/04/21/electric-range-repair-can-i-do-it-myself/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I am posting this information with hope that it might help others who are experiencing the same problem. If you find it of good use, please drop me an email to let me know. Please read the disclaimer at the bottom of this document.</p>
-
-<p>Below is a range which has two top burners no longer working. It is currently a two-burner range. We need to fix it.</p>
-
-<p><img src="/images-range/range-1_400x393.png" alt="range front top view" /></p>
-
-<h2>Forward</h2>
-
-<p>Two of the top burners on our home Frigidaire range stopped working over the past year. The range has been in service for 12 years. The center section of the right-front dual element burner and the front section of the dual burner left-side element no longer work. With both burners out, the range has become frustrating to use with only two functional elements&ndash;three if you count the warming element. I need to do something about it.</p>
-
-<h2>Options to consider</h2>
-
-<p>After some investigation on the Internet the best prices I could find was $200 for the left side burner and $113 for the large right-front burner. What gives with those prices? That&rsquo;s $313 plus $7 shipping for what amounts to parts that look like they cost less than $10 each to manufacture. These things should not cost more than a simple toaster&ndash;about $20 each. I can buy a brand new electric range for less than $500! Why are these parts so expensive? There is simply no way I would spend that much on a 12 year old range! It will get replaced with a new unit if I can&rsquo;t fix it here and now with my own tools&hellip;</p>
-
-<h2>The decision</h2>
-
-<p>With nothing really to lose with this range, I decide to try to take a rather <strong>unconventional approach</strong> and repair the range elements <strong>by hand</strong>. If I could pull this off, it will save us from having to replace the range, which would be about $500 - $700. I decide at this point that I will never buy a glass-top range again and it will not be a Frigidaire. I have been thoroughly dissapointed with all of our Frigidaire appliances, including this range.</p>
-
-<h2>Warning</h2>
-
-<p>If you decide to try repairing a range based on the information at this site or any other information, then you had better know what you are doing. Most importantly, make sure the range is unplugged before, and while, attempting to perform any work on it. Read the disclaimer at the end of this page.</p>
-
-<h2>Proceeding with the repair work&hellip;</h2>
-
-<p>Below are the tools and materials I used for the job. Note the connector kit, in the blue container, which was purchased a few years back at the local hardware store. One of the wooden firring strips will be used to hold up the rangetop.</p>
-
-<p><img src="/images-range/range-24_400x250.png" alt="tools used to repair range" /></p>
-
-<p>Below is the range which I have already removed from the counter area. It is inplugged and ready to be diagnosed. The remaining pictures tell the story from start to finish.</p>
-
-<p><img src="/images-range/range-2_400x194.png" alt="front view of range" /></p>
-
-<p>Below I have removed the four mounting scews at the side of the range top and have supported, from the back, the rangetop. This is a view from the rear of the range. I had someone hold the rangetop secure while working on it. There is no hinge at the front to prevent it from sliding out of place and falling&ndash;which almost happened to me. Securing it temporarily at the front with duct tape might also have been a good approach.</p>
-
-<p><img src="/images-range/range-3_400x307.png" alt="range top lifted with support" /></p>
-
-<p>Below is right-front burner element, fully exposed and ready for diagnosis.</p>
-
-<p><img src="/images-range/range-4_400x261.png" alt="range right-front heat element" /></p>
-
-<p>Below is a multi-meter which I will be using as a simple continuity tester to try to determine if and where a break in the heating element might be located.</p>
-
-<p><img src="/images-range/range-5_400x267.png" alt="electronic multi-meter" /> |</p>
-
-<p>I spent three minutes, or so, testing the continuity on portions of the heating element until I located a break point in the element&hellip;</p>
-
-<p><img src="/images-range/range-6_400x267.png" alt="testing heating element for fault" /></p>
-
-<p>The red circle shows the break point in the heating element. It is the common conductor element for the small center portion of the element. I lifted it slightly from the coil to better illustrate it.</p>
-
-<p><img src="/images-range/range-7-marked_400x267.png" alt="fault identified" /></p>
-
-<p>In the next few picures, I fabricate a small specialized crimping connector from a standard aluminum alloy connector in the kit. I will use it to mend the break in the heating element.</p>
-
-<p><img src="/images-range/range-8_400x273.png" alt="connector" /></p>
-
-<p><img src="/images-range/range-9_400x287.png" alt="connector bent" /></p>
-
-<p><img src="/images-range/range-10_400x238.png" alt="connector bent and clipped" /></p>
-
-<p>Here below, the crimping connector has been crimped to the element to re-join the broken element along the nearby element for the other section of the burner. The crimp was done using the large needle-nose pliers in the parts picture earlier above.</p>
-
-<p><img src="/images-range/range-11_400x252.png" alt="heat element repaired" /></p>
-
-<p>After an initial test of the element, we discovered a bright <strong>hot spot</strong> on the element just before the mending point. This was a thermal stress point because a very small section of the element wire was carrying current for both coils of the burner. This would, for sure, be a future fail point of the element if left as was. I did not include a picture of the hot spot at the mending point&ndash;I was focusing on an accomodating solution and forgot to take one.</p>
-
-<p>The hot spot was a problem. I had to find a way to improve the conductivity along this section of element wire.  To fix the hot spot; I carefully fabricated a much larger crimping part, using a much larger standard connector from the kit. I made sure to have the larger part crimp over the smaller part and also crimp the larger connector directly onto the heavy contact point passing through the edge of the element. I had to lift the insulation just a bit to make the connection to the edge of the element. This new crimp part provided the added conductivity needed to prevent the bright hot spot at the mended point. The heavy aluminum has far less resistance than the resistive heating element; This means that the crimped section will run much cooler than the glowing element.</p>
-
-<p>The charcoal colored circular element insulation, around the entire heating element is made from an extremely lightweight Corning ceramic structure. It is very brittle and easy to crumble&ndash;nearly impossible not to fracture as you try to move it even slightly. It reminds me of the material for the tiles on the space shuttle&ndash;but far less quality.</p>
-
-<p>What you see below is the larger crimp part installed over top of the original and also crimped to the solid conductor at the entry point to the element assembly&hellip;</p>
-
-<p><img src="/images-range/range-12_400x307.png" alt="heat element repaired with larger connector" /></p>
-
-<p>Afterwards we did a full power test on the element. You can see that it is evenly heated with no noticable hot-spots at the mending point. The mended crimp point is relatively cool compared to the glowing element. It looks great and hopefully will last a long time.</p>
-
-<p><img src="/images-range/range-13_400x232.png" alt="heat element full power on" /></p>
-
-<p>On to the left-side element. It was much easier to find the breakpoint in this element. There was a visual burn mark where it had failed, again, right near the feed conductor at the edge of the heating element assembly.</p>
-
-<p><img src="/images-range/range-14_400x267.png" alt="heat element front-left" /></p>
-
-<p><img src="/images-range/range-15_400x267.png" alt="heat element shows fault at burn mark" /></p>
-
-<p>This time, learning from the previous experience, I started with a larger crimping part which was fabicated from one of the larger parts in the crimping connector kit. I crimped the part using the larger needle-nose pliers again to make solid electrical contact.</p>
-
-<p><img src="/images-range/range-16_400x206.png" alt="connector crimp" /></p>
-
-<p><img src="/images-range/range-17_400x163.png" alt="connector bent open" /></p>
-
-<p>Notice also that I removed the insulation ring temporarily to provides access towards the edge of the element.</p>
-
-<p><img src="/images-range/range-18_400x267.png" alt="heat element repaired with connector crimped" /></p>
-
-<p>After replacing the insulation ring and performing a successful full-power test, we begin to re-assemble the range.</p>
-
-<p><img src="/images-range/range-19_400x267.png" alt="range top replacing screw" /></p>
-
-<p><img src="/images-range/range-20_400x271.png" alt="range top opened" /></p>
-
-<p><img src="/images-range/range-22_400x331.png" alt="range top closed" /></p>
-
-<p>With wallet still in-tact and the range installed again into the kitchen; We use the repaired center element on the right-front to heat up lunch.</p>
-
-<p><img src="/images-range/range-25_400x204.png" alt="range top pan with food being heated" /></p>
-
-<p>&hellip;and celebrate success with a hot meal and a great tasting brew from Great Lakes brewery.</p>
-
-<p><img src="/images-range/range-27_400x267.png" alt="lunchtime meal at table" /></p>
-
-<h2>How much $ did we get paid ??</h2>
-
-<p>There are lots of different ways to look at this. It helps to consider that by saving $320 and spending about an hour to complete the work, we got paid $320 per hour to fix the range. If we had a repair technician do the work it would have cost an additional $80 or so making it $400. Considering all, we might consider that <strong>we got paid $400 per hour cash (take home) to fix our own range, and we learned some new skills</strong>&ndash;what a deal! That&rsquo;s a big win.</p>
-
-<h2>Update - This solution worked for only about 4 weeks!</h2>
-
-<p>It has been 4 weeks and both of the repaired elements have failed again. In hindsight I probably should have chosen a better crimping material, such as a steel clip or short section of a small tight spring to hold the element together. The light gauge aluminum material crimp was probably going through too much thermal stress. Another approach might have been to spot-weld the element instead of using crimping part. A small Arc Stick Welder could be purchased for around $120. That would have probably done the trick.</p>
-
-<h2>Time for a new range</h2>
-
-<p>I decided to forgo further work on the older slide-in and ordered a new range. This time around we picked a slightly upper-model coil type from GE, model JBP35DDWW. I am impressed with this one. It has a much larger oven and some very serious heat capacity on the range-top. It costs less than half the price of the original Fridigair slide-in. The GE outperforms the Frigidair slide in by a long shot. The new unit has 2 3000 watt 8 inch coils on the range top. The direct coil contact heat elements transfer heat far better than the glass top on the earlier unit. The new coil range cooks far more quickly than the glass top range. If a burner goes out, it costs only $20 to $30 dollars to replace it. I will never buy a glass top range again&ndash;they are inferior over-priced junk!</p>
-
-<p><img src="/images-range/new-range-ge-JBP35DDWW_400x402.png" alt="new GE range" /></p>
-
-<h3>Disclaimer:</h3>
-
-<p>The information provided here is not a suggestion or endorsement that anyone should attempt to perform the activities shown or described. This information is provided as-is to show how I solved the problem described. Any repairs you make are done at your own risk. The author assumes no responsibility or liability for the actions of others or the results obtained or problems encountered, including loss of any kind, from use of the information on this site.</p>
-
-<p>In other words; You better know what you are doing before trying your own repair work. If you are unsure as to what you are doing, then seek out a qualified service technician to perform the work.</p>
-
-<p>document date: 2013-04-21</p>
-
-<p><a href='#TOP'><img alt="back to top of page" style="border-width:0" src="images/nav-to-top_80x23.png" /></a></p>
 </div>
   
   

@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Ken Zahorec 2015-02-09
+# Ken Zahorec 2015-02-16
 #
 # This script prepares hypervisor VMs for backup and then clones them to a backup area using libvirt.
 # It emphasizes backuppc processing by suspending any running VMs before calling virt-cone to create VM dumps in a desginated dump area.
@@ -376,7 +376,7 @@ vms_running=($(virsh list --state-running --name))
 
 # Pause each of the running VMs to ready them for the dump operation as perscribed by the "concurrent" option.
 # Dump each of the previously running VMs
-if [ ${#vms_running} -eq 0 ]; then
+if [ ${#vms_running[@]} -eq 0 ]; then
 	echo "$date_time : no running VMs detected"
 else
 	# Suspend all running VMs only if we are not dumping concurrently. 
@@ -412,7 +412,7 @@ fi
 
 # Now we deal with the remaining VMs. The previously shutoff, or inactive ones.
 vms_inactive=($(virsh list --inactive --name))
-if [ ${#vms_inactive} -eq 0 ]; then
+if [ ${#vms_inactive[@]} -eq 0 ]; then
 	echo "$date_time : no inactive VMs detected"
 else
 	# Dump VMs by creation of a temporary clone.
@@ -424,7 +424,7 @@ fi
 
 if [ $CONCURRENT -eq 0 ]; then
 	# Finally we resume all of the previously running VMs, to restore them to originally running state after all of the dumps have completed.
-	if [ ${#vms_running} -eq 0 ]; then
+	if [ ${#vms_running[@]} -eq 0 ]; then
 		echo "$date_time : There are no running VMs to resume"
 	else
 		for i in "${vms_running[@]}"
