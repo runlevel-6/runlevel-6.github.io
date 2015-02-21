@@ -9,7 +9,7 @@
   <meta name="author" content="Ken Zahorec">
 
   
-  <meta name="description" content="After a night of heavy rain we have an inch of water in the drivers-side interior footwell! I am posting this information with hope that it might &hellip;">
+  <meta name="description" content="The CentOS KVM/Qemu hypervisor can be setup in short order and provides all of the tools necessary to support enterprise class virtualization. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -74,7 +74,7 @@
       
   <header>
     
-      <h2 class="entry-title"><a href="/blog/2013/05/04/auto-repair-fixing-a-leaky-door-on-the-2007-saab-93/">Auto Repair: Fixing a leaky door on the 2007 Saab 93</a></h2>
+      <h2 class="entry-title"><a href="/blog/2014/12/11/centos-virtualization-server/">CentOS 6/7 Virtualization Server: The industrial strength hypervisor with performance, security, and manageability.</a></h2>
     
     
       <p class="meta">
@@ -83,105 +83,44 @@
 
 
 
-<time class='entry-date' datetime='2013-05-04T01:21:55-04:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>1:21 am</span></time>
+<time class='entry-date' datetime='2014-12-11T00:48:36-05:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>11</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:48 am</span></time>
         
-           | <a href="/blog/2013/05/04/auto-repair-fixing-a-leaky-door-on-the-2007-saab-93/#discussion_thread"
-             data-discussion-identifier="http:/runlevel-6.github.io/blog/2013/05/04/auto-repair-fixing-a-leaky-door-on-the-2007-saab-93/">Comments</a>
+           | <a href="/blog/2014/12/11/centos-virtualization-server/#discussion_thread"
+             data-discussion-identifier="http:/runlevel-6.github.io/blog/2014/12/11/centos-virtualization-server/">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p><strong>After a night of heavy rain we have an inch of water in the drivers-side interior footwell!</strong></p>
+  <div class="entry-content"><p><img src="/post-images/cisco-ucs-front-view_400x39.png" title="Cisco UCS C220 M3 server, dual Intel E2600 V2 Xeons, 32 processor cores total, 94 GB RAM, 1TB RAID solid state storage" alt="cisco m220 ucs server" /></p>
 
-<p>I am posting this information with hope that it might help others who are experiencing the same problem I had. If you find it of good use, please drop me an email. Please read the disclaimer at the bottom of this document.</p>
+<p>The CentOS KVM/Qemu hypervisor can be setup in short order and provides all of the tools necessary to support enterprise class virtualization. Create and manage VMs and virtual networks. We begin with a quick 5 minute install of CentOS minimal. Then add virtualization packages and desired utilities with some follow-on configuration activities. It installs and sets up quickly into just about any modern virt-capable host hardware you can imagine. <strong>From enterprise grade servers, to desktop, or even laptop systems.</strong> We have implemented it many times using CentOS 6 and CentOS 7. I like the new systemd and graphical firewall-config in CentOS 7.</p>
 
-<p>The 2007 Saab 93 door leak root cause. A torn foam-panel interior door seal.</p>
+<p>The hypervisor host can be used for research, development, and/or production systems. It provides <strong>graphical management</strong> of virtual machines, virtual networking, and other related resources. It can be easily managed remotely from Windows, Linux, or Mac OS X desktops using a graphical program called
+<a href="http://virt-manager.org/" target="_blank">Virtual Machine Manager</a>, invoked simply as &ldquo;virt-manager&rdquo;. Alternatively, command line or scripted management is also possible using a powerful <a href="http://libvirt.org/" target="_blank">libvirt</a>-based program called <a href="http://libvirt.org/virshcmdref.html" target="_blank">Virsh</a>, invoked simply as &ldquo;virsh&rdquo;.</p>
 
-<p><img src="/images-saab/5-torn-foam-seal.png" alt="Saab 93" /></p>
+<p>Below is an image of virt-manager being run via X11 forwarding from OS X Yosemite 10.10.1 desktop. Here we are installing a Linux Mint 17.1 64-bit desktop into virtual machine. Virt-manager was started from a secure shell (ssh -X) login session to the CentOS hypervisor. Note the other VMs in the virt-manager interface already installed in the hypervisor. As you can see virt-manager provide a console interface to the VM.</p>
 
-<h2>Forward</h2>
+<p><a href="/images-centos-virt/osx-ssh-virt-manager-create-vm-install-guest-mint_sec.png" target="_blank" title="OS X Yosemite on Macbook Air being used to manage a CentOS Linux hypervisor through ssh connection (click to open enlarged view)"> <img src="/images-centos-virt/osx-ssh-virt-manager-create-vm-install-guest-mint_400x418_sec.png" border="0" alt="CentOS hypervisor management from OS X" /></a></p>
 
-<p>In this article we illustrate a solution for a leaking interior door panel on a 2007 Saab 93 2.0t that was discovered in November of 2012.</p>
+<p>Below is another view of virt-manager being used to manage a hypervisor from the OS X desktop.</p>
 
-<h2>Problem described:</h2>
+<p><a href="/images-centos-virt/osx-ssh-virt-manager-conn-details-overview_sec.png" target="_blank" title="OS X Yosemite on Macbook Air being used to manage a CentOS Linux hypervisor through ssh connection (click to open enlarged view)"> <img src="/images-centos-virt/osx-ssh-virt-manager-conn-details-overview_400x561_sec.png" border="0" alt="CentOS hypervisor management from OS X" /></a></p>
 
-<p>We have had water leaking in on the driver&rsquo;s side for several months, but only after a very heavy rain. On two occasions we had more than an inch of water accumulate!</p>
+<p>Below is a view of a Windows Server 2012 R2 guest accessed via the VNC &ldquo;Screen Sharing&rdquo; client on OS X. It is connected via VNC. Note the video resolution capabilities on the Windows desktop with the virtualized QXL video adapter provided to the guest in the VM.</p>
 
-<h2>Investigation</h2>
+<p><a href="/images-centos-virt/osx-screen-sharing-winserver-display-resolutions.png" target="_blank" title="OSX Screen Sharing VNC client connect to Windows 2012 R2 VM guest console (click to open enlarged view)"> <img src="/images-centos-virt/osx-screen-sharing-winserver-display-resolutions_400x266.png" border="0" alt="CentOS hypervisor management from OS X" /></a></p>
 
-<p>I ran a garden hose on the drivers side window for about 2 or 3 minutes and noticed that water was leaking into the interior at the very bottom of the plastic panel attached to the drivers door. The body door seal actually prevents the water from exiting at the bottom of the door opening so it leaks into the cabin and runs onto the carpet into the drivers foot area.</p>
+<p>The hypervisor can also be used as a OS provisioning platform for <strong>virtual desktop interface (VDI)</strong> using accelerated
+<a href="http://www.spice-space.org/" target="_blank">Spice</a>
+or standard common VNC. The Spice protocol and tools provide a very responsive desktop experience delivered to client from VM.
+Below is a Spice remote-viewer client connection from a Linux Mint desktop to a Windows 7 Professional desktop guest running in a VM. When changing window size or switching the view to full screen the Windows desktop automatically resizes to fit the resolution of the client display area. We can copy-paste to/from Windows and share a common storage area if we wish.</p>
 
-<p>To investigate the root cause, I carefully separated the door panel from the door frame along the lower part of the door. I noticed that the foam seal panel inside the door was damaged, torn up and not connected (adhered to the metal door frame) as it should have been.</p>
+<p><a href="/images-centos-virt/Linux-mint-virt-viewer-win-7-pro-larger.png" target="_blank"  title="Linux Mint desktop remote-viewer client SPICE connection to Windows 7 VM guest desktop (click to open enlarged view)"> <img src="/images-centos-virt/Linux-mint-virt-viewer-win-7-pro_400x250.png" border="0" alt="remote-viewer client Spice connection to Windows 7 VDI" /></a></p>
 
-<h2>When did the damage occur? At the service dealer 2 years before!</h2>
-
-<p>This got me wondering, since we purchased the car used but still under factory warranty at the time it was purchased. I called the dealer service who confirmed that the car had service performed on the drivers door two years back to replace the window actuator. Apparently the service technician or mechanic, during replacement of the window actuator, had torn up the interior door seal and not bothered to replace or repair it properly. This interior door seal is a thin closed cell foam panel that tears easily when servicing the door mechanics. The panel is adhered to the lower part of the inside of the door and works to keep water moving towards the outside of the door cavity and properly through the drain holes at the bottom of the door.</p>
-
-<p>The attending service manager claimed that the work on the door actuator was guaranteed for 1 year, so the fact that the interior door seal was damaged during that process is past due and there is nothing they can do about it&ndash;even though THEY damaged it in 2010. There was absolutely no way I could tell that the work was substandard without removing the door panel to see it inside the door assembly. So much for professional service and standing by your work. That will be the last time that service dealer gets my business.</p>
-
-<h2>Lesson for service done on a door</h2>
-
-<p>So to make a long story short: If you have ever had work done on the inside of a Saab door, it is imperative that the foam panel seal within the door assembly not be breached. If the seal is not attached properly or is damaged or torn in the repair process you may end up with a door that leaks into the cabin during heavy rains.</p>
-
-<p>Perhaps after service door repairs, a good test at home would be to spray water on the door window for about 15 or 20 minutes to test the seal and make sure the service technician got the seal set up properly. Of course this could be done at the service dealer as part of the repair process to make sure the door handles water properly after service.</p>
-
-<h2>Saab design issue?</h2>
-
-<p>Looking at the Saab door design closely, it is clearly evident that the windows seam at the top of the door is located directly above the lower part of the interior door panel instead of the lower part of the door assembly. This means that any water entering the door-window seam and falling straight down will strike the foam panel and interior parts of the door before finding its way back to the door well drain holes. This particular choice of design makes it imperative that the foam door panel not be breached. I am not sure if this situation occurs in other sporty cars, like the Saab, which tend to have a tapered wider stance at the base of the vehicle when viewed from the front or back of the car. This does help make the car look more appealing and perhaps improves handling by distributing more mass at the base of the car&ndash;a lower center of gravity.</p>
-
-<h2>Repair or replace the part?</h2>
-
-<p>A new foam seal is ~$140 (USD). That is an insane amount of money for a simple piece of foam&ndash;typical service part highway robbery. I will take a stab at fixing it myself. I will use rubberized sealant and transparent box tape. It won&rsquo;t look great, but who cares because the repair work will only be visible if you remove the interior door panel. If I <strong>ever</strong> have to tear out the panel for future repair work on a windows actuator I will consider buying a new foam panel&ndash;but not until then.</p>
-
-<h2>Repairing the foam seal.</h2>
-
-<p>Here are the steps I went through to repair the foam seal in the door. It was very easy and took only a few minutes&hellip;</p>
-
-<p>First we heat the door handle with a hair dryer. We want to get the plastic hot so it can flex more easily.</p>
-
-<p><img src="/images-saab/1-heating-door-handle.png" alt="heating up the door handle" /></p>
-
-<p>After the door handle has been warmed up, we can gently pull and easily snap off the plastic door handle cover.</p>
-
-<p><img src="/images-saab/2-door-handle-cover-removed.png" alt="door handle plastic cover removed" /></p>
-
-<p>Now we must remove two torx bolts which hold the door handle to the door frame.</p>
-
-<p><img src="/images-saab/3-star-driver-upper-handle.png" alt="door panel upper torx" /></p>
-
-<p><img src="/images-saab/4-star-driver-lower-handle.png" alt="door panel lower torx" /></p>
-
-<p>We then gently snap the door panel away and lift it gently to detach it from the door frame. We must be careful with the plastic snaps. The door panel remains loosely attached near the door lever. We can now inspect the the torn foam door seal.</p>
-
-<p><img src="/images-saab/5-torn-foam-seal.png" alt="torn interior door seal" /></p>
-
-<p>Lifting the lower section of the torn foam seal exposes the interior cavity of the door. This is where the water is coming from. The water runs along the torn foam panel and drops onto the interior door panel. From there it enters the cabin.</p>
-
-<p><img src="/images-saab/6-leak-point.png" alt="inner door cavity exposed" /></p>
-
-<p>We carefully use the rubberized sealant to repair the tear in the foam seal. We add quality transparent box tape to further mend any tears and spread the sealant across the tearing. It does not look like new, but it works just fine. The unsightly repair work will be covered completely when the interior door panel is snapped back into position.</p>
-
-<p><img src="/images-saab/7-repaired-foam-seal.png" alt="repaired door seal" /></p>
-
-<p>Afterwards, a lengthy garden hose test reveals that the repair work did the job! The door no longer leaks into the interior of the cabin.</p>
-
-<h2>Summary</h2>
-
-<p>We successfully repaired the leaking door on the 2007 Saab 93 2.0t. The work took about one hour and we spent about $5. We saved at least $140 in the process and learned a few things along the way. All in all it was a big win-win. <strong>That is $5 and one hour of fussing around!</strong></p>
-
-<p>The solution has worked flawlessly for 18 months, including winter and now several torrential spring rains. We still have the option to replace the foam seal whenever we want to endure the $140 cost. I might consider, instead of cheap flimsy foam, using a custom fit piece of durable 4 or 6 mil plastic visquene.</p>
-
-<p>If we had the service dealer fix it, we would have spent $140 for the part, and at least $90 for the labor. On top of that we would had to drive to the service dealer twice resulting in 2 hours of travel time&ndash;the dealer is 30 minutes away from my home. <strong>That is $230 and 2 hours of our time and travel costs.</strong></p>
-
-<h3>Disclaimer:</h3>
-
-<p>The information provided here is not a suggestion or endorsement that anyone should attempt to perform the activities shown or described. This information is provided as-is to show how I solved the problem described. Any repairs you make to your car, or someone else&rsquo;s car, are done at your own risk. The author assumes no responsibility or liability for the actions of others or the results obtained or problems encountered, including loss of any kind, from use of the information on this site.</p>
-
-<p>In other words; You better know what you are doing before trying your own repair work. If you are unsure as to what you are doing, then seek out a qualified mechanic to perform the work.</p>
-
-<p><a href='#TOP'><img alt="back to top of page" style="border-width:0" src="/images/nav-to-top_80x23.png" /></a></p>
+<p>Select the setup guide here for detailed instructions covering both CentOS 6 and CentOS 7 systems.
+<a href="/centos-virt" target="_blank">CentOS Hypervisor Setup and Management - detailed instructions</a></p>
 </div>
   
   
@@ -210,6 +149,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/02/21/linux-mint-file-sharing-with-nemo/">Linux Mint Easy Desktop File Sharing with Nemo</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/02/12/backuppc-hypervisor-backup/">Using BackupPC for Backing Up KVM Virtual Machines</a>
       </li>
     
@@ -231,10 +174,6 @@
     
       <li class="post">
         <a href="/blog/2013/04/21/electric-range-repair-can-i-do-it-myself/">Electric Range Repair: Can I do it myself?</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/04/21/auto-headlight-repair-cleaning-cloudy-headlamp-lenses-to-look-like-new-again/">Auto Headlight Repair: Cleaning cloudy headlamp lenses to look like new again</a>
       </li>
     
   </ul>

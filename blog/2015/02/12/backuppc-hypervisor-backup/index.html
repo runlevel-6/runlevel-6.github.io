@@ -90,7 +90,7 @@
   </header>
 
 
-<div class="entry-content"><h2>Linux Mint 17.1 Fully Automated Backup of KVM Hypervisor Client Virtual Machines and other Host Systems.</h2>
+<div class="entry-content"><h3>Linux Mint 17.1 Fully Automated Backup of KVM Hypervisor Client Virtual Machines and other Host Systems.</h3>
 
 <p>I recently spent some time researching open source backup solutions for KVM virtual machines (VMs) and discovered BackupPC.
 BackupPC is a server-based enterprise grade backup solution which can be used to backup data from various hosts including Windows Desktop/Server, Linux/UNIX, and OS X, or any other system that can have files collected across a network using common secure protocols for access, sharing, and/or transferring file system data.</p>
@@ -114,7 +114,7 @@ The solution has been working very well for several weeks, so far, with no probl
 
 <p><a href="/images-backuppc/backuppc-host-full_sec.png" target="_blank" title="BackupPC server summary full view (click to open enlarged view)"> <img src="/images-backuppc/backuppc-host-full_400x339_sec.png" border="0" alt="BackupPC UI in Firefox web browser" /></a></p>
 
-<h2>Dumping VMs to Ready them for Backup</h2>
+<h3>Dumping VMs to Ready them for Backup</h3>
 
 <p>I spent some time with Daniel Berteaud&rsquo;s
 <a href="http://gitweb.firewall-services.com/?p=virt-backup;a=blob_plain;f=virt-backup;hb=HEAD" target="_blank">virt-backup.pl script</a>,
@@ -123,7 +123,7 @@ It would hang libvirtd, requiring a restart.
 I spent a few days digging to find the root cause, but due to the time it was taking I decided to abandon the approach altogether.
 On a side note, I was able to get virt-backup.pl to function properly on a CentOS 7 KVM hypervisor to successfully dump the VMs, but did not test it enough to be able to recommend it.</p>
 
-<h2>Bash Script vm-clone-dump.sh for Hypervisor VM Dump and Cleanup</h2>
+<h3>Bash Script vm-clone-dump.sh for Hypervisor VM Dump and Cleanup</h3>
 
 <p>I decided to write a bash script that would be based on available command line utilities for managing VMs through libvirt. Focusing on simiplicity, I wrote
 <a href="/vm-clone-dump/" target="_blank">vm-clone-dump.sh</a>
@@ -159,7 +159,7 @@ The best use of it depends on the capabilities and loading of the hypervisor ser
 I am finding that the standard dump method works best on older servers, such as the Dell 2950 (10K RPM SATA RAID storage), while the concurrent dump seems to work best on newer servers, such as the Cicso C220 M3 (solid state RAID storage).
 The Cisco C220 M3 server dumps VMs in a few short minutes (~10 minutes) while the older, aging, Dell 2950 takes far longer (~5 hours) to complete a similar VM dump&ndash;a dramatic difference indeed.</p>
 
-<h2>Linux Mint 17.1 Server Setup for Backup of KVM Hypervisor Client Virtual Machines and other Host Systems.</h2>
+<h3>Linux Mint 17.1 Server Setup for Backup of KVM Hypervisor Client Virtual Machines and other Host Systems.</h3>
 
 <p>I decided to install backuppc into a
 <a href="http://www.linuxmint.com/" target="_blank">Linux Mint</a>
@@ -212,6 +212,8 @@ Hopefully you will find them useful in building your own BackupPC envionment.</p
         <a class="basic-alignment left" href="/blog/2015/01/13/linux-mint-with-hypervisor/" title="Previous Post: Linux Mint 17.1 with KVM/Qemu hypervisor and VM management">&laquo; Linux Mint 17.1 with KVM/Qemu hypervisor and VM management</a>
       
       
+        <a class="basic-alignment right" href="/blog/2015/02/21/linux-mint-file-sharing-with-nemo/" title="Next Post: Linux Mint Easy Desktop File Sharing with Nemo">Linux Mint Easy Desktop File Sharing with Nemo &raquo;</a>
+      
     </p>
   </footer>
 </article>
@@ -235,6 +237,10 @@ Hopefully you will find them useful in building your own BackupPC envionment.</p
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/02/21/linux-mint-file-sharing-with-nemo/">Linux Mint Easy Desktop File Sharing with Nemo</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/02/12/backuppc-hypervisor-backup/">Using BackupPC for Backing Up KVM Virtual Machines</a>
       </li>
     
@@ -256,10 +262,6 @@ Hopefully you will find them useful in building your own BackupPC envionment.</p
     
       <li class="post">
         <a href="/blog/2013/04/21/electric-range-repair-can-i-do-it-myself/">Electric Range Repair: Can I do it myself?</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/04/21/auto-headlight-repair-cleaning-cloudy-headlamp-lenses-to-look-like-new-again/">Auto Headlight Repair: Cleaning cloudy headlamp lenses to look like new again</a>
       </li>
     
   </ul>

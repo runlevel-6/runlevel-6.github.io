@@ -4,7 +4,7 @@
   <title><![CDATA[Runlevel-6]]></title>
   <link href="http:/runlevel-6.github.io/atom.xml" rel="self"/>
   <link href="http:/runlevel-6.github.io/"/>
-  <updated>2015-02-18T23:32:32-05:00</updated>
+  <updated>2015-02-21T17:11:13-05:00</updated>
   <id>http:/runlevel-6.github.io/</id>
   <author>
     <name><![CDATA[Ken Zahorec]]></name>
@@ -14,11 +14,78 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Linux Mint Easy Desktop File Sharing with Nemo]]></title>
+    <link href="http:/runlevel-6.github.io/blog/2015/02/21/linux-mint-file-sharing-with-nemo/"/>
+    <updated>2015-02-21T20:40:29-05:00</updated>
+    <id>http:/runlevel-6.github.io/blog/2015/02/21/linux-mint-file-sharing-with-nemo</id>
+    <content type="html"><![CDATA[<h3>Does it have to be complicated? &ndash; No it can be very easy</h3>
+
+<p>I often find discussion on websites concerning how to network-share files on a Linux computer with a Windows computer. One of the first topics that come up is the installation, setup, and use of Samba&ndash;which can become a bit complicated for the new Linux user. Samba is a very flexible and powerful SMB/CIFS software stack that also provides Domain Controller, print sharing, and a multitude of other incredibly useful features for the Linux server. Fortunately, in most cases for desktop Linux, this approach is not necessary at all.</p>
+
+<p>With many modern desktop distributions, such as recent and current versions of Linux Mint, a Windows style SMB fileshare is very easy to setup and use because they have a samba GUI setup component built into Nemo, the default file browser. You need not edit any samba configuration files to setup fileshares at your Linux host. You can easily, and within seconds, share any user directory below your /home directory using Nemo. These fileshares can be easily accessed from other host systems including Linux, OS X, and Windows. You can easily control exactly how you want the fileshares you define accessed.</p>
+
+<h3>How to quickly create a fileshare on Linux Mint that you can access</h3>
+
+<p>Start Nemo, the default file browser and navigate to a directory somewhere below your home that you want to share. Rt-Click the directory of choice and select Properties. Then take a close look at the &ldquo;Sharing&rdquo; tab. In this case I Right-Clicked on a directory I had titled &ldquo;tutorial&rdquo; and you can see that the default share name provided matches the name of the directory.</p>
+
+<p><img src="http:/runlevel-6.github.io/images-lm-fileshare/folder-sharing_400x341.png" alt="Nemo directory properties - file sharing" /></p>
+
+<p>Select <strong>Share this Folder</strong></p>
+
+<p>This will let you access the folder from another system as a SMB share. Before you can actually access this you will need a samba password. So create one by going to the command line and typing</p>
+
+<pre><code>$ sudo smbpasswd -a user
+...where user is your user name on the Linux system.
+</code></pre>
+
+<p>Now you can go to a Windows or OS X, or another Linux machine and access the share on your Linux system. Use the credentials of your Linux username and the smb password you provided when you ran the command above.</p>
+
+<h3>Samba passwords and Linux passwords are independent</h3>
+
+<p>Keep in mind that your Linux Mint password and your smb password are independent. They do not need to be the same and must be individually set. This means that you don&rsquo;t have to use the same password to login to your Linux system as required to access your SMB shares on the Linux system.</p>
+
+<p>You can always change your samba password on your Linux Mint system by going to the command prompt and simply entering:</p>
+
+<pre><code>$ smbpasswd
+...prompts you for the old password then prompts twice for the new password
+</code></pre>
+
+<h3>Other Methods of Setting up the Fileshare, Providing and/or restricting access to others</h3>
+
+<p>Going back to revisit the share Properties; you can select <strong>Guest access</strong>. This provides the share such that the user does not need to have an local or smb account to view the share as readonly. Anyone can then access the SMB share on the Linux box to read files. This presents a very open &ldquo;Public&rdquo; type of share. Perhaps too open for some environments.</p>
+
+<p>Revisiting the share Properties yet again, you could have instead selected <strong>Allow others to create and delete files in this folder</strong>.
+This will create the share such that the user must have an account on the Linux system, along with a smb user as well. This would allow the user read-write access to the share. In this example we must create both the new Linux user and new smb user associated with the Linux user.</p>
+
+<pre><code>$ sudo adduser shareuser
+...adds new Linux user "shareuser" to the system and prompts twice for password entry
+$ sudo smbpasswd -a shareuser
+...adds shareuser as a smb user and prompts for password
+</code></pre>
+
+<p>Now shareuser can access the share you created. Guests with no local smb account entry will not have access at all. This type of share lets you share data with others who have the smb credentials you choose to provide them.</p>
+
+<p>Of couse you can <strong>combine the settings, &ldquo;Guest access&rdquo; and/or &ldquo;Allow others&hellip;&rdquo; as desired</strong> to provide specific access to different users and/or groups of users.</p>
+
+<h3>Providing the writeable fileshare, while preventing user login access to my Linux system.</h3>
+
+<p>If you do not want the new user to be able to login to the Linux system, then you will have to be a bit more specific on exactly how the Linux account is created in the earlier example. You could instead create the user as follows:</p>
+
+<pre><code>$ sudo adduser shareuser --disabled-login
+</code></pre>
+
+<p>Creating the account this way will prevent the user from logging into the Linux system, but will allow them the required access to the fileshare. There are many other options for creating the user account. Refer to the man page for adduser for more details.</p>
+
+<p>This simple, easy, and quick capability of sharing files should suit most use cases one might encounter for desktop/server filesharing. For those who need other capabilities and perhaps more flexibility in the filesharing approach, consider doing some additional research and resort to a manual samba server configuration.</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Using BackupPC for Backing Up KVM Virtual Machines]]></title>
     <link href="http:/runlevel-6.github.io/blog/2015/02/12/backuppc-hypervisor-backup/"/>
     <updated>2015-02-12T20:40:29-05:00</updated>
     <id>http:/runlevel-6.github.io/blog/2015/02/12/backuppc-hypervisor-backup</id>
-    <content type="html"><![CDATA[<h2>Linux Mint 17.1 Fully Automated Backup of KVM Hypervisor Client Virtual Machines and other Host Systems.</h2>
+    <content type="html"><![CDATA[<h3>Linux Mint 17.1 Fully Automated Backup of KVM Hypervisor Client Virtual Machines and other Host Systems.</h3>
 
 <p>I recently spent some time researching open source backup solutions for KVM virtual machines (VMs) and discovered BackupPC.
 BackupPC is a server-based enterprise grade backup solution which can be used to backup data from various hosts including Windows Desktop/Server, Linux/UNIX, and OS X, or any other system that can have files collected across a network using common secure protocols for access, sharing, and/or transferring file system data.</p>
@@ -42,7 +109,7 @@ The solution has been working very well for several weeks, so far, with no probl
 
 <p><a href="http:/runlevel-6.github.io/images-backuppc/backuppc-host-full_sec.png" target="_blank" title="BackupPC server summary full view (click to open enlarged view)"> <img src="http:/runlevel-6.github.io/images-backuppc/backuppc-host-full_400x339_sec.png" border="0" alt="BackupPC UI in Firefox web browser" /></a></p>
 
-<h2>Dumping VMs to Ready them for Backup</h2>
+<h3>Dumping VMs to Ready them for Backup</h3>
 
 <p>I spent some time with Daniel Berteaud&rsquo;s
 <a href="http://gitweb.firewall-services.com/?p=virt-backup;a=blob_plain;f=virt-backup;hb=HEAD" target="_blank">virt-backup.pl script</a>,
@@ -51,7 +118,7 @@ It would hang libvirtd, requiring a restart.
 I spent a few days digging to find the root cause, but due to the time it was taking I decided to abandon the approach altogether.
 On a side note, I was able to get virt-backup.pl to function properly on a CentOS 7 KVM hypervisor to successfully dump the VMs, but did not test it enough to be able to recommend it.</p>
 
-<h2>Bash Script vm-clone-dump.sh for Hypervisor VM Dump and Cleanup</h2>
+<h3>Bash Script vm-clone-dump.sh for Hypervisor VM Dump and Cleanup</h3>
 
 <p>I decided to write a bash script that would be based on available command line utilities for managing VMs through libvirt. Focusing on simiplicity, I wrote
 <a href="http:/runlevel-6.github.io/vm-clone-dump/" target="_blank">vm-clone-dump.sh</a>
@@ -87,7 +154,7 @@ The best use of it depends on the capabilities and loading of the hypervisor ser
 I am finding that the standard dump method works best on older servers, such as the Dell 2950 (10K RPM SATA RAID storage), while the concurrent dump seems to work best on newer servers, such as the Cicso C220 M3 (solid state RAID storage).
 The Cisco C220 M3 server dumps VMs in a few short minutes (~10 minutes) while the older, aging, Dell 2950 takes far longer (~5 hours) to complete a similar VM dump&ndash;a dramatic difference indeed.</p>
 
-<h2>Linux Mint 17.1 Server Setup for Backup of KVM Hypervisor Client Virtual Machines and other Host Systems.</h2>
+<h3>Linux Mint 17.1 Server Setup for Backup of KVM Hypervisor Client Virtual Machines and other Host Systems.</h3>
 
 <p>I decided to install backuppc into a
 <a href="http://www.linuxmint.com/" target="_blank">Linux Mint</a>

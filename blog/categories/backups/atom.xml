@@ -4,7 +4,7 @@
   <title><![CDATA[Category: backups, | Runlevel-6]]></title>
   <link href="http:/runlevel-6.github.io/blog/categories/backups/atom.xml" rel="self"/>
   <link href="http:/runlevel-6.github.io/"/>
-  <updated>2015-02-18T23:32:32-05:00</updated>
+  <updated>2015-02-21T17:11:13-05:00</updated>
   <id>http:/runlevel-6.github.io/</id>
   <author>
     <name><![CDATA[Ken Zahorec]]></name>
@@ -18,7 +18,7 @@
     <link href="http:/runlevel-6.github.io/blog/2015/02/12/backuppc-hypervisor-backup/"/>
     <updated>2015-02-12T20:40:29-05:00</updated>
     <id>http:/runlevel-6.github.io/blog/2015/02/12/backuppc-hypervisor-backup</id>
-    <content type="html"><![CDATA[<h2>Linux Mint 17.1 Fully Automated Backup of KVM Hypervisor Client Virtual Machines and other Host Systems.</h2>
+    <content type="html"><![CDATA[<h3>Linux Mint 17.1 Fully Automated Backup of KVM Hypervisor Client Virtual Machines and other Host Systems.</h3>
 
 <p>I recently spent some time researching open source backup solutions for KVM virtual machines (VMs) and discovered BackupPC.
 BackupPC is a server-based enterprise grade backup solution which can be used to backup data from various hosts including Windows Desktop/Server, Linux/UNIX, and OS X, or any other system that can have files collected across a network using common secure protocols for access, sharing, and/or transferring file system data.</p>
@@ -42,7 +42,7 @@ The solution has been working very well for several weeks, so far, with no probl
 
 <p><a href="http:/runlevel-6.github.io/images-backuppc/backuppc-host-full_sec.png" target="_blank" title="BackupPC server summary full view (click to open enlarged view)"> <img src="http:/runlevel-6.github.io/images-backuppc/backuppc-host-full_400x339_sec.png" border="0" alt="BackupPC UI in Firefox web browser" /></a></p>
 
-<h2>Dumping VMs to Ready them for Backup</h2>
+<h3>Dumping VMs to Ready them for Backup</h3>
 
 <p>I spent some time with Daniel Berteaud&rsquo;s
 <a href="http://gitweb.firewall-services.com/?p=virt-backup;a=blob_plain;f=virt-backup;hb=HEAD" target="_blank">virt-backup.pl script</a>,
@@ -51,7 +51,7 @@ It would hang libvirtd, requiring a restart.
 I spent a few days digging to find the root cause, but due to the time it was taking I decided to abandon the approach altogether.
 On a side note, I was able to get virt-backup.pl to function properly on a CentOS 7 KVM hypervisor to successfully dump the VMs, but did not test it enough to be able to recommend it.</p>
 
-<h2>Bash Script vm-clone-dump.sh for Hypervisor VM Dump and Cleanup</h2>
+<h3>Bash Script vm-clone-dump.sh for Hypervisor VM Dump and Cleanup</h3>
 
 <p>I decided to write a bash script that would be based on available command line utilities for managing VMs through libvirt. Focusing on simiplicity, I wrote
 <a href="http:/runlevel-6.github.io/vm-clone-dump/" target="_blank">vm-clone-dump.sh</a>
@@ -87,7 +87,7 @@ The best use of it depends on the capabilities and loading of the hypervisor ser
 I am finding that the standard dump method works best on older servers, such as the Dell 2950 (10K RPM SATA RAID storage), while the concurrent dump seems to work best on newer servers, such as the Cicso C220 M3 (solid state RAID storage).
 The Cisco C220 M3 server dumps VMs in a few short minutes (~10 minutes) while the older, aging, Dell 2950 takes far longer (~5 hours) to complete a similar VM dump&ndash;a dramatic difference indeed.</p>
 
-<h2>Linux Mint 17.1 Server Setup for Backup of KVM Hypervisor Client Virtual Machines and other Host Systems.</h2>
+<h3>Linux Mint 17.1 Server Setup for Backup of KVM Hypervisor Client Virtual Machines and other Host Systems.</h3>
 
 <p>I decided to install backuppc into a
 <a href="http://www.linuxmint.com/" target="_blank">Linux Mint</a>
