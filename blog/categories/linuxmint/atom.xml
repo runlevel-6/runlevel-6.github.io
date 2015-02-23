@@ -4,7 +4,7 @@
   <title><![CDATA[Category: linuxmint | Runlevel-6]]></title>
   <link href="http:/runlevel-6.github.io/blog/categories/linuxmint/atom.xml" rel="self"/>
   <link href="http:/runlevel-6.github.io/"/>
-  <updated>2015-02-21T17:11:13-05:00</updated>
+  <updated>2015-02-23T01:01:36-05:00</updated>
   <id>http:/runlevel-6.github.io/</id>
   <author>
     <name><![CDATA[Ken Zahorec]]></name>
@@ -52,7 +52,7 @@
 
 <h3>Other Methods of Setting up the Fileshare, Providing and/or restricting access to others</h3>
 
-<p>Going back to revisit the share Properties; you can select <strong>Guest access</strong>. This provides the share such that the user does not need to have an local or smb account to view the share as readonly. Anyone can then access the SMB share on the Linux box to read files. This presents a very open &ldquo;Public&rdquo; type of share. Perhaps too open for some environments.</p>
+<p>Going back to revisit the share Properties; you can select <strong>Guest access</strong>. This provides the share such that the user does not need to have an local or smb account to view the share as readonly. Anyone can then access the SMB share on the Linux box to read files. This presents a very open &ldquo;Public&rdquo; read-only type of share. Perhaps too open for some environments.</p>
 
 <p>Revisiting the share Properties yet again, you could have instead selected <strong>Allow others to create and delete files in this folder</strong>.
 This will create the share such that the user must have an account on the Linux system, along with a smb user as well. This would allow the user read-write access to the share. In this example we must create both the new Linux user and new smb user associated with the Linux user.</p>
