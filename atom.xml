@@ -4,7 +4,7 @@
   <title><![CDATA[Runlevel-6]]></title>
   <link href="http:/runlevel-6.github.io/atom.xml" rel="self"/>
   <link href="http:/runlevel-6.github.io/"/>
-  <updated>2015-03-01T13:24:52-05:00</updated>
+  <updated>2015-03-19T01:49:07-04:00</updated>
   <id>http:/runlevel-6.github.io/</id>
   <author>
     <name><![CDATA[Ken Zahorec]]></name>
@@ -209,7 +209,7 @@ $ sudo apt-get install libvirt-bin
 $ sudo apt-get install virt-manager
 </code></pre>
 
-<p>We want the ability to provide accelerated video to any connecting clients, so we add the SPICE client kit and virt-viewer. Virt-viewer is a view client which connects to either VNC or SPICE desktop video connections. It is similar to a RDP or VNC client.</p>
+<p>We want the ability to provide accelerated video to any connecting clients, so we add the SPICE client kit and virt-viewer. Virt-viewer is a view client which connects to either VNC or SPICE desktop video connections. It is similar to a RDP or VNC client, but SPICE is much more versatile because it connects at the VM console through the hypervisor. It provides far more control over the VM guest. Consider that the guest can have networking misconfigured and you can still log into the VM console through SPICE or VNC.</p>
 
 <pre><code>$ sudo apt-get install python-spice-client-gtk
 $ sudo apt-get install virt-viewer
